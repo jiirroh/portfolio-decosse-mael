@@ -1,94 +1,79 @@
+/* Style général */
 body {
-    margin: 0;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    background: #fff;
-    color: #000;
+  margin: 0;
+  padding: 0;
+  font-family: "Comic Sans MS", sans-serif;
+  font-size: 15px;
+  background-color: #fff;
+  color: #000;
 }
+
+/* En-tête */
 header {
-    background: rgb(0,127,255);
-    color: #fff;
-    padding: 20px 0 10px 0;
-    text-align: center;
-    position: relative;
+  background-color: rgb(0, 127, 255);
+  color: white;
+  padding: 20px;
+  text-align: center;
 }
-.logo {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
+
+header h1 {
+  font-family: "Cooper Black", sans-serif;
+  font-size: 24px;
+  margin: 0;
 }
-.titre {
-    font-family: 'Cooper Black', serif;
-    font-size: 2rem;
-    margin: 0 0 10px 0;
+
+header p {
+  margin: 5px 0 0 0;
 }
-.menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
-.menu li a {
-    text-decoration: none;
-    color: #fff;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    font-size: 1.1rem;
-    background: rgb(0,127,255);
-    padding: 8px 18px;
-    border-radius: 8px;
-    transition: background 0.2s;
-}
-.menu li a:hover {
-    background: #005fa3;
-}
-h2 {
-    font-family: 'Cooper Black', serif;
-    font-size: 1.5rem;
-    color: rgb(0,127,255);
-}
+
+/* Sections principales */
 main {
-    padding: 30px 10vw;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
 }
+
+/* Titres */
+h2 {
+  font-family: "Cooper Black", sans-serif;
+  font-size: 24px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid rgb(0,127,255);
+  padding-bottom: 5px;
+  color: rgb(0,127,255);
+}
+
+/* Listes */
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul li {
+  margin: 5px 0;
+}
+
+/* Bouton CV */
+a.download-btn {
+  display: inline-block;
+  background-color: rgb(0,127,255);
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+a.download-btn:hover {
+  background-color: #005bb5;
+}
+
+/* Pied de page */
 footer {
-    background: rgb(0,127,255);
-    color: #fff;
-    text-align: right;
-    padding: 15px 30px;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    font-family: 'Cooper Black', serif;
-    font-size: 1.2rem;
-    display: flex;
-    justify-content: space-between;
-}
-.footer-content {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-.footer-nom {
-    font-weight: bold;
-}
-@media (max-width: 700px) {
-    .menu {
-        flex-direction: column;
-        gap: 10px;
-    }
-    main {
-        padding: 20px 5vw;
-    }
-    .logo {
-        width: 70px;
-        height: 70px;
-    }
-    .titre {
-        font-size: 1.3rem;
-    }
-    footer {
-        font-size: 1rem;
-        padding: 10px 10px;
-    }
+  background-color: rgb(0,127,255);
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 20px;
 }
