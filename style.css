@@ -34,17 +34,16 @@ header {
 }
 
 .logo {
-  height: 50px;
-  margin-right: 15px;
+  height: 45px;
 }
 
 .titre {
   font-family: "Cooper Black", sans-serif;
   font-size: 22px;
-  color: white;
+  margin-left: 10px;
 }
 
-/* ===== MENU ===== */
+/* ===== NAVIGATION ===== */
 nav ul {
   list-style: none;
   display: flex;
@@ -67,6 +66,43 @@ nav ul li a:hover {
 nav ul li a.active {
   background: white;
   color: rgb(0,127,255);
+}
+
+/* ===== MENU HAMBURGER (MOBILE) ===== */
+.hamburger {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background: rgb(0,127,255);
+    position: absolute;
+    top: 65px;
+    right: 0;
+    width: 200px;
+    padding: 10px;
+    border-radius: 0 0 8px 8px;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
 }
 
 /* ===== MAIN ===== */
@@ -172,31 +208,11 @@ footer {
   font-size: 14px;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .nav-container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  nav ul {
-    flex-direction: column;
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  nav ul li {
-    width: 100%;
-  }
-
-  nav ul li a {
-    display: block;
-    width: 100%;
-    text-align: left;
-  }
-
-  .titre {
-    font-size: 18px;
-    margin-top: 10px;
-  }
+html {
+  scroll-behavior: smooth;
 }
+.sub-menu ul li a.active {
+  background: rgb(0,127,255);
+  color: white;
+}
+

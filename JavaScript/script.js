@@ -8,3 +8,43 @@ function typeWriter() {
   }
 }
 window.onload = typeWriter;
+
+// Menu hamburger responsive
+const hamburger = document.querySelector(".hamburger");
+const menu = document.querySelector(".menu");
+
+hamburger.addEventListener("click", () => {
+  menu.classList.toggle("show");
+});
+
+// Fermer le menu mobile quand on clique sur un lien
+document.querySelectorAll(".menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    menu.classList.remove("show");
+  });
+});
+// --- Scrollspy (mettre en surbrillance le lien actif) ---
+const sections = document.querySelectorAll("main section[id]");
+const navLinks = document.querySelectorAll(".sub-menu a");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 80; // marge du header
+    const sectionHeight = section.clientHeight;
+    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href").includes(current)) {
+      link.classList.add("active");
+    }
+  });
+});
+
+
+
