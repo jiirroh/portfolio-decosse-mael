@@ -5,178 +5,103 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Compétences - Portfolio Decosse Maël</title>
   <link rel="stylesheet" href="style.css">
+  <script src="JavaScript/script.js" defer></script>
 </head>
 <body>
-  <!-- HEADER GLOBAL -->
-<header>
-  <div class="nav-container">
-    <img src="logo.png" alt="Logo" class="logo">
-    <h1 class="titre">Portfolio Decosse Maël</h1>
-    <nav>
-      <button class="hamburger">☰</button>
-      <ul class="menu">
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="cv.html">CV</a></li>
-        <li><a href="apropos.html">À propos</a></li>
-        <li><a href="projets.html">Projets</a></li>
-        <li><a href="competences.html">Compétences</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+  <header>
+    <div class="nav-container">
+      <img src="logo.png" alt="Logo" class="logo">
+      <h1 class="titre">Portfolio Decosse Maël</h1>
+      <nav>
+        <button class="hamburger">☰</button>
+        <ul class="menu">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="cv.html">CV</a></li>
+          <li><a href="apropos.html">À propos</a></li>
+          <li><a href="projets.html">Projets</a></li>
+          <li><a href="competences.html" class="active">Compétences</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-
-  <!-- SOUS-MENU POUR BLOCS DE COMPÉTENCES -->
+  <!-- Sous-menu blocs -->
   <nav class="sub-menu">
     <ul>
-      <li><a href="#bloc1">Bloc 1 : Support & Services IT</a></li>
-      <li><a href="#bloc2">Bloc 2 : Développement</a></li>
-      <li><a href="#bloc3">Bloc 3 : Cybersécurité</a></li>
+      <li><a href="#bloc1">Bloc 1 - Support</a></li>
+      <li><a href="#bloc2">Bloc 2 - Développement</a></li>
+      <li><a href="#bloc3">Bloc 3 - Cybersécurité</a></li>
     </ul>
   </nav>
 
   <main>
-    <!-- BLOC 1 -->
+    <!-- Bloc 1 -->
     <section id="bloc1">
       <h2>Bloc 1 - Support et mise à disposition de services informatiques</h2>
-
-      <h3>1.1 Gestion du patrimoine informatique</h3>
+      <h3>Exemples :</h3>
       <ul>
-        <li>Recenser et identifier les ressources numériques</li>
-        <li>Exploiter des référentiels, normes et standards</li>
-        <li>Mettre en place et vérifier les niveaux d’habilitation</li>
-        <li>Vérifier la continuité d’un service informatique</li>
-        <li>Gérer des sauvegardes</li>
-        <li>Vérifier le respect des règles d’utilisation</li>
+        <li><a href="projets.html#helpdesk" target="_blank">Système de ticket d’assistance (HTML/PHP/SQL)</a></li>
+        <li><a href="projets.html#backup" target="_blank">Script de sauvegarde automatique (Batch/Python)</a></li>
+        <li><a href="projets.html#veille" target="_blank">Veille technologique automatisée (RSS + Python)</a></li>
       </ul>
 
-      <h3>1.2 Réponse aux incidents et aux demandes</h3>
+      <h3>Compétences clés :</h3>
       <ul>
-        <li>Collecter, suivre et orienter des demandes</li>
-        <li>Traiter des demandes réseau, système et applicatifs</li>
-        <li>Traiter des demandes concernant les applications</li>
-      </ul>
-
-      <h3>1.3 Développement de la présence en ligne</h3>
-      <ul>
-        <li>Valoriser l’image de l’organisation sur les médias numériques</li>
-        <li>Référencer les services en ligne et mesurer leur visibilité</li>
-        <li>Participer à l’évolution d’un site Web</li>
-      </ul>
-
-      <h3>1.4 Travail en mode projet</h3>
-      <ul>
-        <li>Analyser les objectifs et l’organisation d’un projet</li>
-        <li>Planifier les activités</li>
-        <li>Évaluer les indicateurs de suivi</li>
-      </ul>
-
-      <h3>1.5 Mise à disposition des utilisateurs</h3>
-      <ul>
-        <li>Réaliser des tests d’intégration et d’acceptation</li>
-        <li>Déployer un service</li>
+        <li>Gérer le patrimoine informatique et les sauvegardes</li>
+        <li>Répondre aux incidents et demandes d’assistance</li>
+        <li>Développer la présence en ligne de l’organisation</li>
+        <li>Travailler en mode projet</li>
         <li>Accompagner les utilisateurs</li>
-      </ul>
-
-      <h3>1.6 Développement professionnel</h3>
-      <ul>
-        <li>Mettre en place un environnement d’apprentissage</li>
-        <li>Mettre en œuvre des outils de veille</li>
-        <li>Gérer son identité professionnelle</li>
-        <li>Développer son projet professionnel</li>
+        <li>Assurer sa veille et son développement professionnel</li>
       </ul>
     </section>
 
-    <!-- BLOC 2 -->
+    <!-- Bloc 2 -->
     <section id="bloc2">
       <h2>Bloc 2 - Conception et développement d’applications</h2>
-
-      <h3>2.1 Conception et développement</h3>
+      <h3>Exemples :</h3>
       <ul>
-        <li>Analyser un besoin exprimé et son contexte juridique</li>
-        <li>Concevoir l’architecture d’une solution applicative</li>
-        <li>Modéliser une solution applicative</li>
-        <li>Exploiter les frameworks</li>
-        <li>Développer ou adapter des composants logiciels</li>
-        <li>Exploiter les technologies Web (dont mobilité)</li>
-        <li>Utiliser des composants d’accès aux données</li>
-        <li>Intégrer en continu</li>
-        <li>Réaliser des tests et documentations</li>
+        <li><a href="projets.html#lua" target="_blank">Serveur GTA RP - Scripts LUA</a></li>
+        <li><a href="projets.html#javaapp" target="_blank">Application de gestion Java (POO + MySQL)</a></li>
+        <li><a href="projets.html#siteweb" target="_blank">Site web complet avec base de données (HTML/CSS/JS/PHP)</a></li>
       </ul>
 
-      <h3>2.2 Maintenance corrective ou évolutive</h3>
+      <h3>Compétences clés :</h3>
       <ul>
-        <li>Analyser et mettre à jour les informations</li>
-        <li>Évaluer la qualité d’une solution</li>
-        <li>Corriger un dysfonctionnement</li>
-        <li>Mettre à jour la documentation</li>
-        <li>Tester les éléments mis à jour</li>
-      </ul>
-
-      <h3>2.3 Gestion des données</h3>
-      <ul>
-        <li>Exploiter des données avec un langage de requêtes</li>
-        <li>Développer des fonctionnalités en base de données</li>
-        <li>Concevoir ou adapter une base de données</li>
-        <li>Administrer et déployer une base de données</li>
+        <li>Analyser un besoin et concevoir une solution</li>
+        <li>Développer des applications en Java, PHP, JS, LUA</li>
+        <li>Intégrer et tester une solution applicative</li>
+        <li>Mettre à jour et maintenir une application existante</li>
+        <li>Concevoir et administrer une base de données</li>
       </ul>
     </section>
 
-    <!-- BLOC 3 -->
+    <!-- Bloc 3 -->
     <section id="bloc3">
       <h2>Bloc 3 - Cybersécurité des services informatiques</h2>
-
-      <h3>3.1 Protection des données</h3>
+      <h3>Exemples :</h3>
       <ul>
-        <li>Recenser les traitements sur les données personnelles</li>
-        <li>Identifier les risques liés à la collecte et au stockage</li>
-        <li>Appliquer la réglementation RGPD</li>
-        <li>Sensibiliser les utilisateurs</li>
+        <li><a href="projets.html#rgpd" target="_blank">Audit RGPD - Protection des données</a></li>
+        <li><a href="projets.html#firewall" target="_blank">Configuration de pare-feu et gestion des accès</a></li>
+        <li><a href="projets.html#logs" target="_blank">Analyse de logs et détection d’incidents</a></li>
       </ul>
 
-      <h3>3.2 Préservation de l’identité numérique</h3>
+      <h3>Compétences clés :</h3>
       <ul>
-        <li>Protéger l’identité numérique d’une organisation</li>
-        <li>Déployer les moyens de preuve électronique</li>
-      </ul>
-
-      <h3>3.3 Sécurisation des équipements et usages</h3>
-      <ul>
-        <li>Informer sur les risques et promouvoir les bons usages</li>
-        <li>Identifier les menaces et appliquer les défenses</li>
-        <li>Gérer les accès et privilèges</li>
-        <li>Vérifier l’efficacité de la protection</li>
-      </ul>
-
-      <h3>3.4 Disponibilité, intégrité et confidentialité</h3>
-      <ul>
-        <li>Caractériser les risques liés à une cyberattaque</li>
-        <li>Recenser les conséquences d’une perte de données</li>
-        <li>Identifier les obligations légales</li>
-        <li>Organiser la collecte et conservation des preuves</li>
-      </ul>
-
-      <h3>3.5 Cybersécurisation d’une solution applicative</h3>
-      <ul>
-        <li>Vérifier la qualité d’un développement</li>
-        <li>Intégrer la sécurité dans un projet</li>
-        <li>Contrôler la conformité aux normes de sécurité</li>
-        <li>Prévenir les attaques</li>
-        <li>Analyser les logs et incidents</li>
-        <li>Mettre en œuvre des contre-mesures</li>
+        <li>Appliquer les règles de protection des données personnelles</li>
+        <li>Sécuriser les équipements et services informatiques</li>
+        <li>Prévenir et analyser les attaques</li>
+        <li>Garantir la disponibilité et la confidentialité des services</li>
+        <li>Assurer la cybersécurité dans le développement d’applications</li>
       </ul>
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-content">
-      <span>05/09/2025</span>
-      <span class="footer-nom">Decosse Maël</span>
+      <span>© 2025 - Portfolio Decosse Maël</span>
     </div>
   </footer>
-  <script src="JavaScript/script.js" defer></script>
-
 </body>
 </html>
