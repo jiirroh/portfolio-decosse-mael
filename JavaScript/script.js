@@ -66,6 +66,33 @@ document.querySelectorAll(".sub-menu a").forEach(link => {
     setTimeout(() => targetSection.classList.remove("active-section"), 1500);
   });
 });
+// --- Quand on clique sur Bloc 1 / 2 / 3, ouvrir automatiquement tous les "Voir plus" du bloc ---
+document.querySelectorAll(".sub-menu a").forEach(link => {
+  link.addEventListener("click", e => {
+    const targetId = link.getAttribute("href").substring(1);
+    const targetSection = document.getElementById(targetId);
+
+    // 1️⃣ Ferme les autres sections si tu veux un effet accordéon
+    document.querySelectorAll("main section").forEach(sec => {
+      if (sec !== targetSection) sec.classList.remove("expanded");
+    });
+
+    // 2️⃣ Ouvre la section cliquée
+    targetSection.classList.add("expanded");
+    targetSection.classList.add("active-section");
+    setTimeout(() => targetSection.classList.remove("active-section"), 1500);
+
+    // 3️⃣ Ouvre tous les détails "Voir plus" de ce bloc
+    targetSection.querySelectorAll(".details").forEach(detail => {
+      detail.classList.add("show");
+    });
+
+    // 4️⃣ Change le texte des boutons en "Voir moins"
+    targetSection.querySelectorAll(".toggle-btn").forEach(btn => {
+      btn.textContent = "Voir moins";
+    });
+  });
+});
 
 
 
