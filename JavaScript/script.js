@@ -46,16 +46,27 @@ window.addEventListener("scroll", () => {
   });
 });
 
-// Boutons "Voir plus" / "Voir moins"
-document.querySelectorAll(".toggle-btn").forEach(button => {
-  button.addEventListener("click", () => {
-    const details = button.nextElementSibling;
-    details.classList.toggle("show");
-    button.textContent = details.classList.contains("show")
-      ? "Voir moins"
-      : "Voir plus";
+// --- Effet déroulant et mise en avant sur clic du sous-menu ---
+document.querySelectorAll(".sub-menu a").forEach(link => {
+  link.addEventListener("click", e => {
+    // Récupérer l'ID ciblé (#bloc1, #bloc2, etc.)
+    const targetId = link.getAttribute("href").substring(1);
+    const targetSection = document.getElementById(targetId);
+
+    // Fermer les autres sections si tu veux un effet accordéon global
+    document.querySelectorAll("main section").forEach(sec => {
+      if (sec !== targetSection) sec.classList.remove("expanded");
+    });
+
+    // Basculer l'ouverture de la section cliquée
+    targetSection.classList.toggle("expanded");
+
+    // Effet de surbrillance temporaire
+    targetSection.classList.add("active-section");
+    setTimeout(() => targetSection.classList.remove("active-section"), 1500);
   });
 });
+
 
 
 

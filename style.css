@@ -264,4 +264,30 @@ html {
   max-height: 500px; /* valeur suffisante pour contenir le texte */
   opacity: 1;
 }
+/* Effet de mise en avant temporaire */
+section.active-section {
+  animation: highlight 1.5s ease;
+}
+
+@keyframes highlight {
+  0% { box-shadow: 0 0 0 rgba(0,127,255,0); }
+  30% { box-shadow: 0 0 25px rgba(0,127,255,0.6); }
+  100% { box-shadow: 0 0 0 rgba(0,127,255,0); }
+}
+
+/* Optionnel : effet "ouverture" douce si on replie les sections */
+section.collapsed {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0;
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+section.expanded {
+  max-height: 2000px; /* ajuster selon la taille du contenu */
+  opacity: 1;
+  padding: 20px;
+  transition: all 0.6s ease;
+}
 
