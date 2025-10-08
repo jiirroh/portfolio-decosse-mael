@@ -46,5 +46,16 @@ window.addEventListener("scroll", () => {
   });
 });
 
+// Boutons "Voir plus" / "Voir moins"
+document.querySelectorAll(".toggle-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    const details = button.nextElementSibling;
+    details.classList.toggle("show");
+    button.textContent = details.classList.contains("show")
+      ? "Voir moins"
+      : "Voir plus";
+  });
+});
+
 
 

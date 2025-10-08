@@ -215,4 +215,53 @@ html {
   background: rgb(0,127,255);
   color: white;
 }
+.exemple {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 15px 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
+}
+
+.exemple:hover {
+  transform: translateY(-2px);
+}
+
+.exemple h4 {
+  color: rgb(0,127,255);
+  font-family: "Cooper Black", sans-serif;
+  margin-bottom: 8px;
+}
+
+.toggle-btn {
+  background: rgb(0,127,255);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 5px;
+  transition: background 0.3s;
+}
+
+.toggle-btn:hover {
+  background: #005bb5;
+}
+
+/* Zone de texte déroulante */
+.details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.4s ease;
+  opacity: 0;
+  margin-top: 10px;
+}
+
+.details.show {
+  max-height: 500px; /* valeur suffisante pour contenir le texte */
+  opacity: 1;
+}
 
