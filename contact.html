@@ -19,7 +19,7 @@
         <li><a href="apropos.html">À propos</a></li>
         <li><a href="projets.html">Projets</a></li>
         <li><a href="competences.html">Compétences</a></li>
-        <li><a href="contact.html">Contact</a></li>
+<li><a href="veille.html">Veille Tech</a></li> <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
   </div>
@@ -27,14 +27,19 @@
 
 
   <main>
-    <section>
-      <h2>Me contacter</h2>
-      <p>Email : <a href="mailto:mael.decosse@gmail.com">mael.decosse@gmail.com</a></p>
-      <p>Téléphone : 06 88 64 92 97</p>
-      <p>Adresse : 49 avenue Henri IV, Jurançon</p>
+<section>
+    <h2>Me contacter</h2>
+    <p>
+        Vous pouvez me joindre par email ou via le formulaire ci-dessous.
+        N'hésitez pas à consulter mon profil LinkedIn pour plus d'informations.
+    </p>
+    <div class="contact-links">
+        <a href="mailto:mael.decosse@gmail.com" class="download-btn">📧 Email</a>
+        <a href="https_lien_vers_ton_profil_linkedin" target="_blank" class="download-btn">💼 LinkedIn</a>
+    </div>
 
-      <!-- Formulaire de contact simple -->
-      <form action="mailto:mael.decosse@gmail.com" method="post" enctype="text/plain">
+    <h3>Formulaire de contact</h3>
+    <form action="send_mail.php" method="post">
         <label for="nom">Nom :</label><br>
         <input type="text" id="nom" name="nom" required><br><br>
 
@@ -45,8 +50,8 @@
         <textarea id="message" name="message" rows="5" required></textarea><br><br>
 
         <button type="submit" class="download-btn">Envoyer</button>
-      </form>
-    </section>
+    </form>
+</section>
   </main>
 
   <footer>
