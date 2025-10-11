@@ -91,4 +91,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
   }
+  // --- GESTION DU THÈME SOMBRE ---
+const themeToggle = document.getElementById("theme-toggle");
+
+if (themeToggle) {
+  // Vérifier si un thème est déjà sauvegardé dans le localStorage
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+    themeToggle.textContent = "☀️";
+  }
+
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+
+    // Sauvegarder le choix dans le localStorage
+    if (document.body.classList.contains("dark-mode")) {
+      localStorage.setItem("theme", "dark");
+      themeToggle.textContent = "☀️";
+    } else {
+      localStorage.removeItem("theme");
+      themeToggle.textContent = "🌙";
+    }
+  });
+}
 });

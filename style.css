@@ -442,3 +442,36 @@ section.expanded {
   top: 75px; /* Se colle à 75px du haut pour se placer sous le header */
   z-index: 999; /* S'assure qu'il reste au-dessus du contenu */
 }
+/* ===== GESTION DES THÈMES (CLAIR / SOMBRE) ===== */
+:root {
+  --couleur-principale: rgb(0, 127, 255);
+  --couleur-principale-hover: #005bb5;
+  --couleur-fond: #f9f9f9;
+  --couleur-fond-section: white;
+  --couleur-texte: #222;
+  --couleur-ombre: rgba(0, 0, 0, 0.08);
+}
+
+body.dark-mode {
+  --couleur-fond: #121212;
+  --couleur-fond-section: #1e1e1e;
+  --couleur-texte: #e0e0e0;
+  --couleur-ombre: rgba(255, 255, 255, 0.08);
+}
+
+/* Appliquez les variables au reste de votre CSS */
+body {
+  background-color: var(--couleur-fond);
+  color: var(--couleur-texte);
+  /* ... etc ... */
+}
+section {
+  background: var(--couleur-fond-section);
+  box-shadow: 0 4px 10px var(--couleur-ombre);
+  /* ... etc ... */
+}
+a.download-btn, button {
+  background: var(--couleur-principale);
+  /* ... etc ... */
+}
+/* ... Pensez à remplacer les couleurs dans tout votre CSS par les variables ! ... */
