@@ -1,3 +1,29 @@
+/* ===== GESTION DES THÈMES ET VARIABLES CSS ===== */
+:root {
+  --couleur-principale: rgb(0, 127, 255);
+  --couleur-principale-hover: #005bb5;
+  --couleur-fond: #f9f9f9;
+  --couleur-fond-section: white;
+  --couleur-texte-clair: white;
+  --couleur-texte-sombre: #222;
+  --couleur-texte-secondaire: #555;
+  --couleur-ombre: rgba(0, 0, 0, 0.08);
+  --couleur-sous-menu-fond: #f0f0f0;
+  --couleur-bordure: #ddd;
+  --couleur-bordure-dashed: #ccc;
+}
+
+body.dark-mode {
+  --couleur-fond: #121212;
+  --couleur-fond-section: #1e1e1e;
+  --couleur-texte-sombre: #e0e0e0;
+  --couleur-texte-secondaire: #aaa;
+  --couleur-ombre: rgba(255, 255, 255, 0.08);
+  --couleur-sous-menu-fond: #2a2a2a;
+  --couleur-bordure: #444;
+  --couleur-bordure-dashed: #555;
+}
+
 /* ===== RESET ===== */
 * {
   margin: 0;
@@ -7,17 +33,17 @@
 
 /* ===== GENERAL ===== */
 body {
-  font-family: "Comic Sans MS", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 15px;
-  background-color: #f9f9f9;
-  color: #222;
+  background-color: var(--couleur-fond);
+  color: var(--couleur-texte-sombre);
   line-height: 1.6;
 }
 
 /* ===== HEADER ===== */
 header {
-  background: rgb(0,127,255);
-  color: white;
+  background: var(--couleur-principale);
+  color: var(--couleur-texte-clair);
   padding: 15px 20px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   position: sticky;
@@ -38,9 +64,10 @@ header {
 }
 
 .titre {
-  font-family: "Cooper Black", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 22px;
   margin-left: 10px;
+  margin-right: auto;
 }
 
 /* ===== NAVIGATION ===== */
@@ -51,7 +78,7 @@ nav ul {
 }
 
 nav ul li a {
-  color: white;
+  color: var(--couleur-texte-clair);
   text-decoration: none;
   font-weight: bold;
   padding: 8px 14px;
@@ -64,8 +91,8 @@ nav ul li a:hover {
 }
 
 nav ul li a.active {
-  background: white;
-  color: rgb(0,127,255);
+  background: var(--couleur-fond-section);
+  color: var(--couleur-principale);
 }
 
 /* ===== MENU HAMBURGER (MOBILE) ===== */
@@ -75,7 +102,7 @@ nav ul li a.active {
   cursor: pointer;
   background: none;
   border: none;
-  color: white;
+  color: var(--couleur-texte-clair);
 }
 
 nav {
@@ -87,9 +114,9 @@ nav {
   nav ul {
     display: none;
     flex-direction: column;
-    background: rgb(0,127,255);
+    background: var(--couleur-principale);
     position: absolute;
-    top: 65px;
+    top: 75px;
     right: 0;
     width: 200px;
     padding: 10px;
@@ -112,28 +139,27 @@ main {
   padding: 0 20px;
 }
 
-/* TITRES */
 h2, h3 {
-  font-family: "Cooper Black", sans-serif;
+  font-family: "Montserrat", sans-serif;
   margin-bottom: 10px;
-  color: rgb(0,127,255);
+  color: var(--couleur-principale);
 }
 
 h2 {
   font-size: 22px;
-  border-bottom: 2px solid rgb(0,127,255);
+  border-bottom: 2px solid var(--couleur-principale);
   padding-bottom: 5px;
   margin-top: 30px;
 }
 
 /* ===== SECTIONS ===== */
 section {
-  background: white;
+  background: var(--couleur-fond-section);
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  transition: transform 0.2s;
+  box-shadow: 0 4px 10px var(--couleur-ombre);
+  transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
 }
 
 section:hover {
@@ -152,8 +178,8 @@ ul li {
 /* ===== BOUTONS ===== */
 a.download-btn, button {
   display: inline-block;
-  background: rgb(0,127,255);
-  color: white;
+  background: var(--couleur-principale);
+  color: var(--couleur-texte-clair);
   padding: 10px 20px;
   border-radius: 8px;
   font-weight: bold;
@@ -165,15 +191,16 @@ a.download-btn, button {
 }
 
 a.download-btn:hover, button:hover {
-  background: #005bb5;
+  background: var(--couleur-principale-hover);
   transform: scale(1.05);
 }
 
 /* ===== SOUS-MENU COMPETENCES ===== */
 .sub-menu {
-  background: #f0f0f0;
-  border-bottom: 2px solid rgb(0,127,255);
+  background: var(--couleur-sous-menu-fond);
+  border-bottom: 2px solid var(--couleur-principale);
   padding: 10px 0;
+  transition: background-color 0.3s;
 }
 
 .sub-menu ul {
@@ -185,7 +212,7 @@ a.download-btn:hover, button:hover {
 }
 
 .sub-menu ul li a {
-  color: rgb(0,127,255);
+  color: var(--couleur-principale);
   text-decoration: none;
   font-weight: bold;
   padding: 6px 12px;
@@ -193,15 +220,15 @@ a.download-btn:hover, button:hover {
   transition: background 0.3s, color 0.3s;
 }
 
-.sub-menu ul li a:hover {
-  background: rgb(0,127,255);
-  color: white;
+.sub-menu ul li a:hover, .sub-menu ul li a.active {
+  background: var(--couleur-principale);
+  color: var(--couleur-texte-clair);
 }
 
 /* ===== FOOTER ===== */
 footer {
-  background: rgb(0,127,255);
-  color: white;
+  background: var(--couleur-principale);
+  color: var(--couleur-texte-clair);
   text-align: center;
   padding: 15px;
   margin-top: 40px;
@@ -211,47 +238,30 @@ footer {
 html {
   scroll-behavior: smooth;
 }
-.sub-menu ul li a.active {
-  background: rgb(0,127,255);
-  color: white;
-}
+
+/* --- Structures Compétences --- */
 .exemple {
-  background: #fff;
-  border: 1px solid #ddd;
+  background: var(--couleur-fond); /* Inversion pour le contraste */
+  border: 1px solid var(--couleur-bordure);
   border-radius: 10px;
   padding: 15px;
   margin: 15px 0;
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  transition: transform 0.2s;
-}
-
-.exemple:hover {
-  transform: translateY(-2px);
+  transition: transform 0.2s, background-color 0.3s, border-color 0.3s;
 }
 
 .exemple h4 {
-  color: rgb(0,127,255);
-  font-family: "Cooper Black", sans-serif;
+  color: var(--couleur-principale);
+  font-family: "Montserrat", sans-serif;
   margin-bottom: 8px;
 }
 
 .toggle-btn {
-  background: rgb(0,127,255);
-  color: white;
-  border: none;
   padding: 8px 16px;
-  border-radius: 6px;
   font-weight: bold;
-  cursor: pointer;
   margin-top: 5px;
-  transition: background 0.3s;
 }
 
-.toggle-btn:hover {
-  background: #005bb5;
-}
-
-/* Zone de texte déroulante */
 .details {
   max-height: 0;
   overflow: hidden;
@@ -261,217 +271,79 @@ html {
 }
 
 .details.show {
-  max-height: 500px; /* valeur suffisante pour contenir le texte */
+  max-height: 500px;
   opacity: 1;
 }
-/* Effet de mise en avant temporaire */
-section.active-section {
-  animation: highlight 1.5s ease;
-}
-
-@keyframes highlight {
-  0% { box-shadow: 0 0 0 rgba(0,127,255,0); }
-  30% { box-shadow: 0 0 25px rgba(0,127,255,0.6); }
-  100% { box-shadow: 0 0 0 rgba(0,127,255,0); }
-}
-
-/* Optionnel : effet "ouverture" douce si on replie les sections */
-section.collapsed {
-  max-height: 0;
-  overflow: hidden;
-  padding: 0;
-  opacity: 0;
-  transition: all 0.6s ease;
-}
-
-section.expanded {
-  max-height: 2000px; /* ajuster selon la taille du contenu */
-  opacity: 1;
-  padding: 20px;
-  transition: all 0.6s ease;
-}
-/* ===== PAGE PROJETS ===== */
-.projets-grille {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
-  margin-top: 30px;
-}
-
-.projet-carte {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.projet-carte:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
-.projet-carte img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover; /* Assure que l'image couvre la zone sans se déformer */
-}
-
-.projet-carte h3 {
-  font-size: 18px;
-  padding: 15px 20px 5px 20px;
-  border-bottom: none;
-}
-
-.projet-description {
-  padding: 0 20px;
-  font-size: 14px;
-  flex-grow: 1; /* Pousse le bouton vers le bas */
-}
-
-.projet-tech {
-  padding: 15px 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.projet-tech span {
-  background-color: #e0e0e0;
-  color: #333;
-  font-size: 12px;
-  padding: 4px 10px;
-  border-radius: 15px;
-  font-weight: bold;
-}
-
-.projet-carte a.download-btn {
-  margin: 0 20px 20px 20px; /* Aligne le bouton en bas */
-  text-align: center;
-}
-/* ===== PAGE VEILLE TECHNOLOGIQUE ===== */
-
-/* Timeline pour le contexte */
-.timeline {
-  margin-top: 20px;
-  position: relative;
-  padding-left: 20px;
-  border-left: 3px solid rgb(0, 127, 255);
-}
-
-.timeline-item {
-  margin-bottom: 25px;
-  position: relative;
-}
-
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -30px;
-  top: 5px;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background-color: white;
-  border: 3px solid rgb(0, 127, 255);
-}
-
-.timeline-date {
-  font-family: "Cooper Black", sans-serif;
-  font-weight: bold;
-  font-size: 18px;
-  color: rgb(0, 127, 255);
-}
-
-.timeline-content h4 {
-  font-family: "Cooper Black", sans-serif;
-  margin-top: 5px;
-  color: #333;
-}
-
-/* Liste des outils */
-.outils-liste {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin: 20px 0;
-}
-
-.outil {
-  background-color: #f0f0f0;
-  padding: 10px 15px;
-  border-radius: 8px;
-  border-left: 4px solid rgb(0, 127, 255);
-  font-size: 14px;
-}
-
-.explication-outil {
-  background-color: #f9f9f9;
-  border: 1px dashed #ccc;
-  padding: 15px;
-  border-radius: 8px;
-  margin-top: 15px;
-}
-/* ===== STYLE POUR LA LISTE DES COMPÉTENCES ===== */
 
 .details h5 {
   margin-top: 15px;
   margin-bottom: 10px;
-  color: #333;
-  font-family: "Cooper Black", sans-serif; /* Respect de votre charte */
+  color: var(--couleur-texte-sombre);
+  font-family: "Montserrat", sans-serif;
   font-size: 16px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--couleur-bordure);
   padding-bottom: 5px;
-}
-
-.details ul {
-  list-style-type: disc;
-  margin-left: 20px;
 }
 
 .details ul li {
   font-size: 14px;
   margin-bottom: 8px;
-  color: #555;
-}
-/* ===== SOUS-MENU STICKY (COLLANT) ===== */
-.sub-menu {
-  position: sticky;
-  top: 75px; /* Se colle à 75px du haut pour se placer sous le header */
-  z-index: 999; /* S'assure qu'il reste au-dessus du contenu */
-}
-/* ===== GESTION DES THÈMES (CLAIR / SOMBRE) ===== */
-:root {
-  --couleur-principale: rgb(0, 127, 255);
-  --couleur-principale-hover: #005bb5;
-  --couleur-fond: #f9f9f9;
-  --couleur-fond-section: white;
-  --couleur-texte: #222;
-  --couleur-ombre: rgba(0, 0, 0, 0.08);
+  color: var(--couleur-texte-secondaire);
 }
 
-body.dark-mode {
-  --couleur-fond: #121212;
-  --couleur-fond-section: #1e1e1e;
-  --couleur-texte: #e0e0e0;
-  --couleur-ombre: rgba(255, 255, 255, 0.08);
-}
-
-/* Appliquez les variables au reste de votre CSS */
-body {
+/* --- Autres structures --- */
+.timeline-item::before {
   background-color: var(--couleur-fond);
-  color: var(--couleur-texte);
-  /* ... etc ... */
 }
-section {
-  background: var(--couleur-fond-section);
-  box-shadow: 0 4px 10px var(--couleur-ombre);
-  /* ... etc ... */
+.outil {
+  background-color: var(--couleur-sous-menu-fond);
 }
-a.download-btn, button {
-  background: var(--couleur-principale);
-  /* ... etc ... */
+.explication-outil {
+  background-color: var(--couleur-fond);
+  border: 1px dashed var(--couleur-bordure-dashed);
 }
-/* ... Pensez à remplacer les couleurs dans tout votre CSS par les variables ! ... */
+
+/* ===== EFFETS "WAW" ===== */
+
+/* EFFET 2: BOUTON DE THÈME */
+.theme-btn {
+  background: none;
+  border: 1px solid var(--couleur-texte-clair);
+  color: var(--couleur-texte-clair);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.3s;
+  margin: 0 15px;
+}
+.theme-btn:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.1) rotate(15deg);
+}
+
+/* EFFET 3: CURSEUR PERSONNALISÉ */
+.cursor-dot,
+.cursor-outline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--couleur-principale);
+}
+
+.cursor-outline {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--couleur-principale);
+  transition: transform 0.2s ease-out, width 0.2s ease-out, height 0.2s ease-out, border-color 0.3s;
+}

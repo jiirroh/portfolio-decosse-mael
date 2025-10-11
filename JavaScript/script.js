@@ -1,4 +1,3 @@
-// On attend que le DOM (la structure de la page) soit entièrement chargé avant d'exécuter le script
 document.addEventListener('DOMContentLoaded', () => {
 
   // --- Effet machine à écrire (s'active uniquement si l'élément #typing existe) ---
@@ -10,22 +9,19 @@ document.addEventListener('DOMContentLoaded', () => {
       if (i < text.length) {
         typingElement.innerHTML += text.charAt(i);
         i++;
-        setTimeout(typeWriter, 80); // Vitesse ajustée pour un effet plus fluide
+        setTimeout(typeWriter, 80);
       }
     }
     typeWriter();
   }
 
-  // --- Menu hamburger responsive (s'active si .hamburger et .menu existent) ---
+  // --- Menu hamburger responsive ---
   const hamburger = document.querySelector(".hamburger");
   const menu = document.querySelector(".menu");
-
   if (hamburger && menu) {
     hamburger.addEventListener("click", () => {
       menu.classList.toggle("show");
     });
-
-    // Ferme le menu mobile quand on clique sur un lien
     document.querySelectorAll(".menu a").forEach(link => {
       link.addEventListener("click", () => {
         menu.classList.remove("show");
@@ -33,23 +29,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Logique spécifique à la page Compétences ---
+  // --- Logique de la page Compétences ---
   const subMenuLinks = document.querySelectorAll(".sub-menu a");
   const sections = document.querySelectorAll("main section[id]");
-
-  // Ce bloc de code ne s'exécutera que si le sous-menu et les sections sont trouvés
   if (subMenuLinks.length > 0 && sections.length > 0) {
-    
-    // --- Scrollspy : met en surbrillance le lien du sous-menu correspondant à la section visible ---
+    // Scrollspy
     window.addEventListener("scroll", () => {
       let current = "";
       sections.forEach(section => {
-        const sectionTop = section.offsetTop - 90; // Marge pour le header sticky
+        const sectionTop = section.offsetTop - 90;
         if (window.scrollY >= sectionTop) {
           current = section.getAttribute("id");
         }
       });
-
       subMenuLinks.forEach(link => {
         link.classList.remove("active");
         if (link.getAttribute("href").includes(current)) {
@@ -57,61 +49,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     });
-
-    // --- Clic sur un lien du sous-menu (Bloc 1, 2, 3) pour tout déplier ---
-    subMenuLinks.forEach(link => {
-      link.addEventListener("click", () => {
-        const targetId = link.getAttribute("href").substring(1);
-        const targetSection = document.getElementById(targetId);
-
-        if (targetSection) {
-          // Ouvre tous les détails de la section cliquée
-          targetSection.querySelectorAll(".details").forEach(detail => detail.classList.add("show"));
-          targetSection.querySelectorAll(".toggle-btn").forEach(btn => btn.textContent = "Voir moins");
-
-          // Effet de surbrillance
-          targetSection.classList.add("active-section");
-          setTimeout(() => targetSection.classList.remove("active-section"), 1500);
-        }
-      });
-    });
-
-    // --- Clic sur un bouton "Voir plus" / "Voir moins" individuel ---
+    // Clic sur bouton "Voir plus"
     document.querySelectorAll(".toggle-btn").forEach(button => {
         button.addEventListener("click", () => {
-            const details = button.nextElementSibling; // Cible l'élément .details juste après le bouton
+            const details = button.nextElementSibling;
             details.classList.toggle("show");
-
-            // Met à jour le texte du bouton
-            if (details.classList.contains("show")) {
-                button.textContent = "Voir moins";
-            } else {
-                button.textContent = "Voir plus";
-            }
+            button.textContent = details.classList.contains("show") ? "Voir moins" : "Compétences associées";
         });
     });
   }
-  // --- GESTION DU THÈME SOMBRE ---
-const themeToggle = document.getElementById("theme-toggle");
 
-if (themeToggle) {
-  // Vérifier si un thème est déjà sauvegardé dans le localStorage
-  if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark-mode");
-    themeToggle.textContent = "☀️";
+  // --- NOUVEAU : GESTION DU THÈME SOMBRE ---
+  const themeToggle = document.getElementById("theme-toggle");
+  if (themeToggle) {
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark-mode");
+      themeToggle.textContent = "☀️";
+    }
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+        themeToggle.textContent = "☀️";
+      } else {
+        localStorage.removeItem("theme");
+        themeToggle.textContent = "🌙";
+      }
+    });
   }
 
-  themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
+  // --- NOUVEAU : CURSEUR PERSONNALISÉ ---
+  const cursorDot = document.querySelector(".cursor-dot");
+  const cursorOutline = document.querySelector(".cursor-outline");
+  if (cursorDot && cursorOutline) {
+    window.addEventListener("mousemove", (e) => {
+      const posX = e.clientX;
+      const posY = e.clientY;
+      cursorDot.style.left = `${posX}px`;
+      cursorDot.style.top = `${posY}px`;
+      cursorOutline.animate({
+        left: `${posX}px`,
+        top: `${posY}px`
+      }, { duration: 500, fill: "forwards" });
+    });
+    document.querySelectorAll("a, button, .hamburger").forEach((link) => {
+      link.addEventListener("mouseenter", () => {
+        cursorOutline.style.transform = "translate(-50%, -50%) scale(1.5)";
+      });
+      link.addEventListener("mouseleave", () => {
+        cursorOutline.style.transform = "translate(-50%, -50%) scale(1)";
+      });
+    });
+  }
 
-    // Sauvegarder le choix dans le localStorage
-    if (document.body.classList.contains("dark-mode")) {
-      localStorage.setItem("theme", "dark");
-      themeToggle.textContent = "☀️";
-    } else {
-      localStorage.removeItem("theme");
-      themeToggle.textContent = "🌙";
-    }
-  });
-}
 });
