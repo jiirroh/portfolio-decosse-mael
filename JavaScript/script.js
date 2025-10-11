@@ -79,29 +79,4 @@ if (themeToggle) {
     }
   });
 }
-
-  // --- NOUVEAU : CURSEUR PERSONNALISÉ ---
-  const cursorDot = document.querySelector(".cursor-dot");
-  const cursorOutline = document.querySelector(".cursor-outline");
-  if (cursorDot && cursorOutline) {
-    window.addEventListener("mousemove", (e) => {
-      const posX = e.clientX;
-      const posY = e.clientY;
-      cursorDot.style.left = `${posX}px`;
-      cursorDot.style.top = `${posY}px`;
-      cursorOutline.animate({
-        left: `${posX}px`,
-        top: `${posY}px`
-      }, { duration: 500, fill: "forwards" });
-    });
-    document.querySelectorAll("a, button, .hamburger").forEach((link) => {
-      link.addEventListener("mouseenter", () => {
-        cursorOutline.style.transform = "translate(-50%, -50%) scale(1.5)";
-      });
-      link.addEventListener("mouseleave", () => {
-        cursorOutline.style.transform = "translate(-50%, -50%) scale(1)";
-      });
-    });
-  }
-
 });

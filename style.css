@@ -329,30 +329,7 @@ html {
   transform: scale(1.1) rotate(15deg);
 }
 
-/* EFFET 3: CURSEUR PERSONNALISÉ */
-.cursor-dot,
-.cursor-outline {
-  position: fixed;
-  top: 0;
-  left: 0;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  z-index: 9999;
-  pointer-events: none;
-}
 
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  background-color: var(--couleur-principale);
-}
-
-.cursor-outline {
-  width: 40px;
-  height: 40px;
-  border: 2px solid var(--couleur-principale);
-  transition: transform 0.2s ease-out, width 0.2s ease-out, height 0.2s ease-out, border-color 0.3s;
-}
 /* ===== CORRECTIF AFFICHAGE MODE SOMBRE (VEILLE) ===== */
 
 body.dark-mode .outil {
@@ -365,23 +342,25 @@ body.dark-mode .explication-outil {
   color: #e0e0e0; /* Texte clair */
   border-color: #555; /* Bordure plus visible */
 }
-/* ===== GESTION DES ICÔNES DE THÈME (LUNE/SOLEIL) ===== */
+/* ===== GESTION DES ICÔNES DE THÈME (LUNE/SOLEIL) - CORRIGÉ ===== */
 
-/* Style de base pour les icônes SVG */
 .theme-btn svg {
   width: 20px;
   height: 20px;
 }
 
-/* Par défaut, l'icône du soleil est cachée */
-.icon-sun {
+/* Par défaut (thème clair), on affiche la LUNE et on cache le SOLEIL */
+.theme-btn .icon-sun {
   display: none;
 }
-
-/* Quand le mode sombre est actif... */
-body.dark-mode .icon-moon {
-  display: none; /* ... on cache la lune ... */
+.theme-btn .icon-moon {
+  display: block;
 }
-body.dark-mode .icon-sun {
-  display: block; /* ... et on affiche le soleil. */
+
+/* Quand le thème sombre est actif, on inverse */
+body.dark-mode .theme-btn .icon-sun {
+  display: block;
+}
+body.dark-mode .theme-btn .icon-moon {
+  display: none;
 }
