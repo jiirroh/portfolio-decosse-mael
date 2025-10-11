@@ -379,14 +379,14 @@ section.expanded {
 }
 
 .timeline-date {
-  font-family: "Cooper Black", sans-serif; /* Respect de la charte */
+  font-family: "Cooper Black", sans-serif;
   font-weight: bold;
   font-size: 18px;
   color: rgb(0, 127, 255);
 }
 
 .timeline-content h4 {
-  font-family: "Cooper Black", sans-serif; /* Respect de la charte */
+  font-family: "Cooper Black", sans-serif;
   margin-top: 5px;
   color: #333;
 }
