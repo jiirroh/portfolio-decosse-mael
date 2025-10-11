@@ -59,24 +59,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- NOUVEAU : GESTION DU THÈME SOMBRE ---
-  const themeToggle = document.getElementById("theme-toggle");
-  if (themeToggle) {
-    if (localStorage.getItem("theme") === "dark") {
-      document.body.classList.add("dark-mode");
-      themeToggle.textContent = "☀️";
-    }
-    themeToggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-      if (document.body.classList.contains("dark-mode")) {
-        localStorage.setItem("theme", "dark");
-        themeToggle.textContent = "☀️";
-      } else {
-        localStorage.removeItem("theme");
-        themeToggle.textContent = "🌙";
-      }
-    });
+// --- GESTION DU THÈME SOMBRE (AVEC ICÔNES SVG) ---
+const themeToggle = document.getElementById("theme-toggle");
+if (themeToggle) {
+  // Au chargement, vérifier si un thème est déjà sauvegardé
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
   }
+
+  // Gérer le clic sur le bouton
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+
+    // Sauvegarder ou supprimer le choix dans le localStorage
+    if (document.body.classList.contains("dark-mode")) {
+      localStorage.setItem("theme", "dark");
+    } else {
+      localStorage.removeItem("theme");
+    }
+  });
+}
 
   // --- NOUVEAU : CURSEUR PERSONNALISÉ ---
   const cursorDot = document.querySelector(".cursor-dot");

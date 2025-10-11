@@ -314,9 +314,15 @@ html {
   height: 40px;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 20px;
   transition: all 0.3s;
   margin: 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.theme-btn:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.1) rotate(15deg);
 }
 .theme-btn:hover {
   background: rgba(255,255,255,0.2);
@@ -358,4 +364,24 @@ body.dark-mode .explication-outil {
   background-color: #1e1e1e; /* Fond légèrement différent pour le contraste */
   color: #e0e0e0; /* Texte clair */
   border-color: #555; /* Bordure plus visible */
+}
+/* ===== GESTION DES ICÔNES DE THÈME (LUNE/SOLEIL) ===== */
+
+/* Style de base pour les icônes SVG */
+.theme-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Par défaut, l'icône du soleil est cachée */
+.icon-sun {
+  display: none;
+}
+
+/* Quand le mode sombre est actif... */
+body.dark-mode .icon-moon {
+  display: none; /* ... on cache la lune ... */
+}
+body.dark-mode .icon-sun {
+  display: block; /* ... et on affiche le soleil. */
 }
