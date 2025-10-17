@@ -1,53 +1,75 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- Effet machine à écrire (uniquement pour la page d'accueil) ---
-  const typingElement = document.getElementById("typing");
-  if (typingElement) {
-    const text = "Bienvenue sur mon portfolio ! Découvrez mon CV, mes projets et comment me contacter.";
-    let i = 0;
-    function typeWriter() {
-      if (i < text.length) {
-        typingElement.innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typeWriter, 80);
-      }
-    }
-    typeWriter();
+  // --- GESTION DU THÈME SOMBRE (pour toutes les pages) ---
+  const themeToggle = document.getElementById("theme-toggle");
+  if (themeToggle) {
+    if (localStorage.getItem("theme") === "dark") { document.body.classList.add("dark-mode"); }
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      if (document.body.classList.contains("dark-mode")) { localStorage.setItem("theme", "dark"); } 
+      else { localStorage.removeItem("theme"); }
+    });
   }
 
-  // --- Menu hamburger responsive (pour toutes les pages) ---
+  // --- MENU HAMBURGER RESPONSIVE (pour toutes les pages) ---
   const hamburger = document.querySelector(".hamburger");
   const menu = document.querySelector(".menu");
   if (hamburger && menu) {
-    hamburger.addEventListener("click", () => {
-      menu.classList.toggle("show");
-    });
+    hamburger.addEventListener("click", () => { menu.classList.toggle("show"); });
     document.querySelectorAll(".menu a").forEach(link => {
-      link.addEventListener("click", () => {
-        menu.classList.remove("show");
-      });
+      link.addEventListener("click", () => { menu.classList.remove("show"); });
     });
   }
 
-  // --- Logique spécifique à la page Compétences ---
+  // --- EFFET TYPEWRITER GLOBAL (pour la page d'accueil) ---
+  const elementsToType = [
+    { id: 'typing-welcome', text: 'Bienvenue sur mon portfolio !' },
+    { id: 'typing-about', text: 'Je m’appelle Maël Decosse, étudiant en BTS SIO SLAM. Passionné par l’informatique, le développement et l’administration de serveurs.' },
+    { id: 'typing-parcours', text: 'Actuellement en formation pour développer mes compétences en conception de solutions logicielles.' },
+    { id: 'typing-bts', text: 'BTS SIO SLAM (2026) – Lycée Saint John Perse, Pau' },
+    { id: 'typing-bac', text: 'Bac STI2D SIN (2024) – Lycée Saint Cricq, Pau' }
+  ];
+
+  // On lance l'effet seulement si le premier élément de la liste existe sur la page
+  if (document.getElementById(elementsToType[0].id)) {
+    const typingSpeed = 40; // Vitesse en ms (plus bas = plus rapide)
+    let textArrayIndex = 0;
+    let charIndex = 0;
+
+    function typeWriter() {
+      if (textArrayIndex < elementsToType.length) {
+        const currentElement = elementsToType[textArrayIndex];
+        const targetElement = document.getElementById(currentElement.id);
+
+        if (targetElement && charIndex < currentElement.text.length) {
+          targetElement.innerHTML += currentElement.text.charAt(charIndex);
+          charIndex++;
+          setTimeout(typeWriter, typingSpeed);
+        } else {
+          charIndex = 0;
+          textArrayIndex++;
+          typeWriter();
+        }
+      }
+    }
+    typeWriter(); // Démarrage de l'animation
+  }
+
+  // --- Logique spécifique à la page Compétences & Projets (pour le sous-menu) ---
   const subMenuLinks = document.querySelectorAll(".sub-menu a");
-  const sections = document.querySelectorAll("main section[id]");
-  if (subMenuLinks.length > 0 && sections.length > 0) {
+  const sectionsWithId = document.querySelectorAll("main section[id]");
+  if (subMenuLinks.length > 0 && sectionsWithId.length > 0) {
     
-    // Scrollspy : surbrillance du lien actif en scrollant
+    // Scrollspy
     window.addEventListener("scroll", () => {
       let current = "";
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 90; // Décalage pour le header sticky
-        if (window.scrollY >= sectionTop) {
-          current = section.getAttribute("id");
-        }
+      sectionsWithId.forEach(section => {
+        const sectionTop = section.offsetTop - 90;
+        if (window.scrollY >= sectionTop) { current = section.getAttribute("id"); }
       });
       subMenuLinks.forEach(link => {
         link.classList.remove("active");
-        if (link.getAttribute("href").includes(current)) {
-          link.classList.add("active");
-        }
+        if (link.getAttribute("href").includes(current)) { link.classList.add("active"); }
       });
     });
 
@@ -63,43 +85,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Clic sur les liens du sous-menu (Bloc 1, 2, 3) pour tout ouvrir/fermer
     subMenuLinks.forEach(link => {
       link.addEventListener("click", () => {
-        const targetId = link.getAttribute("href").substring(1); // Récupère "bloc1" depuis "#bloc1"
-
-        sections.forEach(section => {
+        const targetId = link.getAttribute("href").substring(1);
+        sectionsWithId.forEach(section => {
           const allDetails = section.querySelectorAll(".details");
           const allButtons = section.querySelectorAll(".toggle-btn");
-
-          // Si la section est la cible du clic
           if (section.id === targetId) {
-            allDetails.forEach(detail => detail.classList.add("show")); // Ouvre tous les accordéons
+            allDetails.forEach(detail => detail.classList.add("show"));
             allButtons.forEach(btn => btn.textContent = "Masquer les compétences");
           } else {
-            allDetails.forEach(detail => detail.classList.remove("show")); // Ferme tous les autres
+            allDetails.forEach(detail => detail.classList.remove("show"));
             allButtons.forEach(btn => btn.textContent = "Voir les compétences validées");
           }
         });
       });
-    });
-  }
-
-  // --- GESTION DU THÈME SOMBRE (pour toutes les pages) ---
-  const themeToggle = document.getElementById("theme-toggle");
-  if (themeToggle) {
-    // Au chargement, vérifier si un thème est déjà sauvegardé
-    if (localStorage.getItem("theme") === "dark") {
-      document.body.classList.add("dark-mode");
-    }
-
-    // Gérer le clic sur le bouton
-    themeToggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-
-      // Sauvegarder ou supprimer le choix dans le localStorage
-      if (document.body.classList.contains("dark-mode")) {
-        localStorage.setItem("theme", "dark");
-      } else {
-        localStorage.removeItem("theme");
-      }
     });
   }
 });
