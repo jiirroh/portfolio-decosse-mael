@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- Effet machine à écrire ---
+  // --- Effet machine à écrire (uniquement pour la page d'accueil) ---
   const typingElement = document.getElementById("typing");
   if (typingElement) {
     const text = "Bienvenue sur mon portfolio ! Découvrez mon CV, mes projets et comment me contacter.";
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     typeWriter();
   }
 
-  // --- Menu hamburger responsive ---
+  // --- Menu hamburger responsive (pour toutes les pages) ---
   const hamburger = document.querySelector(".hamburger");
   const menu = document.querySelector(".menu");
   if (hamburger && menu) {
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener("scroll", () => {
       let current = "";
       sections.forEach(section => {
-        const sectionTop = section.offsetTop - 90;
+        const sectionTop = section.offsetTop - 90; // Décalage pour le header sticky
         if (window.scrollY >= sectionTop) {
           current = section.getAttribute("id");
         }
@@ -60,24 +60,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // NOUVEAU : Clic sur les liens du sous-menu (Bloc 1, 2, 3) pour tout ouvrir
+    // Clic sur les liens du sous-menu (Bloc 1, 2, 3) pour tout ouvrir/fermer
     subMenuLinks.forEach(link => {
       link.addEventListener("click", () => {
         const targetId = link.getAttribute("href").substring(1); // Récupère "bloc1" depuis "#bloc1"
 
-        // On parcourt TOUTES les sections de la page
         sections.forEach(section => {
           const allDetails = section.querySelectorAll(".details");
           const allButtons = section.querySelectorAll(".toggle-btn");
 
-          // Si la section est celle sur laquelle on a cliqué
+          // Si la section est la cible du clic
           if (section.id === targetId) {
-            // On ouvre tous ses menus déroulants
-            allDetails.forEach(detail => detail.classList.add("show"));
+            allDetails.forEach(detail => detail.classList.add("show")); // Ouvre tous les accordéons
             allButtons.forEach(btn => btn.textContent = "Masquer les compétences");
           } else {
-            // Sinon (pour tous les autres blocs), on ferme tout
-            allDetails.forEach(detail => detail.classList.remove("show"));
+            allDetails.forEach(detail => detail.classList.remove("show")); // Ferme tous les autres
             allButtons.forEach(btn => btn.textContent = "Voir les compétences validées");
           }
         });
@@ -85,14 +82,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- GESTION DU THÈME SOMBRE (AVEC ICÔNES SVG) ---
+  // --- GESTION DU THÈME SOMBRE (pour toutes les pages) ---
   const themeToggle = document.getElementById("theme-toggle");
   if (themeToggle) {
+    // Au chargement, vérifier si un thème est déjà sauvegardé
     if (localStorage.getItem("theme") === "dark") {
       document.body.classList.add("dark-mode");
     }
+
+    // Gérer le clic sur le bouton
     themeToggle.addEventListener("click", () => {
       document.body.classList.toggle("dark-mode");
+
+      // Sauvegarder ou supprimer le choix dans le localStorage
       if (document.body.classList.contains("dark-mode")) {
         localStorage.setItem("theme", "dark");
       } else {

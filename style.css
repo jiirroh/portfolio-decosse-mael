@@ -24,23 +24,26 @@ body.dark-mode {
   --couleur-bordure-dashed: #555;
 }
 
-/* ===== RESET ===== */
+/* ===== RESET & GENERAL ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ===== GENERAL ===== */
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 15px;
   background-color: var(--couleur-fond);
   color: var(--couleur-texte-sombre);
   line-height: 1.6;
 }
 
-/* ===== HEADER ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== HEADER & NAVIGATION ===== */
 header {
   background: var(--couleur-principale);
   color: var(--couleur-texte-clair);
@@ -70,7 +73,11 @@ header {
   margin-right: auto;
 }
 
-/* ===== NAVIGATION ===== */
+nav {
+  display: flex;
+  align-items: center;
+}
+
 nav ul {
   list-style: none;
   display: flex;
@@ -95,7 +102,6 @@ nav ul li a.active {
   color: var(--couleur-principale);
 }
 
-/* ===== MENU HAMBURGER (MOBILE) ===== */
 .hamburger {
   display: none;
   font-size: 26px;
@@ -103,11 +109,6 @@ nav ul li a.active {
   background: none;
   border: none;
   color: var(--couleur-texte-clair);
-}
-
-nav {
-  display: flex;
-  align-items: center;
 }
 
 @media (max-width: 768px) {
@@ -122,37 +123,30 @@ nav {
     padding: 10px;
     border-radius: 0 0 8px 8px;
   }
-
   nav ul.show {
     display: flex;
   }
-
   .hamburger {
     display: block;
   }
 }
 
-/* ===== MAIN ===== */
+/* ===== MAIN & SECTIONS ===== */
 main {
   max-width: 1000px;
   margin: 30px auto;
   padding: 0 20px;
 }
 
-h2, h3 {
-  font-family: "Montserrat", sans-serif;
-  margin-bottom: 10px;
-  color: var(--couleur-principale);
-}
-
 h2 {
+  font-family: "Montserrat", sans-serif;
   font-size: 22px;
   border-bottom: 2px solid var(--couleur-principale);
   padding-bottom: 5px;
-  margin-top: 30px;
+  margin-bottom: 20px;
+  color: var(--couleur-principale);
 }
 
-/* ===== SECTIONS ===== */
 section {
   background: var(--couleur-fond-section);
   padding: 20px;
@@ -162,45 +156,15 @@ section {
   transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
 }
 
-section:hover {
-  transform: translateY(-3px);
-}
-
-/* LISTES */
-ul {
-  margin: 10px 0 10px 20px;
-}
-
-ul li {
-  margin-bottom: 6px;
-}
-
-/* ===== BOUTONS ===== */
-a.download-btn, button {
-  display: inline-block;
-  background: var(--couleur-principale);
-  color: var(--couleur-texte-clair);
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: bold;
-  text-decoration: none;
-  margin-top: 10px;
-  transition: background 0.3s, transform 0.2s;
-  border: none;
-  cursor: pointer;
-}
-
-a.download-btn:hover, button:hover {
-  background: var(--couleur-principale-hover);
-  transform: scale(1.05);
-}
-
-/* ===== SOUS-MENU COMPETENCES ===== */
+/* ===== SOUS-MENU (Compétences & autres) ===== */
 .sub-menu {
   background: var(--couleur-sous-menu-fond);
   border-bottom: 2px solid var(--couleur-principale);
   padding: 10px 0;
   transition: background-color 0.3s;
+  position: sticky;
+  top: 75px; /* Se colle sous le header */
+  z-index: 999;
 }
 
 .sub-menu ul {
@@ -220,27 +184,13 @@ a.download-btn:hover, button:hover {
   transition: background 0.3s, color 0.3s;
 }
 
-.sub-menu ul li a:hover, .sub-menu ul li a.active {
+.sub-menu ul li a:hover,
+.sub-menu ul li a.active {
   background: var(--couleur-principale);
   color: var(--couleur-texte-clair);
 }
 
-/* ===== FOOTER ===== */
-footer {
-  background: var(--couleur-principale);
-  color: var(--couleur-texte-clair);
-  text-align: center;
-  padding: 15px;
-  margin-top: 40px;
-  font-size: 14px;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-/* ===== STYLE POUR LES PROJETS DANS LA PAGE COMPÉTENCES ===== */
-
+/* ===== PAGE COMPÉTENCES ===== */
 .exemple {
   background: var(--couleur-fond);
   border: 1px solid var(--couleur-bordure);
@@ -266,6 +216,19 @@ html {
   padding: 8px 16px;
   font-weight: bold;
   font-size: 14px;
+  display: inline-block;
+  background: var(--couleur-principale);
+  color: var(--couleur-texte-clair);
+  border-radius: 8px;
+  text-decoration: none;
+  margin-top: 10px;
+  transition: background 0.3s, transform 0.2s;
+  border: none;
+  cursor: pointer;
+}
+.toggle-btn:hover {
+  background: var(--couleur-principale-hover);
+  transform: scale(1.05);
 }
 
 .details {
@@ -279,12 +242,12 @@ html {
 }
 
 .details.show {
-  max-height: 500px; /* Assez grand pour le contenu */
+  max-height: 500px;
   opacity: 1;
 }
 
 .details ul {
-  list-style-type: '✓  '; /* Ajoute un checkmark stylé */
+  list-style-type: '✓  ';
   padding-left: 20px;
 }
 
@@ -294,21 +257,30 @@ html {
   color: var(--couleur-texte-secondaire);
 }
 
-/* --- Autres structures --- */
-.timeline-item::before {
-  background-color: var(--couleur-fond);
-}
-.outil {
-  background-color: var(--couleur-sous-menu-fond);
-}
-.explication-outil {
-  background-color: var(--couleur-fond);
-  border: 1px dashed var(--couleur-bordure-dashed);
+/* ===== PAGE VEILLE TECHNOLOGIQUE ===== */
+.timeline { margin-top: 20px; position: relative; padding-left: 20px; border-left: 3px solid var(--couleur-principale); }
+.timeline-item { margin-bottom: 25px; position: relative; }
+.timeline-item::before { content: ''; position: absolute; left: -30px; top: 5px; width: 15px; height: 15px; border-radius: 50%; background-color: var(--couleur-fond); border: 3px solid var(--couleur-principale); }
+.timeline-date { font-family: "Montserrat", sans-serif; font-weight: bold; font-size: 18px; color: var(--couleur-principale); }
+.timeline-content h4 { font-family: "Montserrat", sans-serif; margin-top: 5px; color: var(--couleur-texte-sombre); }
+.outils-liste { display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0; }
+.outil { background-color: var(--couleur-sous-menu-fond); padding: 10px 15px; border-radius: 8px; border-left: 4px solid var(--couleur-principale); font-size: 14px; }
+.explication-outil { background-color: var(--couleur-fond); border: 1px dashed var(--couleur-bordure-dashed); padding: 15px; border-radius: 8px; margin-top: 15px; }
+body.dark-mode .outil { background-color: #2a2a2a; color: #e0e0e0; }
+body.dark-mode .explication-outil { background-color: #1e1e1e; color: #e0e0e0; border-color: #555; }
+
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--couleur-principale);
+  color: var(--couleur-texte-clair);
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+  font-size: 14px;
 }
 
-/* ===== EFFETS "WAW" ===== */
-
-/* EFFET 2: BOUTON DE THÈME */
+/* ===== ICÔNE DE THÈME ===== */
 .theme-btn {
   background: none;
   border: 1px solid var(--couleur-texte-clair);
@@ -327,40 +299,17 @@ html {
   background: rgba(255,255,255,0.2);
   transform: scale(1.1) rotate(15deg);
 }
-.theme-btn:hover {
-  background: rgba(255,255,255,0.2);
-  transform: scale(1.1) rotate(15deg);
-}
-
-
-/* ===== CORRECTIF AFFICHAGE MODE SOMBRE (VEILLE) ===== */
-
-body.dark-mode .outil {
-  background-color: #2a2a2a; /* Fond sombre pour les outils */
-  color: #e0e0e0; /* Texte clair */
-}
-
-body.dark-mode .explication-outil {
-  background-color: #1e1e1e; /* Fond légèrement différent pour le contraste */
-  color: #e0e0e0; /* Texte clair */
-  border-color: #555; /* Bordure plus visible */
-}
-/* ===== GESTION DES ICÔNES DE THÈME (LUNE/SOLEIL) - CORRIGÉ ===== */
-
 .theme-btn svg {
   width: 20px;
   height: 20px;
+  transition: transform 0.3s ease;
 }
-
-/* Par défaut (thème clair), on affiche la LUNE et on cache le SOLEIL */
 .theme-btn .icon-sun {
   display: none;
 }
 .theme-btn .icon-moon {
   display: block;
 }
-
-/* Quand le thème sombre est actif, on inverse */
 body.dark-mode .theme-btn .icon-sun {
   display: block;
 }
