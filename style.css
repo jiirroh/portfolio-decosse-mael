@@ -379,3 +379,14 @@ body.dark-mode .theme-btn .icon-moon {
   background: var(--couleur-principale-hover);
   transform: scale(1.05);
 }
+/* ===== Style pour la liste des compétences sur la page d'accueil ===== */
+.competences-cles {
+  list-style: none;
+  padding-left: 0;
+}
+
+.competences-cles li {
+  font-weight: bold;
+  color: var(--couleur-principale);
+  padding: 5px 0;
+}

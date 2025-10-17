@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem("theme") === "dark") { document.body.classList.add("dark-mode"); }
     themeToggle.addEventListener("click", () => {
       document.body.classList.toggle("dark-mode");
-      if (document.body.classList.contains("dark-mode")) { localStorage.setItem("theme", "dark"); } 
+      if (document.body.classList.contains("dark-mode")) { localStorage.setItem("theme", "dark"); }
       else { localStorage.removeItem("theme"); }
     });
   }
@@ -25,9 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const elementsToType = [
     { id: 'typing-welcome', text: 'Bienvenue sur mon portfolio !' },
     { id: 'typing-about', text: 'Je m’appelle Maël Decosse, étudiant en BTS SIO SLAM. Passionné par l’informatique, le développement et l’administration de serveurs.' },
-    { id: 'typing-parcours', text: 'Actuellement en formation pour développer mes compétences en conception de solutions logicielles.' },
-    { id: 'typing-bts', text: 'BTS SIO SLAM (2026) – Lycée Saint John Perse, Pau' },
-    { id: 'typing-bac', text: 'Bac STI2D SIN (2024) – Lycée Saint Cricq, Pau' }
+    { id: 'typing-skill1', text: 'Programmation : Java, PHP, HTML, CSS, JavaScript, LUA, SQL, Python' },
+    { id: 'typing-skill2', text: 'Analyse : Modélisation UML et Merise' },
+    { id: 'typing-skill3', text: 'Autres : Bonnes pratiques RGPD, Machines Virtuelles et installation d\'OS' },
+    { id: 'typing-interets', text: 'En dehors de l\'informatique, je m\'intéresse à la musique, aux jeux vidéo, au sport et à la création de scripts.' }
   ];
 
   // On lance l'effet seulement si le premier élément de la liste existe sur la page
