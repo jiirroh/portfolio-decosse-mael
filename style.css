@@ -322,3 +322,60 @@ body.dark-mode .theme-btn .icon-moon {
   top: 75px; /* Se colle à 75px du haut pour se placer sous le header */
   z-index: 999; /* S'assure qu'il reste au-dessus du contenu */
 }
+/* ===== PAGE PROJETS ===== */
+.projet-carte {
+  background: var(--couleur-fond);
+  border: 1px solid var(--couleur-bordure);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 25px 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s, background-color 0.3s, border-color 0.3s;
+}
+
+.projet-carte:hover {
+  transform: translateY(-5px);
+}
+
+.projet-carte h3 {
+  color: var(--couleur-principale);
+  font-family: "Montserrat", sans-serif;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.projet-description {
+  margin-bottom: 15px;
+}
+
+.projet-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.projet-tech span {
+  background-color: var(--couleur-sous-menu-fond);
+  color: var(--couleur-texte-secondaire);
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-weight: bold;
+}
+
+.projet-lien {
+  display: inline-block;
+  background: var(--couleur-principale);
+  color: var(--couleur-texte-clair);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.projet-lien:hover {
+  background: var(--couleur-principale-hover);
+  transform: scale(1.05);
+}
