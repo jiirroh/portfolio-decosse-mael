@@ -316,3 +316,9 @@ body.dark-mode .theme-btn .icon-sun {
 body.dark-mode .theme-btn .icon-moon {
   display: none;
 }
+/* ===== SOUS-MENU STICKY (COLLANT) ===== */
+.sub-menu {
+  position: sticky;
+  top: 75px; /* Se colle à 75px du haut pour se placer sous le header */
+  z-index: 999; /* S'assure qu'il reste au-dessus du contenu */
+}
