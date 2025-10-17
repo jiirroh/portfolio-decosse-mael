@@ -387,6 +387,25 @@ body.dark-mode .theme-btn .icon-moon {
 
 .competences-cles li {
   font-weight: bold;
-  color: var(--couleur-principale);
+  color: var(--couleur-texte-sombre); /* La couleur correcte du texte normal */
   padding: 5px 0;
+}
+/* ===== Style pour le bouton de téléchargement du CV ===== */
+.bouton-telecharger {
+  display: inline-block;
+  background: var(--couleur-principale);
+  color: var(--couleur-texte-clair);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 10px;
+  transition: background 0.3s, transform 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.bouton-telecharger:hover {
+  background: var(--couleur-principale-hover);
+  transform: scale(1.05);
 }
