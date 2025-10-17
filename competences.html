@@ -7,27 +7,28 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <div class="nav-container">
-    <img src="logo.png" alt="Logo Decosse Maël" class="logo">
-    <h1 class="titre">Portfolio Decosse Maël</h1>
-<button id="theme-toggle" class="theme-btn" title="Changer de thème">
-  <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-  <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-</button>    <nav>
-      <button class="hamburger">☰</button>
-      <ul class="menu">
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="cv.html">CV</a></li>
-        <li><a href="apropos.html">À propos</a></li>
-        <li><a href="projets.html">Projets</a></li>
-        <li><a href="competences.html">Compétences</a></li>
-        <li><a href="veille.html">Veille Tech</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+  <header>
+    <div class="nav-container">
+      <img src="logo.png" alt="Logo Decosse Maël" class="logo">
+      <h1 class="titre">Portfolio Decosse Maël</h1>
+      <button id="theme-toggle" class="theme-btn" title="Changer de thème">
+        <svg class="icon-moon" xmlns="http://www.w.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      </button>
+      <nav>
+        <button class="hamburger">☰</button>
+        <ul class="menu">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="cv.html">CV</a></li>
+          <li><a href="apropos.html">À propos</a></li>
+          <li><a href="projets.html">Projets</a></li>
+          <li><a href="competences.html" class="active">Compétences</a></li>
+          <li><a href="veille.html">Veille Tech</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
   <nav class="sub-menu">
     <ul>
@@ -39,43 +40,26 @@
 
   <main>
     <section id="bloc1">
-      <h2>Bloc 1 - Support et mise à disposition de services informatiques</h2>
-      
+      <h2>Bloc 1 - Support et mise à disposition de services</h2>
       <div class="exemple">
         <h4>Gestion du parc informatique</h4>
-        <p>Mise en place d’un inventaire automatisé des ressources avec un script Python et base SQLite, suivi des mises à jour et vérification des droits d’accès.</p>
-        <button class="toggle-btn">Compétences associées</button>
+        <p>Mise en place d’un inventaire automatisé des ressources avec un script Python et une base SQLite, suivi des mises à jour logicielles et vérification des droits d’accès.</p>
+        <button class="toggle-btn">Voir les compétences validées</button>
         <div class="details">
-          <h5>Compétences du référentiel :</h5>
           <ul>
             <li>Recenser et identifier les ressources numériques</li>
             <li>Mettre en place et vérifier les niveaux d'habilitation associés à un service</li>
           </ul>
         </div>
       </div>
-
       <div class="exemple">
         <h4>Support utilisateur - Helpdesk</h4>
-        <p>Développement d’une interface web d’assistance (PHP/SQL) pour collecter, suivre et traiter les demandes des utilisateurs via un tableau de bord.</p>
-        <button class="toggle-btn">Compétences associées</button>
+        <p>Développement d’une interface web d’assistance (PHP/SQL) pour collecter, suivre et traiter les demandes des utilisateurs via un tableau de bord de suivi des tickets.</p>
+        <button class="toggle-btn">Voir les compétences validées</button>
         <div class="details">
-          <h5>Compétences du référentiel :</h5>
           <ul>
             <li>Collecter, suivre et orienter des demandes</li>
             <li>Traiter des demandes concernant les services applicatifs</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="exemple">
-        <h4>Veille technologique automatisée</h4>
-        <p>Mise en place d’un outil de veille en Python collectant les flux RSS pour suivre les tendances du web et de la cybersécurité.</p>
-        <button class="toggle-btn">Compétences associées</button>
-        <div class="details">
-          <h5>Compétences du référentiel :</h5>
-          <ul>
-            <li>Mettre en œuvre des outils et stratégies de veille informationnelle</li>
-            <li>Mettre en place son environnement d'apprentissage personnel</li>
           </ul>
         </div>
       </div>
@@ -83,45 +67,26 @@
 
     <section id="bloc2">
       <h2>Bloc 2 - Conception et développement d’applications</h2>
-
-      <div class="exemple">
-        <h4>Serveur GTA RP - Scripts LUA</h4>
-        <p>Développement de scripts LUA pour un serveur de jeu : gestion d’inventaires, économie, interface et sécurité des fonctionnalités.</p>
-        <button class="toggle-btn">Compétences associées</button>
-        <div class="details">
-          <h5>Compétences du référentiel :</h5>
-          <ul>
-            <li>Identifier, développer, utiliser ou adapter des composants logiciels</li>
-            <li>Concevoir ou adapter une base de données</li>
-          </ul>
-        </div>
-      </div>
-
       <div class="exemple">
         <h4>Application de gestion en Java (POO + MySQL)</h4>
-        <p>Réalisation d’une application de gestion des clients en Java avec architecture MVC, connexion à une base de données MySQL et génération de rapports PDF.</p>
-        <button class="toggle-btn">Compétences associées</button>
+        <p>Réalisation d’une application de gestion de clients en Java avec une architecture MVC, connexion à une base de données MySQL et génération de rapports PDF.</p>
+        <button class="toggle-btn">Voir les compétences validées</button>
         <div class="details">
-          <h5>Compétences du référentiel :</h5>
           <ul>
             <li>Analyser un besoin exprimé et son contexte juridique</li>
             <li>Modéliser une solution applicative</li>
             <li>Utiliser des composants d'accès aux données</li>
-            <li>Rédiger des documentations technique et d'utilisation d'une solution applicative</li>
           </ul>
         </div>
       </div>
-
-      <div class="exemple">
-        <h4>Site web dynamique (PHP / MySQL)</h4>
-        <p>Création d’un site web avec espace administration et utilisateur, design responsive et sécurisation (hashage de mot de passe, anti-injection SQL).</p>
-        <button class="toggle-btn">Compétences associées</button>
+       <div class="exemple">
+        <h4>Serveur GTA RP - Scripts LUA</h4>
+        <p>Développement de scripts en LUA pour un serveur de jeu : gestion d'inventaires, économie, interface utilisateur et optimisation client/serveur.</p>
+        <button class="toggle-btn">Voir les compétences validées</button>
         <div class="details">
-          <h5>Compétences du référentiel :</h5>
           <ul>
-            <li>Participer à l'évolution d'un site Web exploitant les données de l'organisation</li>
-            <li>Prendre en compte la sécurité dans un projet de développement d'une solution applicative</li>
-            <li>Prévenir les attaques</li>
+            <li>Identifier, développer, utiliser ou adapter des composants logiciels</li>
+            <li>Concevoir ou adapter une base de données</li>
           </ul>
         </div>
       </div>
@@ -129,39 +94,22 @@
 
     <section id="bloc3">
       <h2>Bloc 3 - Cybersécurité des services informatiques</h2>
-
-      <div class="exemple">
-        <h4>Audit RGPD et protection des données</h4>
-        <p>Réalisation d’un audit de conformité RGPD, identification des traitements de données personnelles et mise en place de procédures de consentement.</p>
-        <button class="toggle-btn">Compétences associées</button>
+       <div class="exemple">
+        <h4>Site web dynamique (Sécurisation)</h4>
+        <p>Création d’un site web complet avec sécurisation des authentifications (hachage des mots de passe) et protection contre les injections SQL.</p>
+        <button class="toggle-btn">Voir les compétences validées</button>
         <div class="details">
-          <h5>Compétences du référentiel :</h5>
           <ul>
-            <li>Recenser les traitements sur les données à caractère personnel au sein de l'organisation</li>
-            <li>Appliquer la réglementation en matière de collecte, de traitement et de conservation des données à caractère personnel</li>
+            <li>Prendre en compte la sécurité dans un projet de développement d'une solution applicative</li>
+            <li>Prévenir les attaques</li>
           </ul>
         </div>
       </div>
-
-      <div class="exemple">
-        <h4>Configuration réseau et pare-feu</h4>
-        <p>Configuration d’un pare-feu sous pfSense, segmentation du réseau (VLAN) et définition des règles d’accès pour les utilisateurs.</p>
-        <button class="toggle-btn">Compétences associées</button>
-        <div class="details">
-          <h5>Compétences du référentiel :</h5>
-          <ul>
-            <li>Identifier les menaces et mettre en œuvre les défenses appropriées</li>
-            <li>Gérer les accès et les privilèges appropriés</li>
-          </ul>
-        </div>
-      </div>
-
       <div class="exemple">
         <h4>Analyse de logs et détection d’intrusion</h4>
-        <p>Mise en place d’un script Python pour l’analyse de logs système (auth.log) et la détection d’activités suspectes.</p>
-        <button class="toggle-btn">Compétences associées</button>
+        <p>Mise en place d’un script Python pour l’analyse de logs système (auth.log / syslog) afin de détecter des activités suspectes et générer des alertes.</p>
+        <button class="toggle-btn">Voir les compétences validées</button>
         <div class="details">
-          <h5>Compétences du référentiel :</h5>
           <ul>
             <li>Analyser les connexions (logs)</li>
             <li>Analyser des incidents de sécurité, proposer et mettre en œuvre des contre-mesures</li>
@@ -176,11 +124,6 @@
       <span>© 2025 - Portfolio Decosse Maël</span>
     </div>
   </footer>
-<script src="JavaScript/script.js" defer></script>
-
-  <div class="cursor-dot"></div>
-  <div class="cursor-outline"></div>
-
-</body>
+  <script src="JavaScript/script.js" defer></script>
 </body>
 </html>

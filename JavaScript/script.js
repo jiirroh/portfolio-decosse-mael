@@ -49,14 +49,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     });
-    // Clic sur bouton "Voir plus"
-    document.querySelectorAll(".toggle-btn").forEach(button => {
-        button.addEventListener("click", () => {
-            const details = button.nextElementSibling;
-            details.classList.toggle("show");
-            button.textContent = details.classList.contains("show") ? "Voir moins" : "Compétences associées";
-        });
+// Clic sur les boutons "Voir les compétences"
+document.querySelectorAll(".toggle-btn").forEach(button => {
+    button.addEventListener("click", () => {
+        const details = button.nextElementSibling;
+        details.classList.toggle("show");
+
+        if (details.classList.contains("show")) {
+            button.textContent = "Masquer les compétences";
+        } else {
+            button.textContent = "Voir les compétences validées";
+        }
     });
+});
   }
 
 // --- GESTION DU THÈME SOMBRE (AVEC ICÔNES SVG) ---
