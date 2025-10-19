@@ -386,7 +386,6 @@ body.dark-mode .theme-btn .icon-moon {
 }
 
 .competences-cles li {
-  font-weight: bold;
   color: var(--couleur-texte-sombre); /* La couleur correcte du texte normal */
   padding: 5px 0;
 }
@@ -408,4 +407,14 @@ body.dark-mode .theme-btn .icon-moon {
 .bouton-telecharger:hover {
   background: var(--couleur-principale-hover);
   transform: scale(1.05);
+}
+/* ===== Style pour l'image du projet ===== */
+.projet-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* Force un format 16:9 */
+  object-fit: cover; /* Remplit le cadre sans déformer */
+  border-radius: 8px; /* Coins arrondis */
+  margin-bottom: 15px; /* Espace avant le titre */
+  border: 1px solid var(--couleur-bordure);
 }
