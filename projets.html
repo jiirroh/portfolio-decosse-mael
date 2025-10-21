@@ -9,7 +9,7 @@
 <body>
   <header>
     <div class="nav-container">
-      <img src="logo.png" alt="Logo Decosse Maël" class="logo">
+      <img src="images/logo.png" alt="Logo Decosse Maël" class="logo">
       <h1 class="titre">Portfolio Decosse Maël</h1>
       <button id="theme-toggle" class="theme-btn" title="Changer de thème">
         <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
@@ -31,16 +31,76 @@
 
   <nav class="sub-menu">
     <ul>
-      <li><a href="#projets-personnels">Projets Personnels</a></li>
       <li><a href="#projets-scolaires">Projets Vus en Cours</a></li>
+      <li><a href="#projets-personnels">Projets Personnels</a></li>
     </ul>
   </nav>
 
   <main>
+    <section id="projets-scolaires">
+      <h2>Projets Vus en Cours</h2>
+
+      <div class="projet-carte">
+        <img src="image/projet-picdumidi.jpg" alt="Projet Pic du Midi" class="projet-image">
+        <h3>Tableau de Bord - Pic du Midi</h3>
+        <p class="projet-description">
+          Développement d'un tableau de bord (dashboard) pour le Pic du Midi de Bigorre. Affichage des indicateurs de performance clés : météo, nombre de visiteurs, chiffre d'affaires total et moyen par visiteur.
+        </p>
+        <div class="projet-tech">
+          <span>PHP</span>
+          <span>MySQL</span>
+          <span>JavaScript</span>
+          <span>Chart.js</span>
+        </div>
+        <a href="https://github.com/ton-lien-github" target="_blank" class="projet-lien">Voir sur GitHub</a>
+      </div>
+
+       <div class="projet-carte">
+        <h3>Projet DAO (Data Access Object)</h3>
+        <p class="projet-description">
+          Développement d'un modèle d'accès aux données (DAO) en Java. Ce projet sépare la logique métier de la logique d'accès à la base de données (MySQL) en utilisant un design pattern pour gérer les opérations CRUD (Create, Read, Update, Delete) de manière propre et maintenable.
+        </p>
+        <div class="projet-tech">
+          <span>Java</span>
+          <span>JDBC</span>
+          <span>MySQL</span>
+          <span>Design Pattern</span>
+        </div>
+        <a href="https://github.com/ton-lien-github" target="_blank" class="projet-lien">Voir sur GitHub</a>
+      </div>
+
+      <div class="projet-carte">
+        <h3>Application de gestion en Java</h3>
+        <p class="projet-description">
+          Réalisation d'une application desktop avec une interface Swing pour la gestion de clients. Utilisation du pattern MVC, connexion à une base de données MySQL et génération de factures au format PDF.
+        </p>
+        <div class="projet-tech">
+          <span>Java</span>
+          <span>Swing</span>
+          <span>MySQL</span>
+          <span>MVC</span>
+        </div>
+        <a href="https://github.com/ton-lien-github" target="_blank" class="projet-lien">Voir sur GitHub</a>
+      </div>
+       <div class="projet-carte">
+        <h3>Site web dynamique en PHP</h3>
+        <p class="projet-description">
+          Création d'un site web complet avec espace administration et espace utilisateur. Mise en place d'une base de données MySQL et sécurisation des authentifications et des formulaires (hachage, anti-injection SQL).
+        </p>
+        <div class="projet-tech">
+          <span>PHP</span>
+          <span>MySQL</span>
+          <span>HTML/CSS</span>
+        </div>
+        <a href="https://github.com/ton-lien-github" target="_blank" class="projet-lien">Voir sur GitHub</a>
+      </div>
+    </section>
+
     <section id="projets-personnels">
       <h2>Projets Personnels</h2>
       <div class="projet-carte">
-        <img src="image/pic_midi.jpg" alt="Projet GTA RP" class="projet-image"> <h3>Serveur GTA RP - Scripts LUA</h3>
+        <img src="image/pic_midi.jpg" alt="Projet GTA RP" class="projet-image">
+        <h3>Serveur GTA RP - Scripts LUA</h3>
         <p class="projet-description">
           Développement et maintenance d'un serveur de jeu pour GTA V (framework FiveM). Création de scripts en LUA pour gérer l'économie, les inventaires, les métiers et la sécurité anti-triche.
         </p>
@@ -51,37 +111,19 @@
         </div>
         <a href="https://github.com/ton-lien-github" target="_blank" class="projet-lien">Voir sur GitHub</a>
       </div>
-      </section>
-
-    <section id="projets-scolaires">
-      <h2>Projets Vus en Cours</h2>
-
-      <div class="projet-carte">
-        <img src="images/pic_midi.jpg" alt="Projet Pic du Midi" class="projet-image">
-        <h3>Tableau de Bord - Pic du Midi</h3>
+       <div class="projet-carte">
+        <h3>Portfolio en HTML/CSS/JS</h3>
         <p class="projet-description">
-          Développement d'un tableau de bord (dashboard) pour le Pic du Midi de Bigorre. Affichage des indicateurs de performance clés : météo, nombre de visiteurs, chiffre d'affaires total et moyen par visiteur.
+          Création complète de ce portfolio pour présenter mes compétences et mon parcours. Implémentation d'un design responsive, d'un sélecteur de thème et d'interactions dynamiques en JavaScript.
         </p>
         <div class="projet-tech">
-          <span>PHP</span>
-          <span>MySQL</span>
+          <span>HTML5</span>
+          <span>CSS3</span>
           <span>JavaScript</span>
-
-      <div class="projet-carte">
-        <h3>Projet DAO (Data Access Object)</h3>
-        <p class="projet-description">
-          Développement d'un modèle d'accès aux données (DAO) en Java. Ce projet sépare la logique métier de la logique d'accès à la base de données (MySQL) en utilisant un design pattern pour gérer les opérations CRUD (Create, Read, Update, Delete) de manière propre et maintenable.Mise en place d'une base de données MySQL et sécurisation des authentifications et des formulaires (hachage, anti-injection SQL).
-        </p>
-         <div class="projet-tech">
-          <span>PHP</span>
-          <span>MySQL</span>
-          <span>JavaScript</span>
-          <span>Chart.js</span>
         </div>
-        <a href="https://probable-space-tribble-5gr6j4j575qvfv4pg.github.dev/" target="_blank" class="projet-lien">Voir sur GitHub</a>
+        <a href="https://github.com/ton-lien-github" target="_blank" class="projet-lien">Voir sur GitHub</a>
       </div>
-
-      </section>
+    </section>
   </main>
 
   <footer>
