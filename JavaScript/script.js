@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function chargerVeille(container) {
     try {
         // On ajoute un timestamp (?t=...) pour éviter que le navigateur garde le fichier en cache
-        const response = await fetch('veille/news.json?t=' + new Date().getTime());
+        const response = await fetch('veille/posts/news.json?t=' + new Date().getTime());
 
         if (!response.ok) {
             throw new Error("Fichier news.json introuvable ou erreur réseau");
