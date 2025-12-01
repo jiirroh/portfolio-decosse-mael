@@ -101,4 +101,76 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+  /* ===== GESTION DE LA VEILLE AUTOMATISÉE (n8n) ===== */
+document.addEventListener('DOMContentLoaded', () => {
+    const newsContainer = document.getElementById('news-container');
+
+    // On vérifie si on est bien sur la page veille.html (si le conteneur existe)
+    if (newsContainer) {
+        chargerVeille(newsContainer);
+    }
+});
+
+async function chargerVeille(container) {
+    try {
+        // On ajoute un timestamp (?t=...) pour éviter que le navigateur garde le fichier en cache
+        const response = await fetch('veille/news.json?t=' + new Date().getTime());
+
+        if (!response.ok) {
+            throw new Error("Fichier news.json introuvable ou erreur réseau");
+        }
+
+        const newsData = await response.json();
+
+        // Si on a bien récupéré les données, on vide le message "Chargement..."
+        container.innerHTML = '';
+
+        // On boucle sur chaque news trouvée dans le fichier JSON
+        newsData.forEach(news => {
+            // Création de l'élément HTML
+            const item = document.createElement('div');
+            item.className = 'timeline-item';
+
+            // Formatage de la date
+            let dateAffichee = news.date;
+            try {
+                const dateObj = new Date(news.date);
+                dateAffichee = dateObj.toLocaleDateString('fr-FR', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            } catch (e) { console.warn("Date invalide", e); }
+
+            // Conversion du Markdown (gras, listes) en HTML grâce à la librairie 'marked'
+            // Si marked n'est pas chargé, on affiche le texte brut
+            const contenuHTML = (typeof marked !== 'undefined') ? marked.parse(news.contenu) : news.contenu;
+
+            item.innerHTML = `
+                <div class="timeline-date">${dateAffichee}</div>
+                <div class="timeline-content">
+                    <h4>${news.version}</h4>
+                    <div style="margin-top:10px; font-size: 0.95em; line-height: 1.6;">
+                        ${contenuHTML}
+                    </div>
+                    <a href="${news.lien}" target="_blank" class="projet-lien" style="margin-top:15px; font-size:0.8em;">
+                        Voir sur GitHub
+                    </a>
+                </div>
+            `;
+
+            container.appendChild(item);
+        });
+
+    } catch (error) {
+        console.error("Erreur lors du chargement de la veille :", error);
+        container.innerHTML = `
+            <div class="timeline-item">
+                <div class="timeline-content" style="border-left: 4px solid orange;">
+                    <p><i>Aucune mise à jour détectée pour le moment.</i></p>
+                    <small>${error.message}</small>
+                </div>
+            </div>`;
+    }
+}
 });
