@@ -24,16 +24,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- EFFET TYPEWRITER GLOBAL (pour la page d'accueil) ---
   const elementsToType = [
     { id: 'typing-welcome', text: 'Bienvenue sur mon portfolio !' },
-    { id: 'typing-about', text: 'Je m’appelle Maël Decosse, étudiant en BTS SIO SLAM. Passionné par l’informatique, le développement et l’administration de serveurs.' },
+    { id: 'typing-about', text: 'Je m\'appelle Maël Decosse, étudiant en BTS SIO SLAM. Passionné par l\'informatique, le développement et l\'administration de serveurs.' },
     { id: 'typing-skill1', text: 'Programmation : Java, PHP, HTML, CSS, JavaScript, LUA, SQL, Python' },
     { id: 'typing-skill2', text: 'Analyse : Modélisation UML et Merise' },
     { id: 'typing-skill3', text: 'Autres : Bonnes pratiques RGPD, Machines Virtuelles et installation d\'OS' },
     { id: 'typing-interets', text: 'En dehors de l\'informatique, je m\'intéresse à la musique, aux jeux vidéo, au sport et à la création de scripts.' }
   ];
 
-  // On lance l'effet seulement si le premier élément de la liste existe sur la page
   if (document.getElementById(elementsToType[0].id)) {
-    const typingSpeed = 40; // Vitesse en ms (plus bas = plus rapide)
+    const typingSpeed = 40;
     let textArrayIndex = 0;
     let charIndex = 0;
 
@@ -53,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     }
-    typeWriter(); // Démarrage de l'animation
+    typeWriter();
   }
 
   // --- Logique spécifique à la page Compétences & Projets (pour le sous-menu) ---
@@ -61,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const sectionsWithId = document.querySelectorAll("main section[id]");
   if (subMenuLinks.length > 0 && sectionsWithId.length > 0) {
     
-    // Scrollspy
     window.addEventListener("scroll", () => {
       let current = "";
       sectionsWithId.forEach(section => {
@@ -74,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Clic sur un bouton individuel "Voir les compétences"
     document.querySelectorAll(".toggle-btn").forEach(button => {
         button.addEventListener("click", () => {
             const details = button.nextElementSibling;
@@ -83,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Clic sur les liens du sous-menu (Bloc 1, 2, 3) pour tout ouvrir/fermer
     subMenuLinks.forEach(link => {
       link.addEventListener("click", () => {
         const targetId = link.getAttribute("href").substring(1);
@@ -101,37 +97,44 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
-  /* ===== GESTION DE LA VEILLE AUTOMATISÉE (n8n) ===== */
-document.addEventListener('DOMContentLoaded', () => {
-    const newsContainer = document.getElementById('news-container');
 
-    // On vérifie si on est bien sur la page veille.html (si le conteneur existe)
-    if (newsContainer) {
-        chargerVeille(newsContainer);
-    }
-});
+  // ===== GESTION DE LA VEILLE AUTOMATISÉE (n8n) =====
+  const newsContainer = document.getElementById('news-container');
+  if (newsContainer) {
+    console.log('🔍 Container trouvé, chargement de la veille...');
+    chargerVeille(newsContainer);
+  }
 
+}); // Fin du DOMContentLoaded
+
+// ===== FONCTION DE CHARGEMENT DE LA VEILLE =====
 async function chargerVeille(container) {
+    console.log('📡 Début du chargement...');
+    
     try {
-        // On ajoute un timestamp (?t=...) pour éviter que le navigateur garde le fichier en cache
-        const response = await fetch('veille/posts/news.json?t=' + new Date().getTime());
+        const url = 'veille/news.json?t=' + new Date().getTime();
+        console.log('🌐 Fetch de:', url);
+        
+        const response = await fetch(url);
+        console.log('📥 Réponse:', response.status);
 
         if (!response.ok) {
-            throw new Error("Fichier news.json introuvable ou erreur réseau");
+            throw new Error("Fichier news.json introuvable (erreur " + response.status + ")");
         }
 
         const newsData = await response.json();
+        console.log('✅ Données reçues:', newsData);
 
-        // Si on a bien récupéré les données, on vide le message "Chargement..."
+        if (!newsData || newsData.length === 0) {
+            throw new Error("Le fichier news.json est vide");
+        }
+
         container.innerHTML = '';
 
-        // On boucle sur chaque news trouvée dans le fichier JSON
         newsData.forEach(news => {
-            // Création de l'élément HTML
             const item = document.createElement('div');
             item.className = 'timeline-item';
 
-            // Formatage de la date
             let dateAffichee = news.date;
             try {
                 const dateObj = new Date(news.date);
@@ -140,11 +143,13 @@ async function chargerVeille(container) {
                     month: 'long',
                     day: 'numeric'
                 });
-            } catch (e) { console.warn("Date invalide", e); }
+            } catch (e) { 
+                console.warn("Date invalide:", e); 
+            }
 
-            // Conversion du Markdown (gras, listes) en HTML grâce à la librairie 'marked'
-            // Si marked n'est pas chargé, on affiche le texte brut
-            const contenuHTML = (typeof marked !== 'undefined') ? marked.parse(news.contenu) : news.contenu;
+            const contenuHTML = (typeof marked !== 'undefined') 
+                ? marked.parse(news.contenu) 
+                : news.contenu.replace(/\n/g, '<br>');
 
             item.innerHTML = `
                 <div class="timeline-date">${dateAffichee}</div>
@@ -154,7 +159,7 @@ async function chargerVeille(container) {
                         ${contenuHTML}
                     </div>
                     <a href="${news.lien}" target="_blank" class="projet-lien" style="margin-top:15px; font-size:0.8em;">
-                        Voir sur GitHub
+                        📖 Voir sur GitHub
                     </a>
                 </div>
             `;
@@ -162,15 +167,16 @@ async function chargerVeille(container) {
             container.appendChild(item);
         });
 
+        console.log('🎉 Veille chargée avec succès!');
+
     } catch (error) {
-        console.error("Erreur lors du chargement de la veille :", error);
+        console.error("❌ Erreur lors du chargement:", error);
         container.innerHTML = `
             <div class="timeline-item">
                 <div class="timeline-content" style="border-left: 4px solid orange;">
-                    <p><i>Aucune mise à jour détectée pour le moment.</i></p>
-                    <small>${error.message}</small>
+                    <p><i>⚠️ Impossible de charger les mises à jour pour le moment.</i></p>
+                    <small style="color: #888;">Détails: ${error.message}</small>
                 </div>
             </div>`;
     }
 }
-});
