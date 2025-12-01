@@ -12,10 +12,10 @@
   <div class="nav-container">
     <img src="images/logo.png" alt="Logo Decosse Maël" class="logo">
     <h1 class="titre">Portfolio Decosse Maël</h1>
-<button id="theme-toggle" class="theme-btn" title="Changer de thème">
-  <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-  <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-</button>
+    <button id="theme-toggle" class="theme-btn" title="Changer de thème">
+      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+    </button>
       <nav>
         <button class="hamburger">☰</button>
         <ul class="menu">
@@ -23,7 +23,7 @@
           <li><a href="cv.html">CV</a></li>
           <li><a href="projets.html">Projets</a></li>
           <li><a href="competences.html">Compétences</a></li>
-          <li><a href="veille.html"class="active">Veille Tech</a></li>
+          <li><a href="veille.html" class="active">Veille Tech</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
@@ -31,29 +31,19 @@
 </header>
 
 <main>
-  <section id="veille-auto">
-    <h3 style="display:flex; align-items:center; gap:10px;">
-      🤖 Actualités Ox Framework 
-      <span style="font-size:0.6em; background:var(--couleur-principale); color:white; padding:2px 8px; border-radius:12px;">Live IA</span>
-    </h3>
+  <section id="veille-intro">
+    <h2>Veille Technologique : L'évolution du développement sur FiveM</h2>
     <p>
-      Les dernières mises à jour techniques analysées et résumées automatiquement par mon serveur local (n8n + Llama 3).
+      Cette veille vise à comprendre l'évolution des frameworks sur FiveM et l'influence de Rockstar Games sur cet écosystème. Le sujet est directement lié au BTS SIO SLAM, abordant le développement back-end, la gestion de bases de données et le scripting (Lua, JavaScript).
     </p>
-
-    <div class="timeline" id="news-container">
-      <div class="timeline-item">
-        <div class="timeline-content">
-          <p><i>Chargement des données en cours...</i></p>
-        </div>
-      </div>
-    </div>
   </section>
+
   <section id="veille-auto">
     <h3 style="display:flex; align-items:center; gap:10px;">
       🔴 Dernières mises à jour (Live IA)
     </h3>
     <p>
-      Cette section est générée automatiquement par mon serveur local via n8n et Llama 3.
+      Cette section est générée automatiquement par mon serveur local via n8n et Llama 3. Elle analyse en temps réel les mises à jour techniques du framework Ox.
     </p>
 
     <div class="timeline" id="news-container">
@@ -106,10 +96,10 @@
         <div class="outil"><b>Sources communautaires :</b> Discord / Reddit</div>
         <div class="outil"><b>Suivi des projets :</b> GitHub</div>
         <div class="outil"><b>Organisation :</b> Notion</div>
-        <div class="outil"><b>Automatisation :</b> Zapier</div>
+        <div class="outil"><b>Automatisation :</b> n8n (Local)</div>
     </div>
     <p class="explication-outil">
-        J'ai configuré une automatisation où, lorsqu'un framework est mis à jour sur GitHub, Zapier ajoute automatiquement la ressource dans ma base de données Notion.
+        J'ai configuré une automatisation où, lorsqu'un framework est mis à jour sur GitHub, n8n analyse la note de mise à jour avec une IA locale et publie le résumé ici automatiquement.
     </p>
   </section>
 
@@ -120,12 +110,12 @@
     <span class="footer-nom">Decosse Maël</span>
   </div>
 </footer>
+
 <script src="JavaScript/script.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <div class="cursor-dot"></div>
-  <div class="cursor-outline"></div>
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
 
-</body>
 </body>
 </html>
