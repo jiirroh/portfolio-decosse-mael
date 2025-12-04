@@ -432,3 +432,32 @@ body.dark-mode .theme-btn .icon-moon {
   width: 100%;
   height: 100%;
 }
+
+/* ===== STYLES POUR LA PAGE CONTACT ===== */
+.contact-links {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.contact-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--couleur-principale);
+  color: var(--couleur-texte-clair);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.contact-links a:hover {
+  background: var(--couleur-principale-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 127, 255, 0.3);
+}
