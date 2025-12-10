@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   if (document.getElementById(elementsToType[0].id)) {
-    const typingSpeed = 40;
+    const typingSpeed = 20;
     let textArrayIndex = 0;
     let charIndex = 0;
 
@@ -179,4 +179,23 @@ async function chargerVeille(container) {
                 </div>
             </div>`;
     }
+    // --- GESTION DES BOUTONS "VOIR PLUS" (PROJETS) ---
+  const boutonsVoirPlus = document.querySelectorAll(".btn-voir-plus");
+
+  boutonsVoirPlus.forEach(btn => {
+    btn.addEventListener("click", () => {
+      // 1. On trouve la div "details" qui est juste après le bouton
+      const details = btn.nextElementSibling;
+      
+      // 2. On bascule la classe "show" pour afficher/cacher
+      details.classList.toggle("show");
+
+      // 3. On change le texte du bouton
+      if (details.classList.contains("show")) {
+        btn.textContent = "Masquer les détails";
+      } else {
+        btn.textContent = "Voir plus de détails";
+      }
+    });
+  });
 }

@@ -461,3 +461,44 @@ body.dark-mode .theme-btn .icon-moon {
   transform: translateY(-3px);
   box-shadow: 0 4px 12px rgba(0, 127, 255, 0.3);
 }
+/* ===== BOUTON ET ACCORDÉON PROJETS ===== */
+
+/* Le contenu caché par défaut */
+.projet-details {
+  display: none; /* Caché */
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px dashed var(--couleur-bordure);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Classe ajoutée par JS pour afficher */
+.projet-details.show {
+  display: block;
+}
+
+/* Style du bouton "Voir plus" */
+.btn-voir-plus {
+  background-color: transparent;
+  border: 2px solid var(--couleur-principale);
+  color: var(--couleur-principale);
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  margin: 10px 0;
+  display: inline-block;
+}
+
+.btn-voir-plus:hover {
+  background-color: var(--couleur-principale);
+  color: white;
+}
+
+/* Petite animation d'apparition */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
