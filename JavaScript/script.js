@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- GESTION DU THÈME SOMBRE (pour toutes les pages) ---
+  // --- GESTION DU THÈME SOMBRE ---
   const themeToggle = document.getElementById("theme-toggle");
   if (themeToggle) {
     if (localStorage.getItem("theme") === "dark") { document.body.classList.add("dark-mode"); }
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- MENU HAMBURGER RESPONSIVE (pour toutes les pages) ---
+  // --- MENU HAMBURGER ---
   const hamburger = document.querySelector(".hamburger");
   const menu = document.querySelector(".menu");
   if (hamburger && menu) {
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- EFFET TYPEWRITER (Modifié pour les titres) ---
+  // --- EFFET TYPEWRITER (CORRIGÉ POUR TITRES) ---
   const elementsToType = [
     { id: 'typing-welcome', text: 'Bienvenue sur mon portfolio !' },
     { id: 'typing-about-title', text: 'À propos de moi' },
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   if (document.getElementById(elementsToType[0].id)) {
-    const typingSpeed = 25; // Plus rapide
+    const typingSpeed = 25; // Vitesse plus rapide
     let textArrayIndex = 0;
     let charIndex = 0;
 
@@ -46,30 +46,19 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           charIndex = 0;
           textArrayIndex++;
-          setTimeout(typeWriter, 300); // Petite pause entre chaque titre
+          // Petite pause avant de passer au titre suivant
+          setTimeout(typeWriter, 300);
         }
       }
     }
     typeWriter();
   }
 
-  // --- Logique spécifique à la page Compétences & Projets (pour le sous-menu) ---
+  // --- GESTION PAGE COMPETENCES (Accordeons) ---
   const subMenuLinks = document.querySelectorAll(".sub-menu a");
   const sectionsWithId = document.querySelectorAll("main section[id]");
-  if (subMenuLinks.length > 0 && sectionsWithId.length > 0) {
-    
-    window.addEventListener("scroll", () => {
-      let current = "";
-      sectionsWithId.forEach(section => {
-        const sectionTop = section.offsetTop - 90;
-        if (window.scrollY >= sectionTop) { current = section.getAttribute("id"); }
-      });
-      subMenuLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href").includes(current)) { link.classList.add("active"); }
-      });
-    });
-
+  
+  if (document.querySelector(".toggle-btn")) {
     document.querySelectorAll(".toggle-btn").forEach(button => {
         button.addEventListener("click", () => {
             const details = button.nextElementSibling;
@@ -77,113 +66,63 @@ document.addEventListener('DOMContentLoaded', () => {
             button.textContent = details.classList.contains("show") ? "Masquer les compétences" : "Voir les compétences validées";
         });
     });
+  }
 
-    subMenuLinks.forEach(link => {
-      link.addEventListener("click", () => {
-        const targetId = link.getAttribute("href").substring(1);
-        sectionsWithId.forEach(section => {
-          const allDetails = section.querySelectorAll(".details");
-          const allButtons = section.querySelectorAll(".toggle-btn");
-          if (section.id === targetId) {
-            allDetails.forEach(detail => detail.classList.add("show"));
-            allButtons.forEach(btn => btn.textContent = "Masquer les compétences");
+  // --- GESTION DES NOUVEAUX BOUTONS "VOIR PLUS" (PAGE PROJETS) ---
+  const boutonsVoirPlus = document.querySelectorAll(".btn-voir-plus");
+  if (boutonsVoirPlus.length > 0) {
+    boutonsVoirPlus.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const details = btn.nextElementSibling; // La div class="projet-details" juste après
+        if (details) {
+          details.classList.toggle("show");
+          // Change le texte du bouton
+          if (details.classList.contains("show")) {
+            btn.textContent = "Masquer les détails";
           } else {
-            allDetails.forEach(detail => detail.classList.remove("show"));
-            allButtons.forEach(btn => btn.textContent = "Voir les compétences validées");
+            btn.textContent = "Voir plus de détails";
           }
-        });
+        }
       });
     });
   }
 
-  // ===== GESTION DE LA VEILLE AUTOMATISÉE (n8n) =====
+  // ===== GESTION DE LA VEILLE AUTOMATISÉE =====
   const newsContainer = document.getElementById('news-container');
   if (newsContainer) {
-    console.log('🔍 Container trouvé, chargement de la veille...');
     chargerVeille(newsContainer);
   }
+});
 
-}); // Fin du DOMContentLoaded
-
-// ===== FONCTION DE CHARGEMENT DE LA VEILLE =====
+// Fonction Veille
 async function chargerVeille(container) {
-    console.log('📡 Début du chargement...');
-    
     try {
         const url = 'veille/news.json?t=' + new Date().getTime();
-        console.log('🌐 Fetch de:', url);
-        
         const response = await fetch(url);
-        console.log('📥 Réponse:', response.status);
-
-        if (!response.ok) {
-            throw new Error("Fichier news.json introuvable (erreur " + response.status + ")");
-        }
-
+        if (!response.ok) throw new Error("Erreur réseau");
         const newsData = await response.json();
-        console.log('✅ Données reçues:', newsData);
-
-        if (!newsData || newsData.length === 0) {
-            throw new Error("Le fichier news.json est vide");
-        }
-
+        
         container.innerHTML = '';
-
         newsData.forEach(news => {
             const item = document.createElement('div');
             item.className = 'timeline-item';
-
+            
             let dateAffichee = news.date;
-            try {
-                const dateObj = new Date(news.date);
-                dateAffichee = dateObj.toLocaleDateString('fr-FR', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-            } catch (e) { 
-                console.warn("Date invalide:", e); 
-            }
+            try { dateAffichee = new Date(news.date).toLocaleDateString('fr-FR'); } catch(e){}
 
-            const contenuHTML = (typeof marked !== 'undefined') 
-                ? marked.parse(news.contenu) 
-                : news.contenu.replace(/\n/g, '<br>');
+            const contenuHTML = (typeof marked !== 'undefined') ? marked.parse(news.contenu) : news.contenu;
 
             item.innerHTML = `
                 <div class="timeline-date">${dateAffichee}</div>
                 <div class="timeline-content">
                     <h4>${news.version}</h4>
-                    <div style="margin-top:10px; font-size: 0.95em; line-height: 1.6;">
-                        ${contenuHTML}
-                    </div>
-                    <a href="${news.lien}" target="_blank" class="projet-lien" style="margin-top:15px; font-size:0.8em;">
-                        📖 Voir sur GitHub
-                    </a>
+                    <div style="margin-top:10px;">${contenuHTML}</div>
+                    <a href="${news.lien}" target="_blank" class="projet-lien" style="margin-top:15px; font-size:0.8em;">Voir sur GitHub</a>
                 </div>
             `;
-
             container.appendChild(item);
         });
-
-        console.log('🎉 Veille chargée avec succès!');
-
     } catch (error) {
-        console.error("❌ Erreur lors du chargement:", error);
-        container.innerHTML = `
-            <div class="timeline-item">
-                <div class="timeline-content" style="border-left: 4px solid orange;">
-                    <p><i>⚠️ Impossible de charger les mises à jour pour le moment.</i></p>
-                    <small style="color: #888;">Détails: ${error.message}</small>
-                </div>
-            </div>`;
+        container.innerHTML = `<p>Impossible de charger la veille.</p>`;
     }
-    // --- GESTION DES BOUTONS "VOIR PLUS" ---
-  const boutonsVoirPlus = document.querySelectorAll(".btn-voir-plus");
-  boutonsVoirPlus.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const details = btn.nextElementSibling; // La div juste après le bouton
-      details.classList.toggle("show");
-      btn.textContent = details.classList.contains("show") ? "Masquer les détails" : "Voir plus de détails";
-    });
-  });
 }

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projets - Portfolio Decosse Maël</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="images/logo.png">
 </head>
 <body>
   <header>
@@ -29,137 +30,118 @@
     </div>
   </header>
 
- <nav class="sub-menu">
-  <ul class="menu-principal">
-    <li class="dropdown">
-      <button class="dropbtn">Projets Vus en Cours ▼</button>
-      <div class="dropdown-content">
-        <a href="#projet-pic">Pic du Midi</a>
-        <a href="#projet-dao">Projet DAO</a>
-        <a href="#projet-site">Site Web PHP</a>
-      </div>
-    </li>
-    
-    <li class="dropdown">
-      <button class="dropbtn">Projets Personnels ▼</button>
-      <div class="dropdown-content">
-        <a href="#projet-gta">Serveur GTA RP</a>
-        <a href="#projet-portfolio">Portfolio</a>
-      </div>
-    </li>
-  </ul>
-</nav>
+  <nav class="sub-menu">
+    <ul class="menu-principal">
+      <li class="dropdown">
+        <button class="dropbtn">Projets Vus en Cours ▼</button>
+        <div class="dropdown-content">
+          <a href="#projet-pic">Pic du Midi</a>
+          <a href="#projet-dao">Projet DAO</a>
+          <a href="#projet-site">Site Web PHP</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <button class="dropbtn">Projets Personnels ▼</button>
+        <div class="dropdown-content">
+          <a href="#projet-gta">Serveur GTA RP</a>
+          <a href="#projet-portfolio">Portfolio</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
 
   <main>
     <section id="projets-scolaires">
       <h2>Projets Vus en Cours</h2>
 
-      <div class="projet-carte">
-        <img src="images/pic_midi.jpg" alt="Projet Pic du Midi" class="projet-image">
+      <div class="projet-carte" id="projet-pic">
         <h3>Tableau de Bord - Pic du Midi</h3>
-        <p class="projet-description">
-          Développement d'un tableau de bord (dashboard) pour le Pic du Midi de Bigorre. Affichage des indicateurs de performance clés : météo, nombre de visiteurs, chiffre d'affaires total et moyen par visiteur.
-        </p>
-        <div class="projet-tech">
-          <span>PHP</span>
-          <span>MySQL</span>
-          <span>JavaScript</span>
-          <span>Chart.js</span>
+        <p class="projet-resume">Développement d'un dashboard pour visualiser les indicateurs clés (météo, CA, visiteurs).</p>
+        
+        <button class="btn-voir-plus">Voir plus de détails</button>
+        
+        <div class="projet-details">
+          <img src="images/pic_midi.jpg" alt="Projet Pic du Midi" class="projet-image">
+          <p class="projet-description">
+             Affichage des indicateurs de performance clés : météo, nombre de visiteurs, chiffre d'affaires total et moyen par visiteur via des graphiques dynamiques.
+          </p>
+          <div class="projet-tech">
+            <span>PHP</span><span>MySQL</span><span>JavaScript</span><span>Chart.js</span>
+          </div>
         </div>
       </div>
 
-       <div class="projet-carte">
+      <div class="projet-carte" id="projet-dao">
         <h3>Projet DAO (Data Access Object)</h3>
-        <p class="projet-description">
-          Développement d'un modèle d'accès aux données (DAO) en Java. Ce projet sépare la logique métier de la logique d'accès à la base de données (MySQL) en utilisant un design pattern pour gérer les opérations CRUD (Create, Read, Update, Delete) de manière propre et maintenable.
-        </p>
-        <div class="projet-tech">
-          <span>Java</span>
-          <span>JDBC</span>
-          <span>MySQL</span>
-          <span>Design Pattern</span>
+        <p class="projet-resume">Développement d'un modèle d'accès aux données en Java (Pattern DAO).</p>
+        
+        <button class="btn-voir-plus">Voir plus de détails</button>
+        
+        <div class="projet-details">
+          <p class="projet-description">
+            Ce projet sépare la logique métier de la logique d'accès à la base de données (MySQL) en utilisant un design pattern pour gérer les opérations CRUD de manière propre et maintenable.
+          </p>
+          <div class="projet-tech">
+            <span>Java</span><span>JDBC</span><span>MySQL</span><span>Design Pattern</span>
+          </div>
+          <a href="https://github.com/jiirroh/projet-dao" target="_blank" class="projet-lien">Voir sur GitHub</a>
         </div>
-        <a href="https://github.com/jiirroh/projet-dao" target="_blank" class="projet-lien">Voir sur GitHub</a>
       </div>
 
-       <div class="projet-carte">
+      <div class="projet-carte" id="projet-site">
         <h3>Site web dynamique en PHP</h3>
-        <p class="projet-description">
-          Création d'un site web complet avec espace administration et espace utilisateur. Mise en place d'une base de données MySQL et sécurisation des authentifications et des formulaires (hachage, anti-injection SQL).
-        </p>
-        <div class="projet-tech">
-          <span>PHP</span>
-          <span>MySQL</span>
-          <span>HTML/CSS</span>
+        <p class="projet-resume">Création d'un site complet avec espace admin et utilisateur sécurisé.</p>
+        
+        <button class="btn-voir-plus">Voir plus de détails</button>
+        
+        <div class="projet-details">
+          <p class="projet-description">
+            Mise en place d'une base de données MySQL et sécurisation des authentifications et des formulaires (hachage, anti-injection SQL).
+          </p>
+          <div class="projet-tech">
+            <span>PHP</span><span>MySQL</span><span>HTML/CSS</span>
+          </div>
         </div>
-        <a href="https://github.com/ton-lien-github" target="_blank" class="projet-lien">Voir sur GitHub</a>
       </div>
     </section>
 
     <section id="projets-personnels">
       <h2>Projets Personnels</h2>
-      <div class="projet-carte">
-      <div class="video-responsive">
-  <iframe 
-    width="100%" 
-    height="100%" 
-    src="https://www.youtube.com/embed/D60hZvwHbm0?si=VS7-KG5ytFXBTCRL&mute=1"    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen>
-  </iframe>
-</div>
+      
       <div class="projet-carte" id="projet-gta">
-  <h3>Serveur GTA RP - Scripts LUA</h3>
-  
-  <p class="projet-resume">
-    Développement et maintenance d'un serveur de jeu pour GTA V (framework FiveM).
-  </p>
-
-  <button class="btn-voir-plus">Voir plus de détails</button>
-
-  <div class="projet-details">
-    <div class="video-responsive">
-      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/D60hZvwHbm0?si=VS7-KG5ytFXBTCRL&mute=1" frameborder="0" allowfullscreen></iframe>
-    </div>
-    
-    <p class="projet-description">
-      Création de scripts en LUA pour gérer l'économie, les inventaires, les métiers et la sécurité anti-triche. Optimisation SQL et gestion communautaire.
-    </p>
-    
-    <div class="projet-tech">
-      <span>LUA</span> <span>MySQL</span> <span>Git</span>
-    </div>
-    
-    <a href="https://github.com/jiirroh/script-fivem-fait-main" target="_blank" class="projet-lien">Voir sur GitHub</a>
-  </div>
-</div>
-
-    <p class="projet-description">
-      Développement complet (Back-end/Front-end) sur le framework FiveM. Création de scripts en LUA pour gérer l'économie, les inventaires, les métiers et la sécurité anti-triche. Optimisation des requêtes SQL pour la fluidité.
-    </p>
-
-    <div class="projet-tech">
-      <span>LUA</span>
-      <span>MySQL</span>
-      <span>Git</span>
-      <span>HTML/CSS (UI)</span>
-    </div>
-
-    <a href="https://github.com/jiirroh/script-fivem-fait-main" target="_blank" class="projet-lien">Voir sur GitHub</a>
-  </div>
-</div>
-<a href="https://github.com/jiirroh/script-fivem-fait-main" target="_blank" class="projet-lien">Voir sur GitHub</a>
-</div>
+        <h3>Serveur GTA RP - Scripts LUA</h3>
+        <p class="projet-resume">Développement et maintenance d'un serveur de jeu FiveM (Scripts LUA).</p>
+        
+        <button class="btn-voir-plus">Voir plus de détails</button>
+        
+        <div class="projet-details">
+          <div class="video-responsive">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/D60hZvwHbm0?si=VS7-KG5ytFXBTCRL&mute=1" frameborder="0" allowfullscreen></iframe>
+          </div>
+          
+          <p class="projet-description">
+            Création de scripts en LUA pour gérer l'économie, les inventaires, les métiers et la sécurité anti-triche sur le framework FiveM. Optimisation des performances serveur.
+          </p>
+          <div class="projet-tech">
+            <span>LUA</span><span>MySQL</span><span>Git</span>
+          </div>
+          <a href="https://github.com/jiirroh/script-fivem-fait-main" target="_blank" class="projet-lien">Voir sur GitHub</a>
+        </div>
       </div>
-       <div class="projet-carte">
+
+      <div class="projet-carte" id="projet-portfolio">
         <h3>Portfolio en HTML/CSS/JS</h3>
-        <p class="projet-description">
-          Création complète de ce portfolio pour présenter mes compétences et mon parcours. Implémentation d'un design responsive, d'un sélecteur de thème et d'interactions dynamiques en JavaScript.
-        </p>
-        <div class="projet-tech">
-          <span>HTML5</span>
-          <span>CSS3</span>
-          <span>JavaScript</span>
+        <p class="projet-resume">Création de ce site portfolio responsive et dynamique.</p>
+        
+        <button class="btn-voir-plus">Voir plus de détails</button>
+        
+        <div class="projet-details">
+          <p class="projet-description">
+            Implémentation d'un design responsive, d'un mode sombre, d'interactions dynamiques en JS et d'une veille technologique automatisée via JSON.
+          </p>
+          <div class="projet-tech">
+            <span>HTML5</span><span>CSS3</span><span>JavaScript</span>
+          </div>
         </div>
       </div>
     </section>
