@@ -29,12 +29,26 @@
     </div>
   </header>
 
-  <nav class="sub-menu">
-    <ul>
-      <li><a href="#projets-scolaires">Projets Vus en Cours</a></li>
-      <li><a href="#projets-personnels">Projets Personnels</a></li>
-    </ul>
-  </nav>
+ <nav class="sub-menu">
+  <ul class="menu-principal">
+    <li class="dropdown">
+      <button class="dropbtn">Projets Vus en Cours ▼</button>
+      <div class="dropdown-content">
+        <a href="#projet-pic">Pic du Midi</a>
+        <a href="#projet-dao">Projet DAO</a>
+        <a href="#projet-site">Site Web PHP</a>
+      </div>
+    </li>
+    
+    <li class="dropdown">
+      <button class="dropbtn">Projets Personnels ▼</button>
+      <div class="dropdown-content">
+        <a href="#projet-gta">Serveur GTA RP</a>
+        <a href="#projet-portfolio">Portfolio</a>
+      </div>
+    </li>
+  </ul>
+</nav>
 
   <main>
     <section id="projets-scolaires">
@@ -96,23 +110,29 @@
 </div>
       <div class="projet-carte" id="projet-gta">
   <h3>Serveur GTA RP - Scripts LUA</h3>
+  
   <p class="projet-resume">
-    Développement et maintenance d'un serveur de jeu pour GTA V. (Cliquez pour voir les détails)
+    Développement et maintenance d'un serveur de jeu pour GTA V (framework FiveM).
   </p>
 
   <button class="btn-voir-plus">Voir plus de détails</button>
 
   <div class="projet-details">
-    
     <div class="video-responsive">
-      <iframe 
-        width="100%" height="100%" 
-        src="https://www.youtube.com/embed/D60hZvwHbm0?si=VS7-KG5ytFXBTCRL&mute=1" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
+      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/D60hZvwHbm0?si=VS7-KG5ytFXBTCRL&mute=1" frameborder="0" allowfullscreen></iframe>
     </div>
+    
+    <p class="projet-description">
+      Création de scripts en LUA pour gérer l'économie, les inventaires, les métiers et la sécurité anti-triche. Optimisation SQL et gestion communautaire.
+    </p>
+    
+    <div class="projet-tech">
+      <span>LUA</span> <span>MySQL</span> <span>Git</span>
+    </div>
+    
+    <a href="https://github.com/jiirroh/script-fivem-fait-main" target="_blank" class="projet-lien">Voir sur GitHub</a>
+  </div>
+</div>
 
     <p class="projet-description">
       Développement complet (Back-end/Front-end) sur le framework FiveM. Création de scripts en LUA pour gérer l'économie, les inventaires, les métiers et la sécurité anti-triche. Optimisation des requêtes SQL pour la fluidité.

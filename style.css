@@ -502,3 +502,59 @@ body.dark-mode .theme-btn .icon-moon {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+/* ===== BOUTON ET ACCORDÉON PROJETS ===== */
+.projet-details {
+  display: none; /* Caché par défaut */
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px dashed var(--couleur-bordure);
+  animation: fadeIn 0.5s ease;
+}
+.projet-details.show { display: block; } /* Classe pour afficher */
+
+.btn-voir-plus {
+  background: transparent;
+  border: 2px solid var(--couleur-principale);
+  color: var(--couleur-principale);
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px 0;
+  transition: 0.3s;
+}
+.btn-voir-plus:hover {
+  background: var(--couleur-principale);
+  color: white;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ===== NOUVEAU MENU DÉROULANT ===== */
+.dropdown { position: relative; display: inline-block; margin: 0 10px; }
+.dropbtn {
+  background-color: var(--couleur-principale);
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--couleur-fond-section);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
+.dropdown-content a {
+  color: var(--couleur-texte-sombre);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover { background-color: var(--couleur-sous-menu-fond); }
+.dropdown:hover .dropdown-content { display: block; } /* Affiche au survol */
+.dropdown:hover .dropbtn { background-color: var(--couleur-principale-hover); }

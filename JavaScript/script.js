@@ -21,18 +21,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- EFFET TYPEWRITER GLOBAL (pour la page d'accueil) ---
+  // --- EFFET TYPEWRITER (Modifié pour les titres) ---
   const elementsToType = [
     { id: 'typing-welcome', text: 'Bienvenue sur mon portfolio !' },
-    { id: 'typing-about', text: 'Je m\'appelle Maël Decosse, étudiant en BTS SIO SLAM. Passionné par l\'informatique, le développement et l\'administration de serveurs.' },
-    { id: 'typing-skill1', text: 'Programmation : Java, PHP, HTML, CSS, JavaScript, LUA, SQL, Python' },
-    { id: 'typing-skill2', text: 'Analyse : Modélisation UML et Merise' },
-    { id: 'typing-skill3', text: 'Autres : Bonnes pratiques RGPD, Machines Virtuelles et installation d\'OS' },
-    { id: 'typing-interets', text: 'En dehors de l\'informatique, je m\'intéresse à la musique, aux jeux vidéo, au sport et à la création de scripts.' }
+    { id: 'typing-about-title', text: 'À propos de moi' },
+    { id: 'typing-skills-title', text: 'Mes Compétences Clés' },
+    { id: 'typing-interests-title', text: 'Mes Centres d\'Intérêt' }
   ];
 
   if (document.getElementById(elementsToType[0].id)) {
-    const typingSpeed = 20;
+    const typingSpeed = 25; // Plus rapide
     let textArrayIndex = 0;
     let charIndex = 0;
 
@@ -48,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           charIndex = 0;
           textArrayIndex++;
-          typeWriter();
+          setTimeout(typeWriter, 300); // Petite pause entre chaque titre
         }
       }
     }
@@ -179,23 +177,13 @@ async function chargerVeille(container) {
                 </div>
             </div>`;
     }
-    // --- GESTION DES BOUTONS "VOIR PLUS" (PROJETS) ---
+    // --- GESTION DES BOUTONS "VOIR PLUS" ---
   const boutonsVoirPlus = document.querySelectorAll(".btn-voir-plus");
-
   boutonsVoirPlus.forEach(btn => {
     btn.addEventListener("click", () => {
-      // 1. On trouve la div "details" qui est juste après le bouton
-      const details = btn.nextElementSibling;
-      
-      // 2. On bascule la classe "show" pour afficher/cacher
+      const details = btn.nextElementSibling; // La div juste après le bouton
       details.classList.toggle("show");
-
-      // 3. On change le texte du bouton
-      if (details.classList.contains("show")) {
-        btn.textContent = "Masquer les détails";
-      } else {
-        btn.textContent = "Voir plus de détails";
-      }
+      btn.textContent = details.classList.contains("show") ? "Masquer les détails" : "Voir plus de détails";
     });
   });
 }
