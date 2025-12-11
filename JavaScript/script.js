@@ -21,16 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- EFFET TYPEWRITER (CORRIGÉ POUR TITRES) ---
+  // --- EFFET TYPEWRITER (CONTENU COMPLET) ---
   const elementsToType = [
     { id: 'typing-welcome', text: 'Bienvenue sur mon portfolio !' },
-    { id: 'typing-about-title', text: 'À propos de moi' },
-    { id: 'typing-skills-title', text: 'Mes Compétences Clés' },
-    { id: 'typing-interests-title', text: 'Mes Centres d\'Intérêt' }
+    { id: 'typing-about', text: 'Je m’appelle Maël Decosse, étudiant en BTS SIO SLAM. Passionné par l’informatique, le développement et l’administration de serveurs.' },
+    { id: 'typing-skill1', text: 'Programmation : Java, PHP, HTML, CSS, JavaScript, LUA, SQL, Python' },
+    { id: 'typing-skill2', text: 'Analyse : Modélisation UML et Merise' },
+    { id: 'typing-skill3', text: 'Autres : Bonnes pratiques RGPD, Machines Virtuelles et installation d\'OS' },
+    { id: 'typing-interets', text: 'En dehors de l\'informatique, je m\'intéresse à la musique, aux jeux vidéo, au sport et à la création de scripts.' }
   ];
 
   if (document.getElementById(elementsToType[0].id)) {
-    const typingSpeed = 25; // Vitesse plus rapide
+    const typingSpeed = 20; // Vitesse rapide pour que le texte s'affiche vite
     let textArrayIndex = 0;
     let charIndex = 0;
 
@@ -46,8 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           charIndex = 0;
           textArrayIndex++;
-          // Petite pause avant de passer au titre suivant
-          setTimeout(typeWriter, 300);
+          setTimeout(typeWriter, 100); // Pause très courte entre les éléments
         }
       }
     }
@@ -56,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- GESTION PAGE COMPETENCES (Accordeons) ---
   const subMenuLinks = document.querySelectorAll(".sub-menu a");
-  const sectionsWithId = document.querySelectorAll("main section[id]");
   
   if (document.querySelector(".toggle-btn")) {
     document.querySelectorAll(".toggle-btn").forEach(button => {
@@ -68,15 +68,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- GESTION DES NOUVEAUX BOUTONS "VOIR PLUS" (PAGE PROJETS) ---
+  // --- GESTION DES BOUTONS "VOIR PLUS" (PROJETS) ---
   const boutonsVoirPlus = document.querySelectorAll(".btn-voir-plus");
   if (boutonsVoirPlus.length > 0) {
     boutonsVoirPlus.forEach(btn => {
       btn.addEventListener("click", () => {
-        const details = btn.nextElementSibling; // La div class="projet-details" juste après
+        const details = btn.nextElementSibling;
         if (details) {
           details.classList.toggle("show");
-          // Change le texte du bouton
           if (details.classList.contains("show")) {
             btn.textContent = "Masquer les détails";
           } else {
@@ -94,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Fonction Veille
 async function chargerVeille(container) {
     try {
         const url = 'veille/news.json?t=' + new Date().getTime();
