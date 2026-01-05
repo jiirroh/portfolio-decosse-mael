@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- EFFET TYPEWRITER (CONTENU TEXTE) ---
   const elementsToType = [
-    { id: 'typing-welcome', text: 'Bienvenue sur mon portfolio !' },
     { id: 'typing-about', text: 'Je m’appelle Maël Decosse, étudiant en BTS SIO SLAM. Passionné par l’informatique, le développement et l’administration de serveurs.' },
     { id: 'typing-skill1', text: 'Programmation : Java, PHP, HTML, CSS, JavaScript, LUA, SQL, Python' },
     { id: 'typing-skill2', text: 'Analyse : Modélisation UML et Merise' },
