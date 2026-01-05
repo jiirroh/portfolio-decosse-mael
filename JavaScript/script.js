@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- EFFET TYPEWRITER (CONTENU COMPLET) ---
+  // --- EFFET TYPEWRITER (CONTENU TEXTE) ---
   const elementsToType = [
     { id: 'typing-welcome', text: 'Bienvenue sur mon portfolio !' },
     { id: 'typing-about', text: 'Je m’appelle Maël Decosse, étudiant en BTS SIO SLAM. Passionné par l’informatique, le développement et l’administration de serveurs.' },
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   if (document.getElementById(elementsToType[0].id)) {
-    const typingSpeed = 20; // Vitesse rapide pour que le texte s'affiche vite
+    const typingSpeed = 20; // Vitesse d'écriture (plus petit = plus rapide)
     let textArrayIndex = 0;
     let charIndex = 0;
 
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           charIndex = 0;
           textArrayIndex++;
-          setTimeout(typeWriter, 100); // Pause très courte entre les éléments
+          setTimeout(typeWriter, 100); // Petite pause entre les éléments
         }
       }
     }
@@ -56,8 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- GESTION PAGE COMPETENCES (Accordeons) ---
-  const subMenuLinks = document.querySelectorAll(".sub-menu a");
-  
   if (document.querySelector(".toggle-btn")) {
     document.querySelectorAll(".toggle-btn").forEach(button => {
         button.addEventListener("click", () => {
