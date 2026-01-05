@@ -37,7 +37,7 @@
         <div class="dropdown-content">
           <a href="#projet-pic">Pic du Midi</a>
           <a href="#projet-dao">Projet DAO</a>
-          <a href="#projet-site">Site Web PHP</a>
+          <a href="#projet-fa">Billetterie du Fâ</a>
         </div>
       </li>
       <li class="dropdown">
@@ -88,21 +88,30 @@
         </div>
       </div>
 
-      <div class="projet-carte" id="projet-site">
-        <h3>Site web dynamique en PHP</h3>
-        <p class="projet-resume">Création d'un site complet avec espace admin et utilisateur sécurisé.</p>
+      <div class="projet-carte" id="projet-fa">
+        <h3>Site de Réservation - Musée du Fâ</h3>
+        <p class="projet-resume">Refonte de la page d'accueil et création d'un module de réservation de billets avec génération de facture PDF.</p>
         
         <button class="btn-voir-plus">Voir plus de détails</button>
         
         <div class="projet-details">
+          <img src="images/projet_fa.png" alt="Interface de réservation du Fâ" class="projet-image" onerror="this.style.display='none'">
+          
           <p class="projet-description">
-            Mise en place d'une base de données MySQL et sécurisation des authentifications et des formulaires (hachage, anti-injection SQL).
+            [cite_start]<strong>Projet de groupe (méthode Scrum) :</strong> Développement d'une application web pour la gestion des visites du site archéologique du Fâ[cite: 177].
+            <br><br>
+            J'ai participé à la refonte de la page d'accueil et au développement du module de réservation connecté à une base de données.
+            L'utilisateur peut sélectionner ses billets (Adulte, Enfant), voir le total calculé dynamiquement, et valider sa commande.
+            <br>
+            Le système génère ensuite automatiquement une facture PDF téléchargeable et simule l'envoi d'un email et d'un SMS de confirmation.
           </p>
+          
           <div class="projet-tech">
-            <span>PHP</span><span>MySQL</span><span>HTML/CSS</span>
+            <span>PHP 8</span><span>MySQL</span><span>Architecture MVC/DAO</span><span>FPDF</span><span>Git</span>
           </div>
         </div>
       </div>
+
     </section>
 
     <section id="projets-personnels">
