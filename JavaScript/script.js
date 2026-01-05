@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- GESTION DU THÈME SOMBRE ---
+  // 1. GESTION DU THÈME SOMBRE
   const themeToggle = document.getElementById("theme-toggle");
   if (themeToggle) {
     if (localStorage.getItem("theme") === "dark") { document.body.classList.add("dark-mode"); }
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- MENU HAMBURGER ---
+  // 2. MENU HAMBURGER
   const hamburger = document.querySelector(".hamburger");
   const menu = document.querySelector(".menu");
   if (hamburger && menu) {
@@ -21,8 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- EFFET TYPEWRITER (CONTENU TEXTE) ---
+  // 3. EFFET TYPEWRITER (ACCUEIL)
   const elementsToType = [
+    { id: 'typing-welcome', text: 'Bienvenue sur mon portfolio !' },
     { id: 'typing-about', text: 'Je m’appelle Maël Decosse, étudiant en BTS SIO SLAM. Passionné par l’informatique, le développement et l’administration de serveurs.' },
     { id: 'typing-skill1', text: 'Programmation : Java, PHP, HTML, CSS, JavaScript, LUA, SQL, Python' },
     { id: 'typing-skill2', text: 'Analyse : Modélisation UML et Merise' },
@@ -31,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   if (document.getElementById(elementsToType[0].id)) {
-    const typingSpeed = 20; // Vitesse d'écriture (plus petit = plus rapide)
+    const typingSpeed = 20; 
     let textArrayIndex = 0;
     let charIndex = 0;
 
@@ -47,14 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           charIndex = 0;
           textArrayIndex++;
-          setTimeout(typeWriter, 100); // Petite pause entre les éléments
+          setTimeout(typeWriter, 100);
         }
       }
     }
     typeWriter();
   }
 
-  // --- GESTION PAGE COMPETENCES (Accordeons) ---
+  // 4. ACCORDÉONS COMPÉTENCES
   if (document.querySelector(".toggle-btn")) {
     document.querySelectorAll(".toggle-btn").forEach(button => {
         button.addEventListener("click", () => {
@@ -65,66 +66,64 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- GESTION DES BOUTONS "VOIR PLUS" (PROJETS) ---
+  // 5. ACCORDÉONS PROJETS (BOUTON VOIR PLUS) - VERSION ROBUSTE
   const boutonsVoirPlus = document.querySelectorAll(".btn-voir-plus");
   if (boutonsVoirPlus.length > 0) {
     boutonsVoirPlus.forEach(btn => {
       btn.addEventListener("click", () => {
-        const details = btn.nextElementSibling;
+        // Au lieu de prendre juste "le suivant", on cherche le bloc parent puis la div details
+        // Cela évite les bugs si tu déplaces le bouton ou ajoute un élément entre les deux.
+        const parentCard = btn.closest('.projet-carte');
+        const details = parentCard.querySelector('.projet-details');
+        
         if (details) {
           details.classList.toggle("show");
           if (details.classList.contains("show")) {
             btn.textContent = "Masquer les détails";
           } else {
-            btn.textContent = "Voir plus de détails";
+            btn.textContent = "Voir l'étude de cas complète";
           }
+        } else {
+            console.error("Impossible de trouver la div .projet-details pour ce bouton");
         }
       });
     });
   }
-// ... (Code existant du menu, typing, etc.) ...
 
-  // --- GESTION DU ZOOM IMAGE (LIGHTBOX) ---
+  // 6. ZOOM IMAGE (LIGHTBOX)
   const modal = document.getElementById("image-modal");
   const modalImg = document.getElementById("img-to-zoom");
-  const closeBtn = document.getElementsByClassName("close")[0];
+  const closeBtn = document.querySelector(".modal .close");
 
-  // Sélectionne toutes les images qui ont les classes de tes projets
   const imagesAgrandissables = document.querySelectorAll('.projet-image, .projet-image-demi, .projet-code-img');
 
   if (modal && modalImg) {
     imagesAgrandissables.forEach(img => {
       img.addEventListener('click', function() {
-        modal.style.display = "flex"; // Utilise flex pour centrer
+        modal.style.display = "flex"; // Utilise Flex pour centrer
         modal.style.alignItems = "center";
         modal.style.justifyContent = "center";
-        modalImg.src = this.src; // L'image de la modale devient celle cliquée
+        modalImg.src = this.src;
       });
     });
 
-    // Fermer en cliquant sur la croix
     if (closeBtn) {
-      closeBtn.addEventListener('click', function() {
-        modal.style.display = "none";
-      });
+      closeBtn.addEventListener('click', () => { modal.style.display = "none"; });
     }
 
-    // Fermer en cliquant en dehors de l'image (sur le fond noir)
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal) {
-        modal.style.display = "none";
-      }
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) { modal.style.display = "none"; }
     });
   }
 
-  // ... (Suite du code existant pour la veille) ...
-  // ===== GESTION DE LA VEILLE AUTOMATISÉE =====
+  // 7. VEILLE AUTOMATISÉE
   const newsContainer = document.getElementById('news-container');
   if (newsContainer) {
     chargerVeille(newsContainer);
   }
 });
 
+// FONCTION VEILLE
 async function chargerVeille(container) {
     try {
         const url = 'veille/news.json?t=' + new Date().getTime();
@@ -153,6 +152,6 @@ async function chargerVeille(container) {
             container.appendChild(item);
         });
     } catch (error) {
-        container.innerHTML = `<p>Impossible de charger la veille.</p>`;
+        container.innerHTML = `<p>Chargement de la veille...</p>`;
     }
 }

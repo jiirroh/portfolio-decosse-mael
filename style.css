@@ -634,3 +634,66 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
     width: 100%;
   }
 }
+/* ========================================= */
+/* ===== MODALE DE ZOOM (LIGHTBOX) ========= */
+/* ========================================= */
+
+.modal {
+  display: none; /* Caché par défaut */
+  position: fixed; 
+  z-index: 2000; /* Au-dessus de tout le reste */
+  padding-top: 20px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.9); /* Fond noir transparent */
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 90%;
+  max-width: 1200px;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  animation: zoomIn 0.3s;
+}
+
+@keyframes zoomIn {
+  from {transform:scale(0.8); opacity: 0;} 
+  to {transform:scale(1); opacity: 1;}
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: #f1f1f1;
+  font-size: 50px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+  z-index: 2001;
+}
+
+.close:hover,
+.close:focus {
+  color: var(--couleur-principale);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Curseur loupe pour dire "clique-moi" */
+.projet-image, .projet-image-demi, .projet-code-img {
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+.projet-image:hover, .projet-image-demi:hover, .projet-code-img:hover {
+  opacity: 0.95;
+  transform: scale(1.01);
+}
