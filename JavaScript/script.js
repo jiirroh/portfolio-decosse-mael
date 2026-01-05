@@ -82,7 +82,42 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+// ... (Code existant du menu, typing, etc.) ...
 
+  // --- GESTION DU ZOOM IMAGE (LIGHTBOX) ---
+  const modal = document.getElementById("image-modal");
+  const modalImg = document.getElementById("img-to-zoom");
+  const closeBtn = document.getElementsByClassName("close")[0];
+
+  // Sélectionne toutes les images qui ont les classes de tes projets
+  const imagesAgrandissables = document.querySelectorAll('.projet-image, .projet-image-demi, .projet-code-img');
+
+  if (modal && modalImg) {
+    imagesAgrandissables.forEach(img => {
+      img.addEventListener('click', function() {
+        modal.style.display = "flex"; // Utilise flex pour centrer
+        modal.style.alignItems = "center";
+        modal.style.justifyContent = "center";
+        modalImg.src = this.src; // L'image de la modale devient celle cliquée
+      });
+    });
+
+    // Fermer en cliquant sur la croix
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        modal.style.display = "none";
+      });
+    }
+
+    // Fermer en cliquant en dehors de l'image (sur le fond noir)
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  }
+
+  // ... (Suite du code existant pour la veille) ...
   // ===== GESTION DE LA VEILLE AUTOMATISÉE =====
   const newsContainer = document.getElementById('news-container');
   if (newsContainer) {
