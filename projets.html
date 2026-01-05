@@ -88,26 +88,60 @@
         </div>
       </div>
 
-      <div class="projet-carte" id="projet-fa">
-        <h3>Site de Réservation - Musée du Fâ</h3>
-        <p class="projet-resume">Refonte de la page d'accueil et création d'un module de réservation de billets avec génération de facture PDF.</p>
+<div class="projet-carte" id="projet-fa">
+        <h3>Billetterie du Fâ - PHP/MVC</h3>
+        <p class="projet-resume">Application complète de réservation de billets avec architecture MVC, base de données et génération de PDF.</p>
         
-        <button class="btn-voir-plus">Voir plus de détails</button>
+        <button class="btn-voir-plus">Voir l'étude de cas complète</button>
         
         <div class="projet-details">
-          <img src="images/projet_fa.png" alt="Interface de réservation du Fâ" class="projet-image" onerror="this.style.display='none'">
           
+          <h4 class="detail-titre">1. Contexte & Besoin</h4>
           <p class="projet-description">
-            [cite_start]<strong>Projet de groupe (méthode Scrum) :</strong> Développement d'une application web pour la gestion des visites du site archéologique du Fâ[cite: 177].
-            <br><br>
-            J'ai participé à la refonte de la page d'accueil et au développement du module de réservation connecté à une base de données.
-            L'utilisateur peut sélectionner ses billets (Adulte, Enfant), voir le total calculé dynamiquement, et valider sa commande.
-            <br>
-            Le système génère ensuite automatiquement une facture PDF téléchargeable et simule l'envoi d'un email et d'un SMS de confirmation.
+            Le site archéologique du Fâ (Barzan) fait face à une forte affluence estivale. L'objectif était de développer une application web pour <strong>fluidifier la gestion des entrées</strong> en permettant la réservation en ligne.
+            <br><em>Contraintes :</em> Travail en méthode SCRUM, PHP 8 sans framework, Architecture MVC imposée.
           </p>
+
+          <h4 class="detail-titre">2. Architecture & Choix Techniques</h4>
+          <ul class="projet-liste">
+            <li><strong>Langage :</strong> PHP 8 (Typage fort, Attributs).</li>
+            <li><strong>Architecture :</strong> MVC (Modèle-Vue-Contrôleur) pour séparer la logique et l'affichage.</li>
+            <li><strong>Accès Données :</strong> Pattern DAO (Data Access Object) avec PDO pour sécuriser les requêtes SQL.</li>
+            <li><strong>Sécurité :</strong> Hashage des mots de passe, protection XSS/Injection SQL.</li>
+          </ul>
           
+          <div class="code-placeholder">
+            <span>📷 Ici : Insère un screen de ton arborescence de fichiers (Dossiers Model, View, Controller)</span>
+            </div>
+
+          <h4 class="detail-titre">3. Fonctionnalités Clés</h4>
+
+          <div class="etape-projet">
+            <h5>A. Sélection des billets (Front-End)</h5>
+            <p>Formulaire dynamique permettant de choisir le type de visite et la quantité de billets. Le total se met à jour en temps réel.</p>
+            <img src="image_ab9d86.png" alt="Formulaire de réservation" class="projet-image">
+          </div>
+
+          <div class="etape-projet">
+            <h5>B. Validation et Enregistrement (Back-End)</h5>
+            <p>Réception des données dans le contrôleur, validation des entrées, et insertion en base de données via le DAO.</p>
+            
+            <div class="code-placeholder">
+              <span>📷 Ici : Insère un screen de ta méthode `createReservation()` ou de ta requête SQL dans le DAO.</span>
+              </div>
+          </div>
+
+          <div class="etape-projet">
+            <h5>C. Confirmation et Facture PDF</h5>
+            <p>Une fois la commande validée, l'utilisateur reçoit un récapitulatif et peut télécharger sa facture générée dynamiquement avec la librairie <strong>FPDF</strong>.</p>
+            <div class="galerie-images">
+              <img src="image_ab9df9.png" alt="Confirmation de commande" class="projet-image-demi">
+              <img src="image_ab9e1b.png" alt="Facture PDF générée" class="projet-image-demi">
+            </div>
+          </div>
+
           <div class="projet-tech">
-            <span>PHP 8</span><span>MySQL</span><span>Architecture MVC/DAO</span><span>FPDF</span><span>Git</span>
+            <span>PHP 8</span><span>MySQL</span><span>MVC</span><span>DAO</span><span>Git</span><span>Scrum</span>
           </div>
         </div>
       </div>
