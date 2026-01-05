@@ -57,13 +57,11 @@
       <div class="projet-carte" id="projet-pic">
         <h3>Tableau de Bord - Pic du Midi</h3>
         <p class="projet-resume">Développement d'un dashboard pour visualiser les indicateurs clés (météo, CA, visiteurs).</p>
-        
         <button class="btn-voir-plus">Voir plus de détails</button>
-        
         <div class="projet-details">
           <img src="images/pic_midi.jpg" alt="Projet Pic du Midi" class="projet-image">
           <p class="projet-description">
-             Affichage des indicateurs de performance clés : météo, nombre de visiteurs, chiffre d'affaires total et moyen par visiteur via des graphiques dynamiques.
+             Affichage des indicateurs de performance clés : météo, nombre de visiteurs, chiffre d'affaires total et moyen par visiteur via des graphiques dynamiques avec Chart.js.
           </p>
           <div class="projet-tech">
             <span>PHP</span><span>MySQL</span><span>JavaScript</span><span>Chart.js</span>
@@ -74,9 +72,7 @@
       <div class="projet-carte" id="projet-dao">
         <h3>Projet DAO (Data Access Object)</h3>
         <p class="projet-resume">Développement d'un modèle d'accès aux données en Java (Pattern DAO).</p>
-        
         <button class="btn-voir-plus">Voir plus de détails</button>
-        
         <div class="projet-details">
           <p class="projet-description">
             Ce projet sépare la logique métier de la logique d'accès à la base de données (MySQL) en utilisant un design pattern pour gérer les opérations CRUD de manière propre et maintenable.
@@ -88,7 +84,7 @@
         </div>
       </div>
 
-<div class="projet-carte" id="projet-fa">
+      <div class="projet-carte" id="projet-fa">
         <h3>Billetterie du Fâ - PHP/MVC</h3>
         <p class="projet-resume">Application complète de réservation de billets avec architecture MVC, base de données et génération de PDF.</p>
         
@@ -106,37 +102,38 @@
           <ul class="projet-liste">
             <li><strong>Langage :</strong> PHP 8 (Typage fort, Attributs).</li>
             <li><strong>Architecture :</strong> MVC (Modèle-Vue-Contrôleur) pour séparer la logique et l'affichage.</li>
-            <li><strong>Accès Données :</strong> Pattern DAO (Data Access Object) avec PDO pour sécuriser les requêtes SQL.</li>
+            <li><strong>Accès Données :</strong> Pattern DAO avec PDO pour sécuriser les requêtes SQL.</li>
             <li><strong>Sécurité :</strong> Hashage des mots de passe, protection XSS/Injection SQL.</li>
           </ul>
           
-          <div class="code-placeholder">
-            <span><img src="images/arborescence.png" alt="Arborescence du projet" class="projet-image-demi"></span>
-            </div>
+          <div class="code-container">
+             <img src="images/arborescence.png" alt="Arborescence MVC" class="projet-code-img">
+          </div>
 
           <h4 class="detail-titre">3. Fonctionnalités Clés</h4>
 
           <div class="etape-projet">
             <h5>A. Sélection des billets (Front-End)</h5>
             <p>Formulaire dynamique permettant de choisir le type de visite et la quantité de billets. Le total se met à jour en temps réel.</p>
-            <img src="image_ab9d86.png" alt="Formulaire de réservation" class="projet-image">
+            <img src="images/formulaire reservation.png" alt="Formulaire de réservation" class="projet-image">
           </div>
 
           <div class="etape-projet">
             <h5>B. Validation et Enregistrement (Back-End)</h5>
-            <p>Réception des données dans le contrôleur, validation des entrées, et insertion en base de données via le DAO.</p>
+            <p>Réception des données dans le contrôleur, validation des entrées, et insertion en base de données via le DAO. Utilisation de transactions SQL.</p>
             
-            <div class="code-placeholder">
-              <span><img src="images/FonctionReservation.png" alt="Fonction de reservation" class="projet-image-demi"></span>
-              </div>
+            <div class="code-container">
+              <img src="images/FonctionReservation.png" alt="Code PHP création réservation" class="projet-code-img">
+            </div>
           </div>
 
           <div class="etape-projet">
             <h5>C. Confirmation et Facture PDF</h5>
             <p>Une fois la commande validée, l'utilisateur reçoit un récapitulatif et peut télécharger sa facture générée dynamiquement avec la librairie <strong>FPDF</strong>.</p>
+            
             <div class="galerie-images">
               <img src="images/confirmation.png" alt="Confirmation de commande" class="projet-image-demi">
-              <img src="images/facture.png" alt="Facture PDF générée" class="projet-image-demi">
+              <img src="images/factureReserv.png" alt="Facture PDF générée" class="projet-image-demi">
             </div>
           </div>
 
@@ -161,7 +158,6 @@
           <div class="video-responsive">
             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/D60hZvwHbm0?si=VS7-KG5ytFXBTCRL&mute=1" frameborder="0" allowfullscreen></iframe>
           </div>
-          
           <p class="projet-description">
             Création de scripts en LUA pour gérer l'économie, les inventaires, les métiers et la sécurité anti-triche sur le framework FiveM. Optimisation des performances serveur.
           </p>
