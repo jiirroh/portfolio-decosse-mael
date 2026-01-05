@@ -5,12 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
      ======================================================== */
   const themeToggle = document.getElementById("theme-toggle");
   if (themeToggle) {
-    // Vérifie si un thème est déjà sauvegardé
     if (localStorage.getItem("theme") === "dark") { document.body.classList.add("dark-mode"); }
     
     themeToggle.addEventListener("click", () => {
       document.body.classList.toggle("dark-mode");
-      // Sauvegarde la préférence
       if (document.body.classList.contains("dark-mode")) { localStorage.setItem("theme", "dark"); }
       else { localStorage.removeItem("theme"); }
     });
@@ -23,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const menu = document.querySelector(".menu");
   if (hamburger && menu) {
     hamburger.addEventListener("click", () => { menu.classList.toggle("show"); });
-    
     // Ferme le menu quand on clique sur un lien
     document.querySelectorAll(".menu a").forEach(link => {
       link.addEventListener("click", () => { menu.classList.remove("show"); });
@@ -31,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ========================================================
-     3. EFFET MACHINE À ÉCRIRE (Page d'accueil uniquement)
+     3. EFFET MACHINE À ÉCRIRE (Page d'accueil)
      ======================================================== */
   const elementsToType = [
     { id: 'typing-welcome', text: 'Bienvenue sur mon portfolio !' },
@@ -42,40 +39,35 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'typing-interets', text: 'En dehors de l\'informatique, je m\'intéresse à la musique, aux jeux vidéo, au sport et à la création de scripts.' }
   ];
 
-  // On vérifie si on est sur la page d'accueil (si le titre existe)
+  // On vérifie si l'élément existe avant de lancer le script
   if (document.getElementById(elementsToType[0].id)) {
-    const typingSpeed = 20; // Vitesse de frappe (ms)
+    const typingSpeed = 20; 
     let textArrayIndex = 0;
     let charIndex = 0;
 
-    // Fonction récursive pour écrire
     function typeWriter() {
       if (textArrayIndex < elementsToType.length) {
         const currentElement = elementsToType[textArrayIndex];
         const targetElement = document.getElementById(currentElement.id);
 
-        // Si l'élément HTML existe, on écrit dedans
         if (targetElement) {
             if (charIndex < currentElement.text.length) {
                 targetElement.innerHTML += currentElement.text.charAt(charIndex);
                 charIndex++;
                 setTimeout(typeWriter, typingSpeed);
             } else {
-                // Mot fini, on passe au suivant après une mini pause
                 charIndex = 0;
                 textArrayIndex++;
-                setTimeout(typeWriter, 100);
+                setTimeout(typeWriter, 100); // Petite pause entre les éléments
             }
         } else {
-            // Si l'élément n'existe pas (ex: liste supprimée), on saute à l'index suivant
+            // Si l'élément n'est pas trouvé, on passe au suivant
             textArrayIndex++;
             charIndex = 0;
             typeWriter();
         }
       }
     }
-    
-    // Lancement du script
     typeWriter();
   }
 
@@ -83,37 +75,35 @@ document.addEventListener('DOMContentLoaded', () => {
      4. ACCORDÉONS PAGE COMPÉTENCES
      ======================================================== */
   const toggleButtons = document.querySelectorAll(".toggle-btn");
-  if (toggleButtons.length > 0) {
-    toggleButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            const details = button.nextElementSibling;
-            if (details) {
-                details.classList.toggle("show");
-                button.textContent = details.classList.contains("show") ? "Masquer les compétences" : "Voir les compétences validées";
-            }
-        });
-    });
-  }
+  toggleButtons.forEach(button => {
+      button.addEventListener("click", () => {
+          const details = button.nextElementSibling;
+          if (details) {
+              details.classList.toggle("show");
+              button.textContent = details.classList.contains("show") ? "Masquer les compétences" : "Voir les compétences validées";
+          }
+      });
+  });
 
   /* ========================================================
-     5. BOUTONS "VOIR PLUS" (Page Projets)
+     5. BOUTONS "VOIR PLUS" (Page Projets) - VERSION ROBUSTE
      ======================================================== */
   const boutonsVoirPlus = document.querySelectorAll(".btn-voir-plus");
-  if (boutonsVoirPlus.length > 0) {
-    boutonsVoirPlus.forEach(btn => {
-      btn.addEventListener("click", () => {
-        // On cherche le parent .projet-carte puis l'enfant .projet-details
-        // C'est plus sûr que nextElementSibling
-        const carte = btn.closest('.projet-carte');
-        const details = carte ? carte.querySelector('.projet-details') : null;
-        
-        if (details) {
-          details.classList.toggle("show");
-          btn.textContent = details.classList.contains("show") ? "Masquer les détails" : "Voir l'étude de cas complète";
-        }
-      });
+  boutonsVoirPlus.forEach(btn => {
+    btn.addEventListener("click", () => {
+      // On cherche le parent (.projet-carte) puis l'enfant (.projet-details) à l'intérieur
+      // C'est beaucoup plus fiable que nextElementSibling
+      const carte = btn.closest('.projet-carte');
+      const details = carte ? carte.querySelector('.projet-details') : null;
+      
+      if (details) {
+        details.classList.toggle("show");
+        btn.textContent = details.classList.contains("show") ? "Masquer les détails" : "Voir l'étude de cas complète";
+      } else {
+        console.error("Impossible de trouver les détails du projet");
+      }
     });
-  }
+  });
 
   /* ========================================================
      6. ZOOM IMAGE (LIGHTBOX)
@@ -128,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (modal && modalImg) {
     imagesAgrandissables.forEach(img => {
       img.addEventListener('click', function() {
-        modal.style.display = "flex"; // Centre l'image
+        modal.style.display = "flex"; // Flex pour centrer
         modal.style.alignItems = "center";
         modal.style.justifyContent = "center";
         modalImg.src = this.src;
@@ -147,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ========================================================
-     7. VEILLE AUTOMATISÉE (Page Veille)
+     7. VEILLE AUTOMATISÉE
      ======================================================== */
   const newsContainer = document.getElementById('news-container');
   if (newsContainer) {
@@ -171,7 +161,6 @@ async function chargerVeille(container) {
             let dateAffichee = news.date;
             try { dateAffichee = new Date(news.date).toLocaleDateString('fr-FR'); } catch(e){}
 
-            // Support Markdown si la librairie est chargée
             const contenuHTML = (typeof marked !== 'undefined') ? marked.parse(news.contenu) : news.contenu;
 
             item.innerHTML = `
