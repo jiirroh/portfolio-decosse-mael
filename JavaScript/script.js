@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+  console.log("Le Script JS est bien chargé !"); // Test pour vérifier le chargement
 
-  /* ========================================================
-     1. GESTION DU THÈME SOMBRE
-     ======================================================== */
+  // 1. GESTION DU THÈME SOMBRE
   const themeToggle = document.getElementById("theme-toggle");
   if (themeToggle) {
     if (localStorage.getItem("theme") === "dark") { document.body.classList.add("dark-mode"); }
@@ -14,9 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ========================================================
-     2. MENU HAMBURGER (RESPONSIVE)
-     ======================================================== */
+  // 2. MENU HAMBURGER
   const hamburger = document.querySelector(".hamburger");
   const menu = document.querySelector(".menu");
   if (hamburger && menu) {
@@ -26,9 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ========================================================
-     3. EFFET MACHINE À ÉCRIRE (Page d'accueil)
-     ======================================================== */
+  // 3. EFFET MACHINE À ÉCRIRE (Uniquement si l'élément existe)
   const elementsToType = [
     { id: 'typing-welcome', text: 'Bienvenue sur mon portfolio !' },
     { id: 'typing-about', text: 'Je m’appelle Maël Decosse, étudiant en BTS SIO SLAM. Passionné par l’informatique, le développement et l’administration de serveurs.' },
@@ -59,52 +54,43 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(typeWriter, 100);
             }
         } else {
+            // Si un élément manque, on passe au suivant sans planter
             textArrayIndex++;
             charIndex = 0;
-            typeWriter();
+            setTimeout(typeWriter, 100);
         }
       }
     }
     typeWriter();
   }
 
-  /* ========================================================
-     4. ACCORDÉONS PAGE COMPÉTENCES
-     ======================================================== */
+  // 4. ACCORDÉONS COMPÉTENCES
   const toggleButtons = document.querySelectorAll(".toggle-btn");
-  if (toggleButtons.length > 0) {
-    toggleButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            const details = button.nextElementSibling;
-            if (details) {
-                details.classList.toggle("show");
-                button.textContent = details.classList.contains("show") ? "Masquer les compétences" : "Voir les compétences validées";
-            }
-        });
-    });
-  }
-
-  /* ========================================================
-     5. BOUTONS "VOIR PLUS" (Page Projets)
-     ======================================================== */
-  const boutonsVoirPlus = document.querySelectorAll(".btn-voir-plus");
-  if (boutonsVoirPlus.length > 0) {
-    boutonsVoirPlus.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const carte = btn.closest('.projet-carte');
-        const details = carte ? carte.querySelector('.projet-details') : null;
-        
-        if (details) {
-          details.classList.toggle("show");
-          btn.textContent = details.classList.contains("show") ? "Masquer les détails" : "Voir l'étude de cas complète";
-        }
+  toggleButtons.forEach(button => {
+      button.addEventListener("click", () => {
+          const details = button.nextElementSibling;
+          if (details) {
+              details.classList.toggle("show");
+              button.textContent = details.classList.contains("show") ? "Masquer les compétences" : "Voir les compétences validées";
+          }
       });
-    });
-  }
+  });
 
-  /* ========================================================
-     6. ZOOM IMAGE (LIGHTBOX)
-     ======================================================== */
+  // 5. BOUTONS PROJETS (Indestructible)
+  const boutonsVoirPlus = document.querySelectorAll(".btn-voir-plus");
+  boutonsVoirPlus.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const carte = btn.closest('.projet-carte');
+      const details = carte ? carte.querySelector('.projet-details') : null;
+      
+      if (details) {
+        details.classList.toggle("show");
+        btn.textContent = details.classList.contains("show") ? "Masquer les détails" : "Voir l'étude de cas complète";
+      }
+    });
+  });
+
+  // 6. ZOOM IMAGE
   const modal = document.getElementById("image-modal");
   const modalImg = document.getElementById("img-to-zoom");
   const closeBtn = document.querySelector(".modal .close");
@@ -129,16 +115,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ========================================================
-     7. VEILLE AUTOMATISÉE
-     ======================================================== */
+  // 7. VEILLE
   const newsContainer = document.getElementById('news-container');
   if (newsContainer) {
     chargerVeille(newsContainer);
   }
 });
 
-// Fonction externe pour charger la veille
 async function chargerVeille(container) {
     try {
         const url = 'veille/news.json?t=' + new Date().getTime();
