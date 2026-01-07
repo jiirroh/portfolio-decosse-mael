@@ -58,18 +58,24 @@
         </div>
       </div>
 
-     <div class="oral-card">
+<div class="oral-card">
         <span class="oral-icon">🤖</span>
         <h3>Veille Automatisée <span class="badge">Live IA BETA</span></h3>
         <p>Flux JSON & n8n</p>
-        <button class="btn-oral-details">Voir les détails techniques</button>
+        <button class="btn-oral-details">Voir les détails & flux live</button>
+        
         <div class="oral-details-content">
           <ul class="oral-details-list">
-            <li><strong>Concept :</strong> Historique automatisé de ma veille technologique et des mises à jour de mes outils favoris via un flux dynamique.</li>
-            <li><strong>Méthodologie :</strong> Utilisation d'un workflow <strong>n8n + Llama 3</strong> pour récupérer les changelogs officiels, les résumer et mettre à jour le fichier JSON sans intervention humaine.</li>
-            <li><strong>Outils suivis :</strong> Surveillance active de Git & GitHub, VS Code, Docker, Node.js et PHP 8.x.</li>
-            <li><strong>Architecture :</strong> Les données sont extraites en <strong>JSON</strong> pour garantir un affichage asynchrone ultra-rapide sur le portfolio.</li>
+            <li><strong>Méthodologie :</strong> Workflow <strong>n8n + Llama 3</strong> pour récupérer, résumer et injecter les news.</li>
+            <li><strong>Outils suivis :</strong> Git, VS Code, Docker, Node.js, PHP 8.x.</li>
           </ul>
+
+          <div class="demo-veille-container">
+            <h5 class="demo-titre">Démonstration du flux dynamique :</h5>
+            <div class="timeline" id="news-container">
+              <p>Chargement du flux live...</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

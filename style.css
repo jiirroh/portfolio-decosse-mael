@@ -783,3 +783,29 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
 .oral-details-list li strong {
   color: var(--couleur-principale);
 }
+/* Adaptation de la timeline pour la page Oral */
+.oral-page .timeline {
+    margin-top: 15px;
+    border-top: 1px solid var(--couleur-bordure);
+    padding-top: 15px;
+    max-height: 300px; /* On limite la hauteur pour ne pas casser la grille */
+    overflow-y: auto;  /* Scroll si trop de news */
+    text-align: left;
+}
+
+.demo-titre {
+    font-size: 0.9em;
+    color: var(--couleur-principale);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* On réduit un peu la taille dans la page oral pour gagner de la place */
+.oral-page .timeline-content h4 {
+    font-size: 0.9em;
+}
+
+.oral-page .timeline-content p {
+    font-size: 0.85em;
+}
