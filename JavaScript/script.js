@@ -187,3 +187,19 @@ function activateCheat() {
         window.location.href = 'oral.html';
     }, 1500);
 }
+// --- GESTION DES ACCORDÉONS POUR LA PAGE ORAL ---
+const buttonsOral = document.querySelectorAll(".btn-oral-details");
+
+buttonsOral.forEach(btn => {
+    btn.addEventListener("click", () => {
+        const content = btn.nextElementSibling;
+        content.classList.toggle("show");
+        
+        // Change le texte du bouton selon l'état
+        if (content.classList.contains("show")) {
+            btn.textContent = "Masquer les détails";
+        } else {
+            btn.textContent = "Voir les détails techniques";
+        }
+    });
+});

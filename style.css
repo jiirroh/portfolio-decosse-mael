@@ -732,3 +732,54 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
   list-style: "➜ ";
   padding-left: 20px;
 }
+/* Styles pour les détails de l'oral */
+.oral-details-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out, opacity 0.3s ease;
+  opacity: 0;
+  text-align: left;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.oral-details-content.show {
+  max-height: 500px; /* Largeur suffisante pour le contenu */
+  opacity: 1;
+  padding: 15px;
+  border: 1px dashed var(--couleur-principale);
+}
+
+.btn-oral-details {
+  background: var(--couleur-principale);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-top: 10px;
+  transition: transform 0.2s;
+}
+
+.btn-oral-details:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.oral-details-list {
+  list-style: none;
+  padding: 0;
+}
+
+.oral-details-list li {
+  margin-bottom: 10px;
+  font-size: 0.95em;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 5px;
+}
+
+.oral-details-list li strong {
+  color: var(--couleur-principale);
+}
