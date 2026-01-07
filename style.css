@@ -697,3 +697,38 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
   opacity: 0.95;
   transform: scale(1.01);
 }
+/* Style Oral */
+.oral-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.oral-card {
+  background: var(--couleur-sous-menu-fond);
+  padding: 25px;
+  border-radius: 12px;
+  border: 2px solid var(--couleur-principale);
+  text-align: center;
+}
+
+.oral-icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.oral-card h3 {
+  color: var(--couleur-principale);
+  margin-bottom: 10px;
+}
+
+.oral-details {
+  text-align: left;
+  margin-top: 15px;
+  font-size: 0.9em;
+  color: var(--couleur-texte-secondaire);
+  list-style: "➜ ";
+  padding-left: 20px;
+}

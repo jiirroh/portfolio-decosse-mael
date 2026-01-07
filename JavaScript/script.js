@@ -152,3 +152,38 @@ async function chargerVeille(container) {
         container.innerHTML = `<p>Chargement des actualités...</p>`;
     }
 }
+// --- SYSTÈME DE CHEAT CODE POUR L'ORAL ---
+let inputSequence = "";
+const secretCode = "oral";
+
+document.addEventListener('keydown', (e) => {
+    // On ajoute la touche pressée à notre séquence (en minuscule)
+    inputSequence += e.key.toLowerCase();
+
+    // On ne garde que les 4 derniers caractères
+    inputSequence = inputSequence.slice(-secretCode.length);
+
+    // Vérification
+    if (inputSequence === secretCode) {
+        activateCheat();
+    }
+});
+
+function activateCheat() {
+    // Petit effet visuel pour confirmer l'activation
+    const notify = document.createElement('div');
+    notify.style.cssText = `
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        background: #ffcc00; color: black; padding: 15px 30px;
+        border-radius: 5px; font-weight: bold; z-index: 9999;
+        font-family: 'Arial Black', sans-serif; border: 3px solid black;
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    `;
+    notify.innerText = "CHEAT ACTIVATED: ORAL MODE";
+    document.body.appendChild(notify);
+
+    // Redirection après 1.5 seconde
+    setTimeout(() => {
+        window.location.href = 'oral.html';
+    }, 1500);
+}
