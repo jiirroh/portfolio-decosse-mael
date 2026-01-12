@@ -1,4 +1,6 @@
-/* ===== GESTION DES THÈMES ET VARIABLES CSS ===== */
+/* ======================================================= */
+/* ===== 1. VARIABLES & THÈMES =========================== */
+/* ======================================================= */
 :root {
   --couleur-principale: rgb(0, 127, 255);
   --couleur-principale-hover: #005bb5;
@@ -11,6 +13,7 @@
   --couleur-sous-menu-fond: #f0f0f0;
   --couleur-bordure: #ddd;
   --couleur-bordure-dashed: #ccc;
+  --couleur-code-fond: #1e1e1e; /* Ajout variable pour cohérence */
 }
 
 body.dark-mode {
@@ -24,7 +27,9 @@ body.dark-mode {
   --couleur-bordure-dashed: #555;
 }
 
-/* ===== RESET & GENERAL ===== */
+/* ======================================================= */
+/* ===== 2. RESET & GÉNÉRAL ============================== */
+/* ======================================================= */
 * {
   margin: 0;
   padding: 0;
@@ -43,7 +48,9 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ===== HEADER & NAVIGATION ===== */
+/* ======================================================= */
+/* ===== 3. HEADER & NAVIGATION ========================== */
+/* ======================================================= */
 header {
   background: var(--couleur-principale);
   color: var(--couleur-texte-clair);
@@ -62,9 +69,7 @@ header {
   justify-content: space-between;
 }
 
-.logo {
-  height: 45px;
-}
+.logo { height: 45px; }
 
 .titre {
   font-family: "Montserrat", sans-serif;
@@ -73,10 +78,8 @@ header {
   margin-right: auto;
 }
 
-nav {
-  display: flex;
-  align-items: center;
-}
+/* Menu Principal */
+nav { display: flex; align-items: center; }
 
 nav ul {
   list-style: none;
@@ -93,15 +96,13 @@ nav ul li a {
   transition: background 0.3s, color 0.3s;
 }
 
-nav ul li a:hover {
-  background: rgba(255,255,255,0.15);
-}
-
+nav ul li a:hover { background: rgba(255,255,255,0.15); }
 nav ul li a.active {
   background: var(--couleur-fond-section);
   color: var(--couleur-principale);
 }
 
+/* Menu Hamburger (Mobile) */
 .hamburger {
   display: none;
   font-size: 26px;
@@ -123,15 +124,33 @@ nav ul li a.active {
     padding: 10px;
     border-radius: 0 0 8px 8px;
   }
-  nav ul.show {
-    display: flex;
-  }
-  .hamburger {
-    display: block;
-  }
+  nav ul.show { display: flex; }
+  .hamburger { display: block; }
 }
 
-/* ===== MAIN & SECTIONS ===== */
+/* Bouton Thème (Lune/Soleil) */
+.theme-btn {
+  background: none;
+  border: 1px solid var(--couleur-texte-clair);
+  color: var(--couleur-texte-clair);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.theme-btn .icon-sun { display: none; }
+.theme-btn .icon-moon { display: block; }
+body.dark-mode .theme-btn .icon-sun { display: block; }
+body.dark-mode .theme-btn .icon-moon { display: none; }
+
+/* ======================================================= */
+/* ===== 4. STRUCTURE PRINCIPALE (MAIN, FOOTER) ========== */
+/* ======================================================= */
 main {
   max-width: 1000px;
   margin: 30px auto;
@@ -156,85 +175,6 @@ section {
   transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
 }
 
-/* ===== SOUS-MENU GENERAL (Utilisé dans Competences) ===== */
-.sub-menu {
-  background: var(--couleur-sous-menu-fond);
-  border-bottom: 2px solid var(--couleur-principale);
-  padding: 10px 0;
-  transition: background-color 0.3s;
-  position: sticky;
-  top: 75px;
-  z-index: 999;
-}
-
-.sub-menu ul {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  list-style: none;
-  flex-wrap: wrap;
-}
-
-/* ===== PAGE COMPÉTENCES ===== */
-.exemple {
-  background: var(--couleur-fond);
-  border: 1px solid var(--couleur-bordure);
-  border-radius: 10px;
-  padding: 20px;
-  margin: 25px 0;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-
-.exemple h4 {
-  color: var(--couleur-principale);
-  font-family: "Montserrat", sans-serif;
-  margin-top: 0;
-  margin-bottom: 8px;
-}
-
-.toggle-btn {
-  padding: 8px 16px;
-  font-weight: bold;
-  font-size: 14px;
-  display: inline-block;
-  background: var(--couleur-principale);
-  color: var(--couleur-texte-clair);
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: 0.3s;
-}
-.toggle-btn:hover {
-  background: var(--couleur-principale-hover);
-}
-
-.details {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease, opacity 0.4s ease;
-  opacity: 0;
-  margin-top: 10px;
-  border-top: 1px solid var(--couleur-bordure);
-}
-
-.details.show {
-  max-height: 500px;
-  opacity: 1;
-  padding-top: 15px;
-}
-
-/* ===== PAGE VEILLE TECHNOLOGIQUE ===== */
-.timeline { margin-top: 20px; position: relative; padding-left: 20px; border-left: 3px solid var(--couleur-principale); }
-.timeline-item { margin-bottom: 25px; position: relative; }
-.timeline-item::before { content: ''; position: absolute; left: -30px; top: 5px; width: 15px; height: 15px; border-radius: 50%; background-color: var(--couleur-fond); border: 3px solid var(--couleur-principale); }
-.timeline-date { font-family: "Montserrat", sans-serif; font-weight: bold; font-size: 18px; color: var(--couleur-principale); }
-.timeline-content h4 { font-family: "Montserrat", sans-serif; margin-top: 5px; color: var(--couleur-texte-sombre); }
-.outils-liste { display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0; }
-.outil { background-color: var(--couleur-sous-menu-fond); padding: 10px 15px; border-radius: 8px; border-left: 4px solid var(--couleur-principale); font-size: 14px; }
-.explication-outil { background-color: var(--couleur-fond); border: 1px dashed var(--couleur-bordure-dashed); padding: 15px; border-radius: 8px; margin-top: 15px; }
-
-/* ===== FOOTER & THEME ICON ===== */
 footer {
   background: var(--couleur-principale);
   color: var(--couleur-texte-clair);
@@ -244,36 +184,54 @@ footer {
   font-size: 14px;
 }
 
-.theme-btn {
-  background: none;
-  border: 1px solid var(--couleur-texte-clair);
-  color: var(--couleur-texte-clair);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+/* ======================================================= */
+/* ===== 5. COMPOSANTS UI (BOUTONS, DROPDOWN, CARTES) ==== */
+/* ======================================================= */
+
+/* Boutons "Voir plus" / "Détails" */
+.toggle-btn, .btn-voir-plus, .btn-oral-details {
+  background: var(--couleur-principale);
+  color: white; /* Harmonisé en blanc pour lisibilité */
+  border: none;
+  padding: 8px 16px;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 20px;
   cursor: pointer;
-  transition: all 0.3s;
-  margin: 0 15px;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.toggle-btn:hover, .btn-voir-plus:hover, .btn-oral-details:hover {
+  filter: brightness(1.2);
+  transform: translateY(-2px);
+}
+
+/* Sous-menu (utilisé dans Projets et Compétences) */
+.sub-menu {
+  background: var(--couleur-sous-menu-fond);
+  border-bottom: 2px solid var(--couleur-principale);
+  padding: 10px 0;
+  transition: background-color 0.3s;
+  position: sticky;
+  top: 75px;
+  z-index: 999;
+}
+.sub-menu ul {
   display: flex;
   justify-content: center;
-  align-items: center;
+  gap: 15px;
+  list-style: none;
+  flex-wrap: wrap;
 }
-.theme-btn .icon-sun { display: none; }
-.theme-btn .icon-moon { display: block; }
-body.dark-mode .theme-btn .icon-sun { display: block; }
-body.dark-mode .theme-btn .icon-moon { display: none; }
 
-/* ======================================================= */
-/* ===== NOUVEAU CODE AJOUTÉ POUR PROJETS & MENU DÉROULANT */
-/* ======================================================= */
-
-/* --- 1. Menu Déroulant --- */
+/* Dropdown (Menu déroulant Projets) */
 .dropdown {
   position: relative;
   display: inline-block;
   margin: 0 10px;
 }
-
 .dropbtn {
   background-color: var(--couleur-principale);
   color: white;
@@ -285,7 +243,6 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
   border-radius: 5px;
   transition: 0.3s;
 }
-
 .dropdown-content {
   display: none;
   position: absolute;
@@ -296,25 +253,21 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
   border-radius: 5px;
   text-align: left;
 }
-
 .dropdown-content a {
   color: var(--couleur-texte-sombre);
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
-
 .dropdown-content a:hover {
   background-color: var(--couleur-sous-menu-fond);
   color: var(--couleur-principale);
 }
-
 .dropdown:hover .dropdown-content { display: block; }
 .dropdown:hover .dropbtn { background-color: var(--couleur-principale-hover); }
 
-
-/* --- 2. Cartes Projets & Bouton Voir Plus --- */
-.projet-carte {
+/* Cartes (Projets / Compétences / Certifications) */
+.exemple, .projet-carte, .certification-item {
   background: var(--couleur-fond);
   border: 1px solid var(--couleur-bordure);
   border-radius: 10px;
@@ -322,37 +275,19 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
   margin: 25px 0;
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   transition: transform 0.2s;
+  list-style: none; /* Pour les <li> */
 }
-
 .projet-carte:hover { transform: translateY(-3px); }
 
-.projet-resume {
-  font-size: 15px;
-  color: var(--couleur-texte-secondaire);
-  margin-bottom: 10px;
-}
-
-/* Le bouton */
-.btn-voir-plus {
-  background: transparent;
-  border: 2px solid var(--couleur-principale);
+.exemple h4, .projet-carte h3 {
   color: var(--couleur-principale);
-  padding: 8px 20px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 14px;
-  transition: all 0.3s ease;
-  margin: 5px 0 15px 0;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 0;
+  margin-bottom: 8px;
 }
 
-.btn-voir-plus:hover {
-  background: var(--couleur-principale);
-  color: white;
-}
-
-/* La partie cachée */
-.projet-details {
+/* Zones de détails (Cachées par défaut) */
+.details, .projet-details, .oral-details-content {
   display: none; /* Caché par défaut */
   margin-top: 15px;
   padding-top: 15px;
@@ -360,28 +295,15 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
   animation: fadeIn 0.5s ease;
 }
 
-.projet-details.show {
-  display: block; /* Devient visible */
+/* Classe activée par JS pour afficher */
+.show { display: block !important; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Les composants internes */
-.projet-image, .video-responsive {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  border: 1px solid var(--couleur-bordure);
-}
-
-.video-responsive {
-  aspect-ratio: 16 / 9;
-  position: relative;
-  overflow: hidden;
-}
-.video-responsive iframe {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-}
-
+/* Badges Tech */
 .projet-tech span {
   background-color: var(--couleur-sous-menu-fond);
   color: var(--couleur-texte-secondaire);
@@ -394,7 +316,8 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
   margin-bottom: 5px;
 }
 
-.projet-lien {
+/* Liens Projets */
+.projet-lien, .download-btn {
   display: inline-block;
   background: var(--couleur-principale);
   color: var(--couleur-texte-clair);
@@ -405,17 +328,29 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
   margin-top: 15px;
   transition: 0.3s;
 }
-.projet-lien:hover { transform: scale(1.05); }
+.projet-lien:hover, .download-btn:hover { transform: scale(1.05); }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-/* ============================================== */
-/* ===== STYLES DÉTAILLÉS POUR ÉTUDE DE CAS ===== */
-/* ============================================== */
+/* ======================================================= */
+/* ===== 6. PAGES SPÉCIFIQUES & CONTENU DÉTAILLÉ ========= */
+/* ======================================================= */
 
-/* Titres des sections (Contexte, Architecture...) */
+/* --- Veille Technologique --- */
+.timeline { margin-top: 20px; position: relative; padding-left: 20px; border-left: 3px solid var(--couleur-principale); }
+.timeline-item { margin-bottom: 25px; position: relative; }
+.timeline-item::before { content: ''; position: absolute; left: -30px; top: 5px; width: 15px; height: 15px; border-radius: 50%; background-color: var(--couleur-fond); border: 3px solid var(--couleur-principale); }
+.timeline-date { font-family: "Montserrat", sans-serif; font-weight: bold; font-size: 18px; color: var(--couleur-principale); }
+.timeline-content h4 { font-family: "Montserrat", sans-serif; margin-top: 5px; color: var(--couleur-texte-sombre); }
+
+.outils-liste { display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0; }
+.outil { background-color: var(--couleur-sous-menu-fond); padding: 10px 15px; border-radius: 8px; border-left: 4px solid var(--couleur-principale); font-size: 14px; }
+.explication-outil { background-color: var(--couleur-fond); border: 1px dashed var(--couleur-bordure-dashed); padding: 15px; border-radius: 8px; margin-top: 15px; }
+
+/* --- Certification IA (Graphiques) --- */
+.graph-wrapper { text-align: center; margin: 15px 0; }
+.citation-ia { font-weight: bold; color: var(--couleur-principale); margin-bottom: 15px; }
+.conclusion-ia { margin-top: 15px; font-style: italic; border-top: 1px solid var(--couleur-bordure); padding-top: 10px; }
+
+/* --- Détails Projets (Étude de cas) --- */
 .detail-titre {
   color: var(--couleur-principale);
   border-left: 4px solid var(--couleur-principale);
@@ -428,26 +363,10 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
   letter-spacing: 1px;
 }
 
-/* Liste à puces stylisée */
-.projet-liste {
-  list-style: none;
-  margin-bottom: 20px;
-}
-.projet-liste li {
-  margin-bottom: 8px;
-  padding-left: 20px;
-  position: relative;
-}
-.projet-liste li::before {
-  content: "•";
-  color: var(--couleur-principale);
-  font-weight: bold;
-  position: absolute;
-  left: 0;
-  font-size: 1.2em;
-}
+.projet-liste { list-style: none; margin-bottom: 20px; }
+.projet-liste li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+.projet-liste li::before { content: "•"; color: var(--couleur-principale); font-weight: bold; position: absolute; left: 0; font-size: 1.2em; }
 
-/* Conteneur gris pour chaque étape */
 .etape-projet {
   background-color: var(--couleur-sous-menu-fond);
   padding: 20px;
@@ -456,82 +375,9 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
   border: 1px solid var(--couleur-bordure);
 }
 
-.etape-projet h5 {
-  color: var(--couleur-texte-sombre);
-  margin-top: 0;
-  margin-bottom: 15px;
-  border-bottom: 1px solid var(--couleur-bordure-dashed);
-  padding-bottom: 8px;
-  font-size: 1.05em;
-}
-
-/* --- GESTION IMPORTANTE DES IMAGES --- */
-
-/* Image standard (ex: Formulaire) */
-.projet-image {
-  width: 100%;       /* Prend toute la largeur disponible */
-  height: auto;      /* Garde les proportions */
-  border-radius: 8px;
-  border: 1px solid var(--couleur-bordure);
-  margin-top: 10px;
-  display: block;
-}
-
-/* Optionnel : Assure-toi que les images ne sont pas trop grandes avant le zoom */
-.graph-wrapper img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin: 10px 0;
-  cursor: zoom-in;
-  transition: transform 0.2s ease;
-}
-
-.graph-wrapper img:hover {
-  transform: scale(1.02);
-  filter: brightness(1.1);
-}
-
-/* Conteneur sombre pour le code */
-.code-container {
-  background-color: #1e1e1e; /* Fond sombre style VS Code */
-  padding: 10px;
-  border-radius: 8px;
-  margin-top: 10px;
-  overflow: hidden; 
-  border: 1px solid #333;
-}
-
-/* Image de code à l'intérieur du conteneur sombre */
-.projet-code-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 4px;
-}
-
-/* Galerie pour afficher 2 images côte à côte (Confirmation + Facture) */
-.galerie-images {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap; /* Passe à la ligne sur petit écran */
-  margin-top: 15px;
-}
-
-.projet-image-demi {
-  flex: 1;           /* Partage l'espace équitablement */
-  min-width: 250px;  /* Ne devient pas plus petit que 250px */
-  height: auto;
-  border-radius: 5px;
-  border: 1px solid var(--couleur-bordure);
-  object-fit: contain;
-}
-/* ========================================= */
-/* ===== STYLE DE L'ARBORESCENCE (TREE) ==== */
-/* ========================================= */
-
+/* Arborescence (Tree View) */
 .arborescence-box {
-  background-color: #1e1e1e; /* Fond sombre style VS Code */
+  background-color: var(--couleur-code-fond);
   color: #d4d4d4;
   padding: 20px;
   border-radius: 8px;
@@ -539,50 +385,76 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
   font-size: 14px;
   margin: 15px 0;
   border: 1px solid #333;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
 }
-
-.arbo-titre {
-  margin-top: 0;
-  margin-bottom: 10px;
-  color: #9cdcfe;
-  border-bottom: 1px solid #444;
-  padding-bottom: 5px;
-}
-
-.file-tree, .file-tree ul {
-  list-style-type: none;
-  padding-left: 20px;
-}
-
-.file-tree li {
-  margin: 4px 0;
-  position: relative;
-}
-
-/* --- Les Icônes --- */
+.arbo-titre { margin-top: 0; margin-bottom: 10px; color: #9cdcfe; border-bottom: 1px solid #444; padding-bottom: 5px; }
+.file-tree, .file-tree ul { list-style-type: none; padding-left: 20px; }
+.file-tree li { margin: 4px 0; position: relative; }
+.file-tree ul { border-left: 1px solid #444; margin-left: 5px; }
+/* Icônes Tree View */
 .folder-root::before { content: "📂 "; }
-.folder::before { content: "📁 "; color: #dcb67a; } /* Couleur dossier jaune */
+.folder::before { content: "📁 "; color: #dcb67a; }
 .file::before { content: "📄 "; color: #cccccc; }
+.file.php::before { content: "🐘 "; } .file.php { color: #a691e8; }
+.file.md::before { content: "ℹ️ "; } .file.md { color: #4ec9b0; }
 
-/* Couleurs spécifiques par extension */
-.file.php::before { content: "🐘 "; } /* Icône PHP */
-.file.php { color: #a691e8; } /* Texte violet clair pour PHP */
+/* --- Page Oral --- */
+.oral-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; }
+.oral-card { text-align: center; border: 2px solid var(--couleur-principale); }
+.oral-icon { font-size: 3rem; margin-bottom: 10px; display: block; }
+.oral-details-list { list-style: none; padding: 0; text-align: left; }
+.oral-details-list li { margin-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 5px; }
 
-.file.md::before { content: "ℹ️ "; }
-.file.md { color: #4ec9b0; }
+/* ======================================================= */
+/* ===== 7. MÉDIA & IMAGES (MODALE INCLUSE) ============== */
+/* ======================================================= */
 
-/* Lignes de guide (Optionnel - pour faire très "tree view") */
-.file-tree ul {
-  border-left: 1px solid #444;
-  margin-left: 5px;
+/* Images dans le texte */
+.projet-image, .projet-code-img, .projet-image-demi, .graph-wrapper img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--couleur-bordure);
+  margin-top: 10px;
+  display: block;
+  cursor: zoom-in; /* Indique que c'est cliquable */
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
-/* ========================================= */
-/* ===== MODALE DE ZOOM (LIGHTBOX) UNIQUE == */
-/* ========================================= */
 
+.graph-wrapper img { max-width: 300px; margin: 10px auto; } /* Plus petit pour les graphes */
+
+/* Effet survol */
+.projet-image:hover, .projet-code-img:hover, .projet-image-demi:hover, .graph-wrapper img:hover {
+  opacity: 0.95;
+  transform: scale(1.01);
+}
+
+/* Vidéo responsive */
+.video-responsive {
+  aspect-ratio: 16 / 9;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+.video-responsive iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+/* Galerie images côte à côte */
+.galerie-images { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px; }
+.projet-image-demi { flex: 1; min-width: 250px; object-fit: contain; }
+
+/* Code Container (Fond sombre) */
+.code-container {
+  background-color: var(--couleur-code-fond);
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+  overflow: hidden;
+  border: 1px solid #333;
+}
+
+/* --- MODALE DE ZOOM (LIGHTBOX) UNIQUE ET PROPRE --- */
 .modal {
-  display: none;
+  display: none; /* Géré par JS (flex quand actif) */
   position: fixed;
   z-index: 2000;
   left: 0;
@@ -590,7 +462,6 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.9);
-  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -598,8 +469,8 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
 .modal-content {
   margin: auto;
   display: block;
-  width: 90%;
-  max-width: 1200px;
+  width: auto;
+  max-width: 90%;
   max-height: 90vh;
   object-fit: contain;
   border-radius: 5px;
@@ -608,7 +479,7 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
 }
 
 @keyframes zoomIn {
-  from {transform:scale(0.8); opacity: 0;} 
+  from {transform:scale(0.8); opacity: 0;}
   to {transform:scale(1); opacity: 1;}
 }
 
@@ -621,204 +492,13 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
   font-weight: bold;
   cursor: pointer;
   z-index: 2001;
+  transition: 0.3s;
 }
 
-.close:hover {
-  color: var(--couleur-principale);
-}
+.close:hover { color: var(--couleur-principale); }
 
-.projet-image, .projet-image-demi, .projet-code-img {
-  cursor: zoom-in;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.projet-image:hover, .projet-image-demi:hover, .projet-code-img:hover {
-  opacity: 0.95;
-  transform: scale(1.01);
-}
-/* Style Oral */
-.oral-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  margin-top: 40px;
-}
-
-.oral-card {
-  background: var(--couleur-sous-menu-fond);
-  padding: 25px;
-  border-radius: 12px;
-  border: 2px solid var(--couleur-principale);
-  text-align: center;
-}
-
-.oral-icon {
-  font-size: 3rem;
-  margin-bottom: 10px;
-  display: block;
-}
-
-.oral-card h3 {
-  color: var(--couleur-principale);
-  margin-bottom: 10px;
-}
-
-.oral-details {
-  text-align: left;
-  margin-top: 15px;
-  font-size: 0.9em;
-  color: var(--couleur-texte-secondaire);
-  list-style: "➜ ";
-  padding-left: 20px;
-}
-/* Styles pour les détails de l'oral */
-.oral-details-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease-out, opacity 0.3s ease;
-  opacity: 0;
-  text-align: left;
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 8px;
-  margin-top: 15px;
-}
-
-.oral-details-content.show {
-  max-height: 500px; /* Largeur suffisante pour le contenu */
-  opacity: 1;
-  padding: 15px;
-  border: 1px dashed var(--couleur-principale);
-}
-
-.btn-oral-details {
-  background: var(--couleur-principale);
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 0.9em;
-  margin-top: 10px;
-  transition: transform 0.2s;
-}
-
-.btn-oral-details:hover {
-  transform: scale(1.05);
-  filter: brightness(1.1);
-}
-
-.oral-details-list {
-  list-style: none;
-  padding: 0;
-}
-
-.oral-details-list li {
-  margin-bottom: 10px;
-  font-size: 0.95em;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  padding-bottom: 5px;
-}
-
-.oral-details-list li strong {
-  color: var(--couleur-principale);
-}
-/* Adaptation de la timeline pour la page Oral */
-.oral-page .timeline {
-    margin-top: 15px;
-    border-top: 1px solid var(--couleur-bordure);
-    padding-top: 15px;
-    max-height: 300px; /* On limite la hauteur pour ne pas casser la grille */
-    overflow-y: auto;  /* Scroll si trop de news */
-    text-align: left;
-}
-
-.demo-titre {
-    font-size: 0.9em;
-    color: var(--couleur-principale);
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-/* On réduit un peu la taille dans la page oral pour gagner de la place */
-.oral-page .timeline-content h4 {
-    font-size: 0.9em;
-}
-
-.oral-page .timeline-content p {
-    font-size: 0.85em;
-}
-/* --- Section Certification IA --- */
-
-.certification-item {
-    list-style: none;
-    margin-top: 15px;
-}
-
-.citation-ia {
-    font-weight: bold;
-    color: var(--couleur-principale);
-    margin-bottom: 15px;
-}
-
-.ia-details-content {
-    font-size: 0.9em;
-    line-height: 1.5;
-    text-align: justify;
-}
-
-.ia-details-content h4 {
-    margin-bottom: 10px;
-    color: var(--couleur-principale);
-}
-
-.graph-wrapper {
-    text-align: center;
-    margin: 15px 0;
-}
-
-.graph-wrapper img {
-    max-width: 300px;
-    height: auto;
-    border-radius: 8px;
-    cursor: pointer;
-    border: 1px solid var(--couleur-bordure);
-    transition: transform 0.3s ease;
-}
-
-.graph-wrapper img:hover {
-    transform: scale(1.02);
-}
-
-.conclusion-ia {
-    margin-top: 15px;
-    font-style: italic;
-    border-top: 1px solid var(--couleur-bordure);
-    padding-top: 10px;
-}
-/* Cache les détails par défaut */
-.projet-details {
-    display: none;
-    transition: all 0.3s ease;
-}
-
-/* Affiche les détails quand la classe .visible est ajoutée par le JS */
-.projet-details.visible {
-    display: block;
-}
-
-/* Style du bouton pour qu'il soit cliquable */
-.btn-voir-plus {
-    cursor: pointer;
-    background-color: var(--couleur-principale);
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 20px;
-    margin-top: 10px;
-    transition: background 0.3s;
-}
-
-.btn-voir-plus:hover {
-    filter: brightness(1.2);
+/* Responsive Modale */
+@media only screen and (max-width: 700px){
+  .modal-content { width: 95%; }
+  .close { right: 20px; top: 10px; font-size: 40px; }
 }
