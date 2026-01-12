@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-  console.log("Le Script JS est bien chargé !");
+  console.log("Le Script JS est bien chargé !"); // Test pour vérifier le chargement
 
-  // 1. GESTION DU THÈME SOMBRE
+  //  GESTION DU THÈME SOMBRE
   const themeToggle = document.getElementById("theme-toggle");
   if (themeToggle) {
     if (localStorage.getItem("theme") === "dark") { document.body.classList.add("dark-mode"); }
+    
     themeToggle.addEventListener("click", () => {
       document.body.classList.toggle("dark-mode");
       if (document.body.classList.contains("dark-mode")) { localStorage.setItem("theme", "dark"); }
@@ -12,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. MENU HAMBURGER
+  //  MENU HAMBURGER
   const hamburger = document.querySelector(".hamburger");
   const menu = document.querySelector(".menu");
   if (hamburger && menu) {
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. EFFET MACHINE À ÉCRIRE
+  //  EFFET MACHINE À ÉCRIRE ()
   const elementsToType = [
     { id: 'typing-welcome', text: 'Bienvenue sur mon portfolio !' },
     { id: 'typing-about', text: 'Je m’appelle Maël Decosse, étudiant en BTS SIO SLAM. Passionné par l’informatique, le développement et l’administration de serveurs.' },
@@ -41,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (textArrayIndex < elementsToType.length) {
         const currentElement = elementsToType[textArrayIndex];
         const targetElement = document.getElementById(currentElement.id);
+
         if (targetElement) {
             if (charIndex < currentElement.text.length) {
                 targetElement.innerHTML += currentElement.text.charAt(charIndex);
@@ -52,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(typeWriter, 100);
             }
         } else {
+            // Si un élément manque, on passe au suivant sans planter
             textArrayIndex++;
             charIndex = 0;
             setTimeout(typeWriter, 100);
@@ -61,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     typeWriter();
   }
 
-  // 4. ACCORDÉONS COMPÉTENCES (Page compétences)
+  //  ACCORDÉONS COMPÉTENCES
   const toggleButtons = document.querySelectorAll(".toggle-btn");
   toggleButtons.forEach(button => {
       button.addEventListener("click", () => {
@@ -73,21 +76,30 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   });
 
-  // 5. BOUTONS VOIR PLUS (Projets & Certifications - Logique unique)
+  // 5. BOUTONS PROJETS & CERTIFICATIONS (Plus flexible)
   const boutonsVoirPlus = document.querySelectorAll(".btn-voir-plus");
   boutonsVoirPlus.forEach(btn => {
+    // On garde en mémoire le texte original écrit dans le HTML
     const texteOriginal = btn.textContent;
+
     btn.addEventListener("click", () => {
-      const carte = btn.closest('.projet-carte') || btn.closest('.certification-item');
+      const carte = btn.closest('.projet-carte');
       const details = carte ? carte.querySelector('.projet-details') : null;
+      
       if (details) {
         details.classList.toggle("show");
-        btn.textContent = details.classList.contains("show") ? "Masquer les détails" : texteOriginal;
+        
+        if (details.classList.contains("show")) {
+          btn.textContent = "Masquer les détails";
+        } else {
+          // On remet le texte d'origine (soit étude de cas, soit formation)
+          btn.textContent = texteOriginal;
+        }
       }
     });
   });
 
-  // 6. ZOOM IMAGE
+  // ZOOM IMAGE
   const modal = document.getElementById("image-modal");
   const modalImg = document.getElementById("img-to-zoom");
   const closeBtn = document.querySelector(".modal .close");
@@ -102,17 +114,122 @@ document.addEventListener('DOMContentLoaded', () => {
         modalImg.src = this.src;
       });
     });
+
     if (closeBtn) {
       closeBtn.addEventListener('click', () => { modal.style.display = "none"; });
     }
+
     modal.addEventListener('click', (e) => {
       if (e.target === modal) { modal.style.display = "none"; }
     });
   }
 
-  // 7. VEILLE
+  //  VEILLE
   const newsContainer = document.getElementById('news-container');
-  if (newsContainer) { chargerVeille(newsContainer); }
+  if (newsContainer) {
+    chargerVeille(newsContainer);
+  }
 });
 
-// ... (Le reste des fonctions chargerVeille, activateCheat, etc. reste inchangé) ...
+async function chargerVeille(container) {
+    try {
+        const url = 'veille/news.json?t=' + new Date().getTime();
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Erreur réseau");
+        const newsData = await response.json();
+        
+        container.innerHTML = '';
+        newsData.forEach(news => {
+            const item = document.createElement('div');
+            item.className = 'timeline-item';
+            
+            let dateAffichee = news.date;
+            try { dateAffichee = new Date(news.date).toLocaleDateString('fr-FR'); } catch(e){}
+            const contenuHTML = (typeof marked !== 'undefined') ? marked.parse(news.contenu) : news.contenu;
+
+            item.innerHTML = `
+                <div class="timeline-date">${dateAffichee}</div>
+                <div class="timeline-content">
+                    <h4>${news.version}</h4>
+                    <div style="margin-top:10px;">${contenuHTML}</div>
+                    <a href="${news.lien}" target="_blank" class="projet-lien" style="margin-top:15px; font-size:0.8em;">Voir sur GitHub</a>
+                </div>
+            `;
+            container.appendChild(item);
+        });
+    } catch (error) {
+        container.innerHTML = `<p>Chargement des actualités...</p>`;
+    }
+}
+// --- SYSTÈME DE CHEAT CODE POUR L'ORAL ---
+let inputSequence = "";
+const secretCode = "oral";
+
+document.addEventListener('keydown', (e) => {
+    // On ajoute la touche pressée à notre séquence (en minuscule)
+    inputSequence += e.key.toLowerCase();
+
+    // On ne garde que les 4 derniers caractères
+    inputSequence = inputSequence.slice(-secretCode.length);
+
+    // Vérification
+    if (inputSequence === secretCode) {
+        activateCheat();
+    }
+});
+
+function activateCheat() {
+    // Petit effet visuel pour confirmer l'activation
+    const notify = document.createElement('div');
+    notify.style.cssText = `
+        position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+        background: #ffcc00; color: black; padding: 15px 30px;
+        border-radius: 5px; font-weight: bold; z-index: 9999;
+        font-family: 'Arial Black', sans-serif; border: 3px solid black;
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    `;
+    notify.innerText = "CHEAT ACTIVATED: ORAL MODE";
+    document.body.appendChild(notify);
+
+    // Redirection après 1.5 seconde
+    setTimeout(() => {
+        window.location.href = 'oral.html';
+    }, 1500);
+}
+// --- GESTION DES ACCORDÉONS POUR LA PAGE ORAL ---
+const buttonsOral = document.querySelectorAll(".btn-oral-details");
+
+buttonsOral.forEach(btn => {
+    btn.addEventListener("click", () => {
+        const content = btn.nextElementSibling;
+        content.classList.toggle("show");
+        
+        // Change le texte du bouton selon l'état
+        if (content.classList.contains("show")) {
+            btn.textContent = "Masquer les détails";
+        } else {
+            btn.textContent = "Voir les détails techniques";
+        }
+    });
+});
+// GESTION DU BOUTON VOIR PLUS (PROJETS / FORMATION)
+const boutonsVoirPlus = document.querySelectorAll(".btn-voir-plus");
+boutonsVoirPlus.forEach(btn => {
+  const texteOriginal = btn.textContent;
+
+  btn.addEventListener("click", () => {
+    // On cherche la carte parente ou le conteneur direct
+    const carte = btn.closest('.certification-item') || btn.closest('.projet-carte');
+    const details = carte ? carte.querySelector('.projet-details') : null;
+    
+    if (details) {
+      details.classList.toggle("show");
+      
+      if (details.classList.contains("show")) {
+        btn.textContent = "Masquer les détails";
+      } else {
+        btn.textContent = texteOriginal;
+      }
+    }
+  });
+});
