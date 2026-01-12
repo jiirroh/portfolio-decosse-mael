@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  console.log("Le Script JS est bien chargé !"); // Test pour vérifier le chargement
+  console.log("Le Script JS est bien chargé oui oui !"); // Test pour vérifier le chargement
 
   //  GESTION DU THÈME SOMBRE
   const themeToggle = document.getElementById("theme-toggle");
