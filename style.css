@@ -857,3 +857,29 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
     border-top: 1px solid var(--couleur-bordure);
     padding-top: 10px;
 }
+/* Cache les détails par défaut */
+.projet-details {
+    display: none;
+    transition: all 0.3s ease;
+}
+
+/* Affiche les détails quand la classe .visible est ajoutée par le JS */
+.projet-details.visible {
+    display: block;
+}
+
+/* Style du bouton pour qu'il soit cliquable */
+.btn-voir-plus {
+    cursor: pointer;
+    background-color: var(--couleur-principale);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.btn-voir-plus:hover {
+    filter: brightness(1.2);
+}
