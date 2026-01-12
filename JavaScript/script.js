@@ -212,25 +212,24 @@ buttonsOral.forEach(btn => {
         }
     });
 });
-document.addEventListener('DOMContentLoaded', function() {
-    const boutonsVoirPlus = document.querySelectorAll('.btn-voir-plus');
+// GESTION DU BOUTON VOIR PLUS (PROJETS / FORMATION)
+const boutonsVoirPlus = document.querySelectorAll(".btn-voir-plus");
+boutonsVoirPlus.forEach(btn => {
+  const texteOriginal = btn.textContent;
 
-    boutonsVoirPlus.forEach(bouton => {
-        bouton.addEventListener('click', function() {
-            // On cherche la div "projet-details" qui est juste après le bouton
-            const details = this.nextElementSibling;
-            
-            if (details && details.classList.contains('projet-details')) {
-                // On bascule la classe "visible"
-                details.classList.toggle('visible');
-
-                // Optionnel : changer le texte du bouton
-                if (details.classList.contains('visible')) {
-                    this.textContent = "Masquer les détails";
-                } else {
-                    this.textContent = "Voir les détails de la formation";
-                }
-            }
-        });
-    });
+  btn.addEventListener("click", () => {
+    // On cherche la carte parente ou le conteneur direct
+    const carte = btn.closest('.certification-item') || btn.closest('.projet-carte');
+    const details = carte ? carte.querySelector('.projet-details') : null;
+    
+    if (details) {
+      details.classList.toggle("show");
+      
+      if (details.classList.contains("show")) {
+        btn.textContent = "Masquer les détails";
+      } else {
+        btn.textContent = texteOriginal;
+      }
+    }
+  });
 });
