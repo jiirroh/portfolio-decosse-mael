@@ -477,6 +477,21 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
   display: block;
 }
 
+/* Optionnel : Assure-toi que les images ne sont pas trop grandes avant le zoom */
+.graph-wrapper img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 10px 0;
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+.graph-wrapper img:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
 /* Conteneur sombre pour le code */
 .code-container {
   background-color: #1e1e1e; /* Fond sombre style VS Code */
