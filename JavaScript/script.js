@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log("Le Script JS est bien chargé !"); // Test pour vérifier le chargement
 
-  // 1. GESTION DU THÈME SOMBRE
+  //  GESTION DU THÈME SOMBRE
   const themeToggle = document.getElementById("theme-toggle");
   if (themeToggle) {
     if (localStorage.getItem("theme") === "dark") { document.body.classList.add("dark-mode"); }
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. MENU HAMBURGER
+  //  MENU HAMBURGER
   const hamburger = document.querySelector(".hamburger");
   const menu = document.querySelector(".menu");
   if (hamburger && menu) {
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. EFFET MACHINE À ÉCRIRE (Uniquement si l'élément existe)
+  //  EFFET MACHINE À ÉCRIRE ()
   const elementsToType = [
     { id: 'typing-welcome', text: 'Bienvenue sur mon portfolio !' },
     { id: 'typing-about', text: 'Je m’appelle Maël Decosse, étudiant en BTS SIO SLAM. Passionné par l’informatique, le développement et l’administration de serveurs.' },
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     typeWriter();
   }
 
-  // 4. ACCORDÉONS COMPÉTENCES
+  //  ACCORDÉONS COMPÉTENCES
   const toggleButtons = document.querySelectorAll(".toggle-btn");
   toggleButtons.forEach(button => {
       button.addEventListener("click", () => {
@@ -76,21 +76,30 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   });
 
-  // 5. BOUTONS PROJETS (Indestructible)
+  // 5. BOUTONS PROJETS & CERTIFICATIONS (Plus flexible)
   const boutonsVoirPlus = document.querySelectorAll(".btn-voir-plus");
   boutonsVoirPlus.forEach(btn => {
+    // On garde en mémoire le texte original écrit dans le HTML
+    const texteOriginal = btn.textContent;
+
     btn.addEventListener("click", () => {
       const carte = btn.closest('.projet-carte');
       const details = carte ? carte.querySelector('.projet-details') : null;
       
       if (details) {
         details.classList.toggle("show");
-        btn.textContent = details.classList.contains("show") ? "Masquer les détails" : "Voir l'étude de cas complète";
+        
+        if (details.classList.contains("show")) {
+          btn.textContent = "Masquer les détails";
+        } else {
+          // On remet le texte d'origine (soit étude de cas, soit formation)
+          btn.textContent = texteOriginal;
+        }
       }
     });
   });
 
-  // 6. ZOOM IMAGE
+  // ZOOM IMAGE
   const modal = document.getElementById("image-modal");
   const modalImg = document.getElementById("img-to-zoom");
   const closeBtn = document.querySelector(".modal .close");
@@ -115,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. VEILLE
+  //  VEILLE
   const newsContainer = document.getElementById('news-container');
   if (newsContainer) {
     chargerVeille(newsContainer);
