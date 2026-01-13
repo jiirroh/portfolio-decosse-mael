@@ -32,67 +32,46 @@
 </header>
 
 <main>
-  <section id="veille-intro">
-    <h2>Veille Technologique : L'écosystème FiveM</h2>
+  <section id="veille-presentation">
+    <h2>Veille Technologique : Automatisation & IA</h2>
     <p class="projet-description">
-      Cette veille porte sur l'évolution des frameworks de développement sur FiveM (GTA RP) et l'impact de l'acquisition de Cfx.re par Rockstar Games sur la professionnalisation du scripting (Lua, JavaScript).
+      Ma veille technologique porte sur l'évolution du framework <strong>Ox (Overextended)</strong> pour FiveM. Pour traiter efficacement la masse d'informations techniques, j'ai conçu un pipeline d'automatisation exploitant l'IA.
     </p>
 
-    <h4 class="detail-titre">1. Méthodologie & Automatisation</h4>
-    <p>Pour cette veille, j'ai mis en place un pipeline automatisé permettant de transformer des flux techniques bruts en informations structurées.</p>
+    <h4 class="detail-titre">1. Architecture du Pipeline (Workflow n8n)</h4>
+    <p>Le workflow repose sur une suite de nœuds orchestrés dans n8n. Il surveille les flux RSS des dépôts GitHub pour détecter les nouvelles mises à jour techniques.</p>
     
-    <div class="etape-projet">
-      <h5>Architecture du Workflow n8n</h5>
-      <p>Mon automate surveille les dépôts GitHub (Ox Inventory, Ox Lib) et centralise les mises à jour majeures.</p>
-      <div class="graph-wrapper">
-        <img src="images/screenshot-n8n-workflow.png" alt="Capture d'écran du workflow n8n orchestrant la veille" class="projet-image">
-      </div>
+        <div class="graph-wrapper">
+      <img src="workflow veille.png" alt="Workflow n8n automatisé" class="projet-image">
     </div>
+    
+    <ul class="projet-liste">
+      <li><strong>Trigger :</strong> Surveillance programmée des flux RSS.</li>
+      <li><strong>Basic LLM Chain :</strong> Connexion à un modèle de langage (Ollama/Llama 3) pour l'analyse sémantique.</li>
+      <li><strong>GitHub Node :</strong> Injection automatisée du contenu traité dans le dépôt de mon portfolio.</li>
+    </ul>
 
-    <div class="etape-projet">
-      <h5>Analyse par Intelligence Artificielle (Llama 3)</h5>
-      <p>J'utilise l'ingénierie de prompt pour demander à une IA locale de résumer l'impact technique des changements (Performance, Sécurité, Breaking Changes).</p>
-      <div class="code-container">
-        <img src="images/screenshot-prompt-ai.png" alt="Aperçu du prompt système envoyé à l'IA" class="projet-code-img">
-      </div>
-      <p class="conclusion-ia">
-        Le prompt est conçu pour extraire uniquement les informations pertinentes pour un développeur SLAM, en ignorant les changements mineurs de documentation.
-      </p>
+    <h4 class="detail-titre">2. Prompt Engineering : Configuration de l'Expert IA</h4>
+    <p>Pour garantir la pertinence des résumés, j'ai configuré l'IA pour agir en tant que <em>Lead Developer</em> expert en FiveM et Lua.</p>
+    
+        <div class="code-container" style="background-color: var(--couleur-code-fond); padding: 15px; border-radius: 8px; border: 1px solid var(--couleur-bordure);">
+      <pre style="color: #d4d4d4; white-space: pre-wrap; font-size: 0.9em;">
+"Ta mission : Ne fais pas juste un résumé. Analyse cette mise à jour pour un développeur Junior et explique le contexte.
+Analyse : Qu'est-ce qui a changé techniquement ?
+Dictionnaire : Si des termes techniques sont mentionnés (ex: statebag, inv_busy, hooks), explique brièvement ce que c'est et à quoi ça sert dans FiveM.
+Impact : Est-ce que c'est critique ? Est-ce que ça améliore la performance ou la sécurité ?
+Réponds en français, avec un ton professionnel et pédagogique."</pre>
     </div>
   </section>
 
-  <section id="veille-auto">
-    <h3>🔴 Dernières mises à jour (Live IA BETA)</h3>
+  <section id="veille-flux">
+    <h3>🔴 Flux de Veille Automatisé (Bêta)</h3>
     <p class="explication-outil">
-      Cette section est alimentée dynamiquement par mon fichier <code>news.json</code>, mis à jour par mon automate n8n.
+      Les éléments ci-dessous sont générés dynamiquement par l'IA. Mon pipeline récupère les notes de mise à jour brutes, les analyse selon les critères ci-dessus et met à jour mon fichier <code>news.json</code>.
     </p>
 
     <div class="timeline" id="news-container">
-      <div class="timeline-item">
-        <div class="timeline-content">
-          <p><i>Chargement du flux automatisé...</i></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="veille-contexte">
-    <h4 class="detail-titre">2. Évolutions Majeures du Secteur</h4>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-date">2023</div>
-        <div class="timeline-content">
-          <h4>Légalisation et Acquisition</h4>
-          <p>Rockstar Games acquiert Cfx.re, marquant la fin de la zone grise juridique pour le modding et le début d'une standardisation logicielle.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-date">2025</div>
-        <div class="timeline-content">
-          <h4>Standardisation via Overextended</h4>
-          <p>Le framework Ox devient la référence technique, imposant des pratiques de développement modulaires et optimisées (Lua 5.4).</p>
-        </div>
-      </div>
+      <p><i>Initialisation du flux dynamique...</i></p>
     </div>
   </section>
 </main>
@@ -106,8 +85,10 @@
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
 <script src="JavaScript/script.js" defer></script>
 
-<div class="cursor-dot"></div>
-<div class="cursor-outline"></div>
+<div id="image-modal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img-to-zoom">
+</div>
 
 </body>
 </html>
