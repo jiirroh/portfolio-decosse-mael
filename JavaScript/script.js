@@ -111,42 +111,57 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-async function chargerVeille(container) {
-    const archivesContainer = document.getElementById('archives-container');
+async function chargerVeille() {
+    const liveContainer = document.getElementById('news-container'); // Le flux en direct
+    const archivesContainer = document.getElementById('archives-container'); // Le bloc Archives
+
     try {
-        const response = await fetch('veille/news.json?t=' + new Date().getTime());
-        if (!response.ok) throw new Error("Erreur réseau");
+        // Ajout d'un paramètre timestamp pour éviter le cache du navigateur
+        const response = await fetch('veille/news.json?t=' + Date.now());
+        
+        if (!response.ok) throw new Error("Fichier news.json introuvable");
+        
         const newsData = await response.json();
         
-        // On vide les conteneurs
-        container.innerHTML = '';
+        // On vide les conteneurs avant d'ajouter les données
+        if (liveContainer) liveContainer.innerHTML = '';
         if (archivesContainer) archivesContainer.innerHTML = '';
+
+        if (newsData.length === 0) {
+            if (liveContainer) liveContainer.innerHTML = "<p>Aucune news pour le moment.</p>";
+            return;
+        }
 
         newsData.forEach((news, index) => {
             const item = document.createElement('div');
             item.className = 'timeline-item';
             
             const dateStr = new Date(news.date).toLocaleDateString('fr-FR');
+            // Utilisation de Marked.js pour transformer le Markdown de l'IA en HTML
             const contenuHTML = (typeof marked !== 'undefined') ? marked.parse(news.contenu) : news.contenu;
 
             item.innerHTML = `
                 <div class="timeline-date">${dateStr}</div>
                 <div class="timeline-content">
                     <h4>${news.version}</h4>
-                    <div style="margin-top:10px;">${contenuHTML}</div>
-                    <a href="${news.lien}" target="_blank" class="projet-lien" style="margin-top:15px; font-size:0.8em;">Voir la source</a>
+                    <div class="news-text">${contenuHTML}</div>
+                    <a href="${news.lien}" target="_blank" class="projet-lien">Voir la source</a>
                 </div>
             `;
 
-            // Si c'est la première news (la plus récente), on la met dans le Live
-            if (index === 0) {
-                container.appendChild(item);
+            // SEPARATION : La première news va dans "Live", les autres dans "Archives"
+            if (index === 0 && liveContainer) {
+                liveContainer.appendChild(item);
             } else if (archivesContainer) {
-                // Sinon, on l'envoie dans les archives
                 archivesContainer.appendChild(item);
             }
         });
-    } catch (error) { 
-        container.innerHTML = `<p>Erreur de chargement des news.</p>`;
+
+    } catch (error) {
+        console.error("Erreur de chargement :", error);
+        if (liveContainer) liveContainer.innerHTML = `<p>Erreur lors de la récupération des données.</p>`;
     }
 }
+
+// Lancement au chargement de la page
+document.addEventListener('DOMContentLoaded', chargerVeille);
