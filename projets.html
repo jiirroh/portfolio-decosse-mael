@@ -166,22 +166,92 @@
       <h2>Projets Personnels</h2>
       
       <div class="projet-carte" id="projet-gta">
-        <h3>Serveur GTA RP - Scripts LUA</h3>
-        <p class="projet-resume">Développement et maintenance d'un serveur de jeu FiveM (Scripts LUA).</p>
+        <h3>Développement Modulaire FiveM (Lua/NUI)</h3>
+        <p class="projet-resume">Création de scripts avancés (Autopilot, Lecteur Multimédia, Events) avec communication Client-Serveur et interfaces Web (NUI).</p>
         
-        <button class="btn-voir-plus">Voir plus de détails</button>
+        <button class="btn-voir-plus">Voir les détails techniques</button>
         
         <div class="projet-details">
-          <div class="video-responsive">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/D60hZvwHbm0?si=VS7-KG5ytFXBTCRL&mute=1" frameborder="0" allowfullscreen></iframe>
-          </div>
+          
+          <h4 class="detail-titre">1. Contexte & Objectifs</h4>
           <p class="projet-description">
-            Création de scripts en LUA pour gérer l'économie, les inventaires, les métiers et la sécurité anti-triche sur le framework FiveM. Optimisation des performances serveur.
+            Dans le cadre de l'amélioration de l'expérience utilisateur (UX) sur un serveur Roleplay, j'ai développé une suite de scripts modulaires indépendants.
+            <br><em>Objectif :</em> Automatiser des tâches répétitives (conduite) et intégrer du contenu web externe (YouTube) directement dans le moteur du jeu.
           </p>
-          <div class="projet-tech">
-            <span>LUA</span><span>MySQL</span><span>Git</span>
+
+          <h4 class="detail-titre">2. Architecture Technique</h4>
+          <ul class="projet-liste">
+            <li><strong>Langage :</strong> LUA (Logique métier) & JavaScript (Interfaces).</li>
+            <li><strong>Architecture :</strong> Client-Serveur (OneSync) avec gestion d'événements (NetEvents).</li>
+            <li><strong>Interface (NUI) :</strong> HTML5/CSS3 injecté dans le moteur de rendu Chromium de FiveM.</li>
+            <li><strong>Persistance :</strong> Utilisation des KVP (Key-Value Pairs) pour sauvegarder les données joueurs localement.</li>
+          </ul>
+          
+          <div class="arborescence-box">
+            <h5 class="arbo-titre">📁 Structure des ressources</h5>
+            <ul class="file-tree">
+              <li><span class="folder-root">resources</span>
+                <ul>
+                  <li><span class="folder">autopilot</span> <span style="color:#666; font-size:0.8em;">// Système de conduite autonome</span>
+                    <ul>
+                      <li><span class="file">client.lua</span></li>
+                      <li><span class="file">config.lua</span></li>
+                      <li><span class="file">fxmanifest.lua</span></li>
+                    </ul>
+                  </li>
+                  <li><span class="folder">minitv</span> <span style="color:#666; font-size:0.8em;">// Intégration API YouTube</span>
+                    <ul>
+                      <li><span class="folder">html</span>
+                        <ul>
+                           <li><span class="file">index.html</span></li>
+                           <li><span class="file">script.js</span></li>
+                        </ul>
+                      </li>
+                      <li><span class="file">server.lua</span></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
           </div>
-          <a href="https://github.com/jiirroh/script-fivem-fait-main" target="_blank" class="projet-lien">Voir sur GitHub</a>
+
+          <h4 class="detail-titre">3. Fonctionnalités Clés</h4>
+
+          <div class="etape-projet">
+            <h5>A. Algorithme de proximité (Autopilot)</h5>
+            <p>Le script calcule dynamiquement le point d'intérêt le plus proche (ex: Station essence) en comparant les vecteurs de coordonnées du joueur avec une liste de configuration.</p>
+            
+            <div class="code-container">
+              <pre style="color:#d4d4d4; font-family:'Consolas', monospace; overflow-x:auto;"><code><span style="color:#569cd6;">local</span> <span style="color:#569cd6;">function</span> <span style="color:#dcdcaa;">getClosestVec3</span>(list)
+    <span style="color:#569cd6;">local</span> playerCoords = <span style="color:#4ec9b0;">GetEntityCoords</span>(<span style="color:#4ec9b0;">PlayerPedId</span>())
+    <span style="color:#569cd6;">local</span> minDist, closest = <span style="color:#569cd6;">nil</span>, <span style="color:#569cd6;">nil</span>
+    
+    <span style="color:#c586c0;">for</span> _, coords <span style="color:#c586c0;">in</span> <span style="color:#4ec9b0;">ipairs</span>(list) <span style="color:#c586c0;">do</span>
+        <span style="color:#569cd6;">local</span> dist = # (playerCoords - coords) <span style="color:#6a9955;">-- Calcul vectoriel</span>
+        <span style="color:#c586c0;">if</span> <span style="color:#569cd6;">not</span> minDist <span style="color:#569cd6;">or</span> dist <span style="color:#d4d4d4;">&lt;</span> minDist <span style="color:#c586c0;">then</span>
+            minDist = dist
+            closest = coords
+        <span style="color:#c586c0;">end</span>
+    <span style="color:#c586c0;">end</span>
+    <span style="color:#c586c0;">return</span> closest, minDist
+<span style="color:#c586c0;">end</span></code></pre>
+            </div>
+          </div>
+
+          <div class="etape-projet">
+            <h5>B. Communication NUI & API YouTube (MiniTV)</h5>
+            <p>Intégration de l'iframe API YouTube via une page web transparente superposée au jeu. Le serveur envoie l'URL, et le JS extrait l'ID vidéo via Regex.</p>
+            <ul class="projet-liste">
+                <li>Extraction d'ID vidéo via Regex JS.</li>
+                <li>Synchronization lecture/pause entre tous les joueurs via événements serveur.</li>
+                <li>Overlay CSS dynamique (Coin ou Plein écran).</li>
+            </ul>
+          </div>
+
+          <div class="projet-tech">
+            <span>LUA</span><span>JS (NUI)</span><span>API REST</span><span>Algorithmique</span><span>Git</span>
+          </div>
+          <a href="https://github.com/jiirroh/script-fivem-fait-main" target="_blank" class="projet-lien">Voir le code sur GitHub</a>
         </div>
       </div>
 
