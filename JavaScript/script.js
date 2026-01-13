@@ -111,26 +111,42 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Fonctions globales
 async function chargerVeille(container) {
+    const archivesContainer = document.getElementById('archives-container');
     try {
         const response = await fetch('veille/news.json?t=' + new Date().getTime());
         if (!response.ok) throw new Error("Erreur réseau");
         const newsData = await response.json();
+        
+        // On vide les conteneurs
         container.innerHTML = '';
-        newsData.forEach(news => {
+        if (archivesContainer) archivesContainer.innerHTML = '';
+
+        newsData.forEach((news, index) => {
             const item = document.createElement('div');
             item.className = 'timeline-item';
+            
             const dateStr = new Date(news.date).toLocaleDateString('fr-FR');
             const contenuHTML = (typeof marked !== 'undefined') ? marked.parse(news.contenu) : news.contenu;
+
             item.innerHTML = `
                 <div class="timeline-date">${dateStr}</div>
                 <div class="timeline-content">
                     <h4>${news.version}</h4>
                     <div style="margin-top:10px;">${contenuHTML}</div>
-                    <a href="${news.lien}" target="_blank" class="projet-lien" style="margin-top:15px; font-size:0.8em;">Voir sur GitHub</a>
-                </div>`;
-            container.appendChild(item);
+                    <a href="${news.lien}" target="_blank" class="projet-lien" style="margin-top:15px; font-size:0.8em;">Voir la source</a>
+                </div>
+            `;
+
+            // Si c'est la première news (la plus récente), on la met dans le Live
+            if (index === 0) {
+                container.appendChild(item);
+            } else if (archivesContainer) {
+                // Sinon, on l'envoie dans les archives
+                archivesContainer.appendChild(item);
+            }
         });
-    } catch (error) { container.innerHTML = `<p>Erreur de chargement.</p>`; }
+    } catch (error) { 
+        container.innerHTML = `<p>Erreur de chargement des news.</p>`;
+    }
 }
