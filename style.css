@@ -502,3 +502,31 @@ footer {
   .modal-content { width: 95%; }
   .close { right: 20px; top: 10px; font-size: 40px; }
 }
+/* ========================================= */
+/* ===== SYNTAX HIGHLIGHTING (CODE) ======== */
+/* ========================================= */
+
+.code-block {
+    color: #d4d4d4; /* Texte par défaut gris clair */
+    font-family: 'Consolas', 'Monaco', monospace;
+    overflow-x: auto; /* Scroll horizontal si ça dépasse */
+    white-space: pre; /* Garde les espaces et sauts de ligne */
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Couleurs spécifiques pour le code LUA */
+.kwd { color: #569cd6; }      /* Bleu (local, function, nil...) */
+.func { color: #dcdcaa; }     /* Jaune pâle (noms de fonctions) */
+.type { color: #4ec9b0; }     /* Vert d'eau (Types, Globales FiveM) */
+.ctrl { color: #c586c0; }     /* Violet (for, in, do, if, then, end, return) */
+.comment { color: #6a9955; }  /* Vert (Commentaires) */
+
+/* Commentaire discret dans l'arborescence de fichiers */
+.comment-tree {
+    color: #666;
+    font-size: 0.8em;
+    margin-left: 10px;
+    font-style: italic;
+}
