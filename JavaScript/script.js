@@ -34,33 +34,23 @@ document.addEventListener('DOMContentLoaded', () => {
       { id: 'typing-interets', text: 'En dehors de l\'informatique, je m\'intéresse à la musique, aux jeux vidéo, au sport et à la création de scripts.', speed: 20 }
     ];
 
-    let textArrayIndex = 0;
-    let charIndex = 0;
+    elementsToType.forEach(elementData => {
+      const targetElement = document.getElementById(elementData.id);
+      if (targetElement) {
+        let charIndex = 0;
+        const currentSpeed = elementData.speed || 20;
 
-    function typeWriter() {
-      if (textArrayIndex < elementsToType.length) {
-        const currentElement = elementsToType[textArrayIndex];
-        const targetElement = document.getElementById(currentElement.id);
-        const currentSpeed = currentElement.speed || 20;
-
-        if (targetElement) {
-          if (charIndex < currentElement.text.length) {
-            targetElement.innerHTML += currentElement.text.charAt(charIndex);
+        function typeChar() {
+          if (charIndex < elementData.text.length) {
+            targetElement.innerHTML += elementData.text.charAt(charIndex);
             charIndex++;
-            setTimeout(typeWriter, currentSpeed);
-          } else {
-            charIndex = 0;
-            textArrayIndex++;
-            setTimeout(typeWriter, 100);
+            setTimeout(typeChar, currentSpeed);
           }
-        } else {
-          textArrayIndex++;
-          charIndex = 0;
-          setTimeout(typeWriter, 100);
         }
+
+        typeChar();
       }
-    }
-    typeWriter();
+    });
   }
 
   // 4. BOUTONS "VOIR PLUS" (Projets, CV, Oral)
