@@ -60,78 +60,114 @@
 
                 <div class="projet-details">
 
-                    <h4 class="detail-titre">1. Contexte & Objectifs</h4>
+                    <h4 class="detail-titre">1. Le Besoin Initial</h4>
                     <p class="projet-description">
                         Ce projet a été réalisé lors de mon stage de deuxième année. L'objectif était de développer une
-                        application web <strong>dynamique et sécurisée</strong> permettant de gérer une carte de
-                        produits et d'offrir une interface d'administration.
-                        <br><em>Environnement :</em> Serveur local (UwAmp), développement Full-Stack.
+                        application web de gestion <strong>"theALaMenthe"</strong> pour un établissement
+                        (restaurant/café).
+                        Le but principal était de concevoir une plateforme sur mesure, sans s'appuyer sur une usine à
+                        gaz existante.
+                        <br><br><strong>Contraintes du projet :</strong>
+                    <ul class="projet-liste">
+                        <li><strong>Développement natif :</strong> PHP pur sans framework (Vanilla PHP).</li>
+                        <li><strong>Structure imposée :</strong> Respect strict du pattern MVC (Modèle-Vue-Contrôleur).
+                        </li>
+                        <li><strong>Sécurisé :</strong> Back-office sécurisé et protection contre les failles (XSS,
+                            Injections SQL).</li>
+                    </ul>
                     </p>
 
-                    <h4 class="detail-titre">2. Architecture Technique</h4>
-                    <ul class="projet-liste">
-                        <li><strong>Langages :</strong> PHP (Logique côté serveur), HTML/CSS (Interfaces), JavaScript.
-                        </li>
-                        <li><strong>Architecture :</strong> Modèle-Vue-Contrôleur (MVC) pour une séparation propre de la
-                            logique métier (modèles), de l'affichage (vues) et de la gestion des requêtes (contrôleurs).
-                        </li>
-                        <li><strong>Base de Données :</strong> Gestion des données dynamiques (catalogue, utilisateurs)
-                            via le dossier BDD.</li>
-                        <li><strong>Sécurité :</strong> Gestion des sessions PHP pour la partie administration
-                            (<code>session_start()</code>).</li>
-                    </ul>
+                    <h4 class="detail-titre">2. Architecture & Technologies</h4>
+                    <p class="projet-description">
+                        L'application utilise une architecture <strong>MVC</strong> pour une séparation complète des
+                        responsabilités entre la logique métier, la gestion des requêtes, et l'affichage. Un routeur
+                        unique sécurise la navigation globale.
+                    </p>
 
                     <div class="arborescence-box">
                         <h5 class="arbo-titre">📁 Structure du projet (MVC)</h5>
                         <ul class="file-tree">
                             <li><span class="folder-root">theALaMenthe</span>
                                 <ul>
-                                    <li><span class="folder">BDD</span> <span class="comment-tree">// Fichiers SQL et
-                                            base de données</span></li>
-                                    <li><span class="folder">config</span> <span class="comment-tree">// Configuration
-                                            (ex: bdd.php)</span></li>
-                                    <li><span class="folder">controleurs</span> <span class="comment-tree">// Traitement
-                                            des actions (accueil, carte, auth, admin)</span></li>
-                                    <li><span class="folder">images</span></li>
-                                    <li><span class="folder">js</span> <span class="comment-tree">// Scripts
-                                            frontend</span></li>
-                                    <li><span class="folder">modeles</span> <span class="comment-tree">// Gestion des
-                                            données et requêtes SQL</span></li>
-                                    <li><span class="folder">style</span> <span class="comment-tree">// Feuilles de
-                                            style CSS</span></li>
+                                    <li><span class="folder">controleurs</span> <span class="comment-tree">// Logique et
+                                            traitement (admin, auth, carte)</span></li>
+                                    <li><span class="folder">modeles</span> <span class="comment-tree">// Accès base de
+                                            données (catégorie, produit)</span></li>
                                     <li><span class="folder">vues</span> <span class="comment-tree">// Affichage HTML
-                                            des pages</span></li>
-                                    <li><span class="file php">index.php</span> <span class="comment-tree">// Point
-                                            d'entrée et routeur principal</span></li>
+                                            (frontend/backend)</span></li>
+                                    <li><span class="file php">index.php</span> <span class="comment-tree">// Routeur
+                                            Front Controller</span></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
 
-                    <h4 class="detail-titre">3. Fonctionnalités Clés</h4>
+                    <h4 class="detail-titre">3. Fonctionnalités Clés & Extraits de Code</h4>
 
                     <div class="etape-projet">
                         <h5>A. Routeur Principal Centralisé</h5>
-                        <p>Toutes les requêtes passent par <code>index.php</code> qui agit comme contrôleur frontal. Il
-                            sécurise l'application en n'autorisant que certaines pages spécifiques (accueil, carte,
-                            auth, admin, mentions) avant d'appeler le bon contrôleur.</p>
+                        <p>Toutes les requêtes web passent par <code>index.php</code>. Il agit comme un <em>Front
+                                Controller</em>. Il vérifie que la page demandée est autorisée avant d'inclure le
+                            contrôleur correspondant, évitant ainsi l'accès direct aux fichiers.</p>
+                        <div class="code-container">
+                            <pre class="code-block"><code><span class="comment">// index.php : Routeur simple</span>
+<span class="kwd">$page</span> = <span class="kwd">isset</span>(<span class="kwd">$_GET</span>[<span class="type">'page'</span>]) ? <span class="kwd">$_GET</span>[<span class="type">'page'</span>] : <span class="type">'accueil'</span>;
+
+<span class="comment">// Liste des pages autorisées en whitelist</span>
+<span class="kwd">$pages_autorisees</span> = [<span class="type">'accueil'</span>, <span class="type">'carte'</span>, <span class="type">'auth'</span>, <span class="type">'admin'</span>, <span class="type">'mentions'</span>];
+
+<span class="ctrl">if</span> (<span class="type">in_array</span>(<span class="kwd">$page</span>, <span class="kwd">$pages_autorisees</span>)) {
+    <span class="ctrl">if</span> (<span class="type">file_exists</span>(<span class="func">"controleurs/$page.php"</span>)) {
+        <span class="kwd">require_once</span> <span class="func">"controleurs/$page.php"</span>;
+    }
+} <span class="ctrl">else</span> {
+    <span class="kwd">echo</span> <span class="func">"&lt;h1&gt;Erreur 404&lt;/h1&gt;"</span>;
+}</code></pre>
+                        </div>
                     </div>
 
                     <div class="etape-projet">
                         <h5>B. Espace d'Administration Sécurisé</h5>
-                        <p>Mise en place d'un système de session PHP. Une page d'authentification (<code>auth</code>)
-                            permet l'accès au panneau d'administration (<code>admin</code>) pour gérer le contenu
-                            dynamiquement.</p>
+                        <p>Mise en place d'un système de session PHP classique. Si l'administrateur n'est pas
+                            authentifié lors de l'accès au back-office, une redirection automatique l'empêche de voir le
+                            contenu.</p>
+                        <div class="code-container">
+                            <pre class="code-block"><code><span class="comment">// controleurs/admin.php : Validation sécurité</span>
+<span class="ctrl">if</span> (!<span class="kwd">isset</span>(<span class="kwd">$_SESSION</span>[<span class="type">'admin'</span>])) {
+    <span class="kwd">header</span>(<span class="func">'Location: index.php?page=auth'</span>);
+    <span class="ctrl">exit</span>;
+}
+
+<span class="comment">// Importation des accès données (DAO)</span>
+<span class="kwd">require_once</span> <span class="func">'modeles/produit.php'</span>;
+<span class="kwd">require_once</span> <span class="func">'modeles/categorie.php'</span>;</code></pre>
+                        </div>
                     </div>
 
+                    <h4 class="detail-titre">4. Gestion des Données (DAO avec PDO)</h4>
                     <div class="etape-projet">
-                        <h5>C. Catalogue Dynamique (Carte)</h5>
-                        <p>Affichage dynamique des produits (boissons, plats) enregistrés dans la base de données, gérés
-                            par les contrôleurs et les modèles.</p>
+                        <p>La logique d'accès à la base MySQL (CRUD) est entièrement découplée des contrôleurs et
+                            traitée par les Modèles. J'ai utilisé l'extension <strong>PDO (PHP Data Objects)</strong> et
+                            les requêtes préparées pour contrer l'injection SQL.</p>
+                        <div class="code-container">
+                            <pre class="code-block"><code><span class="comment">// modeles/produit.php : Fonctionnalités de récupération sécurisée</span>
+<span class="kwd">function</span> <span class="func">getTousProduits</span>(<span class="kwd">$bdd</span>) {
+    <span class="kwd">$stmt</span> = <span class="kwd">$bdd</span>-&gt;<span class="type">query</span>(<span class="func">"SELECT * FROM produit"</span>);
+    <span class="ctrl">return</span> <span class="kwd">$stmt</span>-&gt;<span class="type">fetchAll</span>(<span class="kwd">PDO::FETCH_ASSOC</span>);
+}
+
+<span class="kwd">function</span> <span class="func">getProduitsParCategorie</span>(<span class="kwd">$bdd</span>, <span class="kwd">$id_categorie</span>) {
+    <span class="comment">// Requête préparée pour éviter l'injection SQL (!important)</span>
+    <span class="kwd">$stmt</span> = <span class="kwd">$bdd</span>-&gt;<span class="type">prepare</span>(<span class="func">"SELECT * FROM produit WHERE id_categorie = ?"</span>);
+    <span class="kwd">$stmt</span>-&gt;<span class="type">execute</span>([<span class="kwd">$id_categorie</span>]);
+    <span class="ctrl">return</span> <span class="kwd">$stmt</span>-&gt;<span class="type">fetchAll</span>(<span class="kwd">PDO::FETCH_ASSOC</span>);
+}</code></pre>
+                        </div>
                     </div>
 
                     <div class="projet-tech">
-                        <span>PHP</span><span>MySQL</span><span>MVC</span><span>HTML/CSS</span><span>JS</span>
+                        <span>Vanilla PHP</span><span>MySQL / PDO</span><span>Architecture MVC</span><span>Sécurité
+                            Web</span>
                     </div>
                 </div>
             </div>
