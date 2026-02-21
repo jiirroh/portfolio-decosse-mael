@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage - Portfolio Decosse Maël</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+
+<body>
+    <header>
+        <div class="nav-container">
+            <img src="images/logo.png" alt="Logo Decosse Maël" class="logo">
+            <h1 class="titre">Portfolio Decosse Maël</h1>
+            <button id="theme-toggle" class="theme-btn" title="Changer de thème">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+            <nav>
+                <button class="hamburger">☰</button>
+                <ul class="menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="cv.html">CV</a></li>
+                    <li><a href="projets.html">Projets</a></li>
+                    <li><a href="stage.html" class="active">Stage</a></li>
+                    <li><a href="competences.html">Compétences</a></li>
+                    <li><a href="veille.html">Veille Tech</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="stage-details">
+            <h2>Stage de Deuxième Année : "theALaMenthe"</h2>
+
+            <div class="projet-carte">
+                <h3>Application Web - theALaMenthe</h3>
+                <p class="projet-resume">Application de gestion pour un établissement (restaurant/café) avec système de
+                    commande (carte), authentification et panneau d'administration.</p>
+
+                <button class="btn-voir-plus">Voir les détails techniques</button>
+
+                <div class="projet-details">
+
+                    <h4 class="detail-titre">1. Contexte & Objectifs</h4>
+                    <p class="projet-description">
+                        Ce projet a été réalisé lors de mon stage de deuxième année. L'objectif était de développer une
+                        application web <strong>dynamique et sécurisée</strong> permettant de gérer une carte de
+                        produits et d'offrir une interface d'administration.
+                        <br><em>Environnement :</em> Serveur local (UwAmp), développement Full-Stack.
+                    </p>
+
+                    <h4 class="detail-titre">2. Architecture Technique</h4>
+                    <ul class="projet-liste">
+                        <li><strong>Langages :</strong> PHP (Logique côté serveur), HTML/CSS (Interfaces), JavaScript.
+                        </li>
+                        <li><strong>Architecture :</strong> Modèle-Vue-Contrôleur (MVC) pour une séparation propre de la
+                            logique métier (modèles), de l'affichage (vues) et de la gestion des requêtes (contrôleurs).
+                        </li>
+                        <li><strong>Base de Données :</strong> Gestion des données dynamiques (catalogue, utilisateurs)
+                            via le dossier BDD.</li>
+                        <li><strong>Sécurité :</strong> Gestion des sessions PHP pour la partie administration
+                            (<code>session_start()</code>).</li>
+                    </ul>
+
+                    <div class="arborescence-box">
+                        <h5 class="arbo-titre">📁 Structure du projet (MVC)</h5>
+                        <ul class="file-tree">
+                            <li><span class="folder-root">theALaMenthe</span>
+                                <ul>
+                                    <li><span class="folder">BDD</span> <span class="comment-tree">// Fichiers SQL et
+                                            base de données</span></li>
+                                    <li><span class="folder">config</span> <span class="comment-tree">// Configuration
+                                            (ex: bdd.php)</span></li>
+                                    <li><span class="folder">controleurs</span> <span class="comment-tree">// Traitement
+                                            des actions (accueil, carte, auth, admin)</span></li>
+                                    <li><span class="folder">images</span></li>
+                                    <li><span class="folder">js</span> <span class="comment-tree">// Scripts
+                                            frontend</span></li>
+                                    <li><span class="folder">modeles</span> <span class="comment-tree">// Gestion des
+                                            données et requêtes SQL</span></li>
+                                    <li><span class="folder">style</span> <span class="comment-tree">// Feuilles de
+                                            style CSS</span></li>
+                                    <li><span class="folder">vues</span> <span class="comment-tree">// Affichage HTML
+                                            des pages</span></li>
+                                    <li><span class="file php">index.php</span> <span class="comment-tree">// Point
+                                            d'entrée et routeur principal</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h4 class="detail-titre">3. Fonctionnalités Clés</h4>
+
+                    <div class="etape-projet">
+                        <h5>A. Routeur Principal Centralisé</h5>
+                        <p>Toutes les requêtes passent par <code>index.php</code> qui agit comme contrôleur frontal. Il
+                            sécurise l'application en n'autorisant que certaines pages spécifiques (accueil, carte,
+                            auth, admin, mentions) avant d'appeler le bon contrôleur.</p>
+                    </div>
+
+                    <div class="etape-projet">
+                        <h5>B. Espace d'Administration Sécurisé</h5>
+                        <p>Mise en place d'un système de session PHP. Une page d'authentification (<code>auth</code>)
+                            permet l'accès au panneau d'administration (<code>admin</code>) pour gérer le contenu
+                            dynamiquement.</p>
+                    </div>
+
+                    <div class="etape-projet">
+                        <h5>C. Catalogue Dynamique (Carte)</h5>
+                        <p>Affichage dynamique des produits (boissons, plats) enregistrés dans la base de données, gérés
+                            par les contrôleurs et les modèles.</p>
+                    </div>
+
+                    <div class="projet-tech">
+                        <span>PHP</span><span>MySQL</span><span>MVC</span><span>HTML/CSS</span><span>JS</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <span>© 2026 - Portfolio Decosse Maël</span>
+        </div>
+    </footer>
+
+    <div id="image-modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img-to-zoom">
+    </div>
+
+    <script src="JavaScript/script.js" defer></script>
+</body>
+
+</html>

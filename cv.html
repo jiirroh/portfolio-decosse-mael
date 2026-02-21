@@ -1,33 +1,50 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CV - Portfolio Decosse Maël</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<header>
-  <div class="nav-container">
-    <img src="images/logo.png" alt="Logo Decosse Maël" class="logo">
-    <h1 class="titre">Portfolio Decosse Maël</h1>
-<button id="theme-toggle" class="theme-btn" title="Changer de thème">
-  <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-  <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-</button>
+  <header>
+    <div class="nav-container">
+      <img src="images/logo.png" alt="Logo Decosse Maël" class="logo">
+      <h1 class="titre">Portfolio Decosse Maël</h1>
+      <button id="theme-toggle" class="theme-btn" title="Changer de thème">
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
       <nav>
         <button class="hamburger">☰</button>
         <ul class="menu">
-          <li><a href="index.html" >Accueil</a></li>
-          <li><a href="cv.html"class="active">CV</a></li>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="cv.html" class="active">CV</a></li>
           <li><a href="projets.html">Projets</a></li>
+          <li><a href="stage.html">Stage</a></li>
           <li><a href="competences.html">Compétences</a></li>
           <li><a href="veille.html">Veille Tech</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
-  </div>
-</header>
+    </div>
+  </header>
 
 
   <main>
@@ -38,48 +55,54 @@
       <p>Adresse : 49 avenue Henri IV, Jurançon</p>
     </section>
 
-<section class="section-competences">
-  <h2>Compétences</h2>
-  <ul class="liste-competences">
-    <li><strong>Programmation :</strong> Java, PHP, HTML, CSS, JavaScript, LUA, SQL, Python</li>
-    <li><strong>Analyse :</strong> UML, Merise</li>
-    <li><strong>IDE :</strong> NetBeans, Brackets, VS Code</li>
-    <li><strong>Autres :</strong> RGPD, Machines virtuelles, installation OS</li>
-    
-    <li class="certification-item">
-      <strong>Certification :</strong> AI learning Columbia University
-      <button class="btn-voir-plus">Voir les détails de la formation</button>
-      
-      <div class="projet-details">
-        <p class="citation-ia">
-          "Grâce à cette formation, j'ai acquis une compréhension globale du fonctionnement des IA, ce qui me permet désormais d'être capable de développer ma propre intelligence artificielle."
-        </p>
-        
-        <div class="ia-details-content">
-          <h4>Comprendre le "Cerveau" des IA</h4>
-          
-          <p><strong>1. Le Piège des Minima Locaux :</strong> Éviter que l'IA ne reste bloquée dans une solution médiocre.</p>
-          <div class="graph-wrapper">
-            <img src="images/graph minima.webp" alt="Graphique Minima Locaux" class="projet-image">
+    <section class="section-competences">
+      <h2>Compétences</h2>
+      <ul class="liste-competences">
+        <li><strong>Programmation :</strong> Java, PHP, HTML, CSS, JavaScript, LUA, SQL, Python</li>
+        <li><strong>Analyse :</strong> UML, Merise</li>
+        <li><strong>IDE :</strong> NetBeans, Brackets, VS Code</li>
+        <li><strong>Autres :</strong> RGPD, Machines virtuelles, installation OS</li>
+
+        <li class="certification-item">
+          <strong>Certification :</strong> AI learning Columbia University
+          <button class="btn-voir-plus">Voir les détails de la formation</button>
+
+          <div class="projet-details">
+            <p class="citation-ia">
+              "Grâce à cette formation, j'ai acquis une compréhension globale du fonctionnement des IA, ce qui me permet
+              désormais d'être capable de développer ma propre intelligence artificielle."
+            </p>
+
+            <div class="ia-details-content">
+              <h4>Comprendre le "Cerveau" des IA</h4>
+
+              <p><strong>1. Le Piège des Minima Locaux :</strong> Éviter que l'IA ne reste bloquée dans une solution
+                médiocre.</p>
+              <div class="graph-wrapper">
+                <img src="images/graph minima.webp" alt="Graphique Minima Locaux" class="projet-image">
+              </div>
+
+              <p><strong>2. Le Paradoxe des Points de Selle :</strong> Dans les modèles à haute dimension, les blocages
+                sont rares.</p>
+              <div class="graph-wrapper">
+                <img src="images/graph point selle.webp" alt="Graphique Points de Selle" class="projet-image">
+              </div>
+
+              <p><strong>3. Entraînement et Optimisation :</strong> Utilisation de la <strong>Descente
+                  Stochastique</strong> et du <strong>RLHF</strong>.</p>
+
+              <p><strong>4. Stratégies d'Inférence :</strong> Maîtrise du <em>Greedy Search</em> et du <em>Beam
+                  Search</em>.</p>
+
+              <p class="conclusion-ia">
+                Conclusion : En multipliant les dimensions, on multiplie les chemins, rendant les blocages presque
+                impossibles.
+              </p>
+            </div>
           </div>
-
-          <p><strong>2. Le Paradoxe des Points de Selle :</strong> Dans les modèles à haute dimension, les blocages sont rares.</p>
-          <div class="graph-wrapper">
-            <img src="images/graph point selle.webp" alt="Graphique Points de Selle" class="projet-image">
-          </div>
-
-          <p><strong>3. Entraînement et Optimisation :</strong> Utilisation de la <strong>Descente Stochastique</strong> et du <strong>RLHF</strong>.</p>
-
-          <p><strong>4. Stratégies d'Inférence :</strong> Maîtrise du <em>Greedy Search</em> et du <em>Beam Search</em>.</p>
-          
-          <p class="conclusion-ia">
-            Conclusion : En multipliant les dimensions, on multiplie les chemins, rendant les blocages presque impossibles.
-          </p>
-        </div>
-      </div>
-    </li>
-  </ul>
-</section>
+        </li>
+      </ul>
+    </section>
 
     <section>
       <h2>Formation</h2>
@@ -99,12 +122,12 @@
       </ul>
     </section>
 
-<section>
-  <h2>Téléchargement</h2>
-  <p>
-    <a href="CV_mael (2).pdf" download class="bouton-telecharger">📄 Télécharger mon CV en PDF</a>
-  </p>
-</section>
+    <section>
+      <h2>Téléchargement</h2>
+      <p>
+        <a href="CV_mael (2).pdf" download class="bouton-telecharger">📄 Télécharger mon CV en PDF</a>
+      </p>
+    </section>
   </main>
 
   <footer>
@@ -112,14 +135,15 @@
       <span>© 2026 - Portfolio Decosse Maël</span>
     </div>
   </footer>
-<script src="JavaScript/script.js" defer></script>
+  <script src="JavaScript/script.js" defer></script>
 
   <div class="cursor-dot"></div>
   <div class="cursor-outline"></div>
   <div id="image-modal" class="modal">
-  <span class="close">&times;</span>
-  <img class="modal-content" id="img-to-zoom">
-</div>
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img-to-zoom">
+  </div>
 
 </body>
+
 </html>
