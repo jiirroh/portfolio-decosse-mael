@@ -26,15 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const typingElement = document.getElementById('typing-welcome');
   if (typingElement) {
     const elementsToType = [
-      { id: 'typing-welcome', text: 'Bienvenue sur mon portfolio !' },
-      { id: 'typing-about', text: 'Je m’appelle Maël Decosse, étudiant en BTS SIO SLAM. Passionné par l’informatique, le développement et l’administration de serveurs.' },
-      { id: 'typing-skill1', text: 'Programmation : Java, PHP, HTML, CSS, JavaScript, LUA, SQL, Python' },
-      { id: 'typing-skill2', text: 'Analyse : Modélisation UML et Merise' },
-      { id: 'typing-skill3', text: 'Autres : Bonnes pratiques RGPD, Machines Virtuelles et installation d\'OS' },
-      { id: 'typing-interets', text: 'En dehors de l\'informatique, je m\'intéresse à la musique, aux jeux vidéo, au sport et à la création de scripts.' }
+      { id: 'typing-welcome', text: 'Bienvenue sur mon portfolio !', speed: 10 }, // Vitesse rapide pour le titre
+      { id: 'typing-about', text: 'Je m’appelle Maël Decosse, étudiant en BTS SIO SLAM. Passionné par l’informatique, le développement et l’administration de serveurs.', speed: 20 },
+      { id: 'typing-skill1', text: 'Programmation : Java, PHP, HTML, CSS, JavaScript, LUA, SQL, Python', speed: 20 },
+      { id: 'typing-skill2', text: 'Analyse : Modélisation UML et Merise', speed: 20 },
+      { id: 'typing-skill3', text: 'Autres : Bonnes pratiques RGPD, Machines Virtuelles et installation d\'OS', speed: 20 },
+      { id: 'typing-interets', text: 'En dehors de l\'informatique, je m\'intéresse à la musique, aux jeux vidéo, au sport et à la création de scripts.', speed: 20 }
     ];
 
-    const typingSpeed = 20; 
     let textArrayIndex = 0;
     let charIndex = 0;
 
@@ -42,20 +41,22 @@ document.addEventListener('DOMContentLoaded', () => {
       if (textArrayIndex < elementsToType.length) {
         const currentElement = elementsToType[textArrayIndex];
         const targetElement = document.getElementById(currentElement.id);
+        const currentSpeed = currentElement.speed || 20;
+
         if (targetElement) {
-            if (charIndex < currentElement.text.length) {
-                targetElement.innerHTML += currentElement.text.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeWriter, typingSpeed);
-            } else {
-                charIndex = 0;
-                textArrayIndex++;
-                setTimeout(typeWriter, 100);
-            }
-        } else {
-            textArrayIndex++;
+          if (charIndex < currentElement.text.length) {
+            targetElement.innerHTML += currentElement.text.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeWriter, currentSpeed);
+          } else {
             charIndex = 0;
+            textArrayIndex++;
             setTimeout(typeWriter, 100);
+          }
+        } else {
+          textArrayIndex++;
+          charIndex = 0;
+          setTimeout(typeWriter, 100);
         }
       }
     }
@@ -71,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // On cherche le conteneur le plus proche (carte projet, item certification, ou bloc compétence)
       const parent = btn.closest('.projet-carte') || btn.closest('.certification-item') || btn.closest('.exemple') || btn.closest('.oral-card');
       const details = parent ? parent.querySelector('.projet-details, .details, .oral-details-content') : null;
-      
+
       if (details) {
         details.classList.toggle("show");
         btn.textContent = details.classList.contains("show") ? "Masquer les détails" : texteOriginal;
@@ -87,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (modal && modalImg) {
     imagesAgrandissables.forEach(img => {
-      img.addEventListener('click', function() {
+      img.addEventListener('click', function () {
         modal.style.display = "flex";
         modal.style.alignItems = "center";
         modal.style.justifyContent = "center";
@@ -112,35 +113,35 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function chargerVeille() {
-    const liveContainer = document.getElementById('news-container'); // Le flux en direct
-    const archivesContainer = document.getElementById('archives-container'); // Le bloc Archives
+  const liveContainer = document.getElementById('news-container'); // Le flux en direct
+  const archivesContainer = document.getElementById('archives-container'); // Le bloc Archives
 
-    try {
-        // Ajout d'un paramètre timestamp pour éviter le cache du navigateur
-        const response = await fetch('veille/news.json?t=' + Date.now());
-        
-        if (!response.ok) throw new Error("Fichier news.json introuvable");
-        
-        const newsData = await response.json();
-        
-        // On vide les conteneurs avant d'ajouter les données
-        if (liveContainer) liveContainer.innerHTML = '';
-        if (archivesContainer) archivesContainer.innerHTML = '';
+  try {
+    // Ajout d'un paramètre timestamp pour éviter le cache du navigateur
+    const response = await fetch('veille/news.json?t=' + Date.now());
 
-        if (newsData.length === 0) {
-            if (liveContainer) liveContainer.innerHTML = "<p>Aucune news pour le moment.</p>";
-            return;
-        }
+    if (!response.ok) throw new Error("Fichier news.json introuvable");
 
-        newsData.forEach((news, index) => {
-            const item = document.createElement('div');
-            item.className = 'timeline-item';
-            
-            const dateStr = new Date(news.date).toLocaleDateString('fr-FR');
-            // Utilisation de Marked.js pour transformer le Markdown de l'IA en HTML
-            const contenuHTML = (typeof marked !== 'undefined') ? marked.parse(news.contenu) : news.contenu;
+    const newsData = await response.json();
 
-            item.innerHTML = `
+    // On vide les conteneurs avant d'ajouter les données
+    if (liveContainer) liveContainer.innerHTML = '';
+    if (archivesContainer) archivesContainer.innerHTML = '';
+
+    if (newsData.length === 0) {
+      if (liveContainer) liveContainer.innerHTML = "<p>Aucune news pour le moment.</p>";
+      return;
+    }
+
+    newsData.forEach((news, index) => {
+      const item = document.createElement('div');
+      item.className = 'timeline-item';
+
+      const dateStr = new Date(news.date).toLocaleDateString('fr-FR');
+      // Utilisation de Marked.js pour transformer le Markdown de l'IA en HTML
+      const contenuHTML = (typeof marked !== 'undefined') ? marked.parse(news.contenu) : news.contenu;
+
+      item.innerHTML = `
                 <div class="timeline-date">${dateStr}</div>
                 <div class="timeline-content">
                     <h4>${news.version}</h4>
@@ -149,18 +150,18 @@ async function chargerVeille() {
                 </div>
             `;
 
-            // SEPARATION : La première news va dans "Live", les autres dans "Archives"
-            if (index === 0 && liveContainer) {
-                liveContainer.appendChild(item);
-            } else if (archivesContainer) {
-                archivesContainer.appendChild(item);
-            }
-        });
+      // SEPARATION : La première news va dans "Live", les autres dans "Archives"
+      if (index === 0 && liveContainer) {
+        liveContainer.appendChild(item);
+      } else if (archivesContainer) {
+        archivesContainer.appendChild(item);
+      }
+    });
 
-    } catch (error) {
-        console.error("Erreur de chargement :", error);
-        if (liveContainer) liveContainer.innerHTML = `<p>Erreur lors de la récupération des données.</p>`;
-    }
+  } catch (error) {
+    console.error("Erreur de chargement :", error);
+    if (liveContainer) liveContainer.innerHTML = `<p>Erreur lors de la récupération des données.</p>`;
+  }
 }
 
 // Lancement au chargement de la page
