@@ -27,10 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typingElement) {
     const elementsToType = [
       { id: 'typing-welcome', text: 'Bienvenue sur mon portfolio !', speed: 10 }, // Vitesse rapide pour le titre
+      { id: 'typing-title-about', text: 'À propos de moi', speed: 10 },
       { id: 'typing-about', text: 'Je m’appelle Maël Decosse, étudiant en BTS SIO SLAM. Passionné par l’informatique, le développement et l’administration de serveurs.', speed: 20 },
+      { id: 'typing-title-skills', text: 'Mes Compétences Clés', speed: 10 },
       { id: 'typing-skill1', text: 'Programmation : Java, PHP, HTML, CSS, JavaScript, LUA, SQL, Python', speed: 20 },
       { id: 'typing-skill2', text: 'Analyse : Modélisation UML et Merise', speed: 20 },
       { id: 'typing-skill3', text: 'Autres : Bonnes pratiques RGPD, Machines Virtuelles et installation d\'OS', speed: 20 },
+      { id: 'typing-title-interests', text: 'Mes Centres d\'Intérêt', speed: 10 },
       { id: 'typing-interets', text: 'En dehors de l\'informatique, je m\'intéresse à la musique, aux jeux vidéo, au sport et à la création de scripts.', speed: 20 }
     ];
 
