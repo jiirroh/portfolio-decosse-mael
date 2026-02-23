@@ -297,63 +297,38 @@
 
       <!-- NOUVEAU PROJET PERSO : JEU UNITY -->
       <div class="projet-carte" id="projet-unity">
-        <h3>Jeu Vidéo Solo - Unity (C#)</h3>
-        <p class="projet-resume">Création d'un jeu vidéo indépendant sur le moteur Unity, programmation de la physique,
-          des contrôles et du Game Design.</p>
+        <h3>Grand Strategy Game - Unity (C#) & LLM</h3>
+        <p class="projet-resume">Création d'un jeu de Grande Stratégie (type HOI4/Pax Historia) contemporain (~2020).
+          Intégration d'une IA locale (LLM) générant des événements dynamiques.</p>
 
         <button class="btn-voir-plus">Voir les détails techniques</button>
 
         <div class="projet-details">
 
-          <h4 class="detail-titre">1. Le Concept & Développement</h4>
+          <h4 class="detail-titre">1. Le Concept du Jeu</h4>
           <p class="projet-description">
-            En tant que passionné par le monde du jeu vidéo, j'ai décidé de concevoir mon propre jeu solo. L'objectif
-            était de maîtriser un moteur de jeu professionnel (Unity) et le langage C#.
-            <br>La gestion de la tridimensionnalité, de la gravité, et de l'interactivité utilisateur ont été au cœur de
-            ce développement intensif.
+            Passionné par les jeux de gestion "Grand Strategy", je conçois actuellement mon propre jeu centré sur la
+            direction d'une nation dans le monde contemporain (années 2020).
+            <br>Le gameplay repose sur la gestion d'un budget, le maintien de la stabilité politique, l'écoulement du
+            temps, et la prise de décisions gouvernementales.
           </p>
 
-          <h4 class="detail-titre">2. Aspect Technique</h4>
+          <h4 class="detail-titre">2. L'Innovation Clé : IA Locale (LLM)</h4>
           <ul class="projet-liste">
-            <li><strong>Moteur Physique :</strong> Utilisation de Rigidbody et Colliders pour gérer l'environnement.
-            </li>
-            <li><strong>Développement C# :</strong> Scripts de mouvements (Player Controller), gestion de l'UI (Menus,
-              Score) et du Game Manager.</li>
-            <li><strong>Level Design :</strong> Construction des scènes et éclairage avec la pipeline Unity.</li>
+            <li><strong>L'Intelligence d'Événements :</strong> Contrairement aux événements scriptés classiques, le jeu
+              intègre un Modèle de Langage (LLM).</li>
+            <li><strong>Exécution Locale :</strong> L'IA tourne à 100% sur le PC du joueur pour l'autonomie et la
+              rapidité. Lors de l'installation du jeu, le modèle est téléchargé et exécuté en local.</li>
+            <li><strong>Génération Dynamique :</strong> L'IA analyse l'état du pays (argent, stabilité) et s'appuie sur
+              un contexte prédéfini pour générer des événements géopolitiques uniques et cohérents.</li>
           </ul>
 
           <div class="etape-projet">
-            <h5>A. Exemple de Contrôleur Joueur (C#)</h5>
-            <p>Un extrait simplifié montrant comment sont gérés les inputs de saut (Jump) via l'API physique de Unity.
-            </p>
-            <div class="code-container">
-              <pre class="code-block"><code><span class="comment">// PlayerController.cs</span>
-<span class="ctrl">using</span> UnityEngine;
-
-<span class="ctrl">public</span> <span class="kwd">class</span> PlayerController : MonoBehaviour
-{
-    <span class="ctrl">public</span> <span class="type">float</span> jumpForce = 5.0f;
-    <span class="kwd">private</span> Rigidbody rb;
-    <span class="kwd">private</span> <span class="type">bool</span> isGrounded = <span class="ctrl">true</span>;
-
-    <span class="kwd">void</span> Start() {
-        rb = GetComponent&lt;Rigidbody&gt;();
-    }
-
-    <span class="kwd">void</span> Update() {
-        <span class="ctrl">if</span> (Input.GetKeyDown(KeyCode.Space) && isGrounded) {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGrounded = <span class="ctrl">false</span>;
-        }
-    }
-
-    <span class="kwd">private void</span> OnCollisionEnter(Collision collision) {
-        <span class="ctrl">if</span> (collision.gameObject.CompareTag(<span class="type">"Ground"</span>)) {
-            isGrounded = <span class="ctrl">true</span>;
-        }
-    }
-}</code></pre>
-            </div>
+            <h5>A. État Actuel du Projet (WIP)</h5>
+            <p>Le projet est en phase de développement actif au niveau de son architecture logicielle.
+              La logique de gestion du temps (Time Management), des finances (Money Logic), et de l'état du pays
+              (Stability) est écrite en C#.
+              Mon travail actuel se concentre sur l'UI/UX Design et l'intégration C# <-> LLM local.</p>
           </div>
 
           <h4 class="detail-titre">3. Captures de Jeu</h4>
