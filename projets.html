@@ -331,11 +331,28 @@
               Mon travail actuel se concentre sur l'UI/UX Design et l'intégration C# <-> LLM local.</p>
           </div>
 
-          <h4 class="detail-titre">3. Captures de Jeu</h4>
-          <div class="galerie-images" style="gap:20px;">
-            <div
-              style="background:#2d2d2d; padding:40px 20px; text-align:center; border: 1px dashed #555; color:#888; width:48%;">
-              <i><img src="images/unity_gameplay.png" alt="Aperçu du Gameplay" class="projet-image"></i>
+          <h4 class="detail-titre">3. Structure de Données d'un Pays (C#)</h4>
+          <div class="etape-projet">
+            <p>Voici un exemple de <em>ScriptableObject</em> utilisé comme base de données légère pour stocker les
+              informations et l'état de chaque pays jouable dans le jeu :</p>
+            <div class="code-container">
+              <pre class="code-block"><code><span class="ctrl">using</span> UnityEngine;
+
+[<span class="type">CreateAssetMenu</span>(fileName = <span class="func">"NewCountry"</span>, menuName = <span class="func">"PaxModerna/CountryData"</span>)]
+<span class="ctrl">public</span> <span class="kwd">class</span> CountryData : ScriptableObject
+{
+    [<span class="type">Header</span>(<span class="func">"Informations Générales"</span>)]
+    <span class="ctrl">public</span> <span class="type">string</span> countryName;
+    <span class="ctrl">public</span> Sprite flag; <span class="comment">// Pour l'icône du drapeau</span>
+
+    [<span class="type">Header</span>(<span class="func">"Économie"</span>)]
+    <span class="ctrl">public</span> <span class="type">double</span> treasury; <span class="comment">// Argent en banque</span>
+    <span class="ctrl">public</span> <span class="type">float</span> gdpGrowth; <span class="comment">// Croissance du PIB</span>
+
+    [<span class="type">Header</span>(<span class="func">"Politique & Social"</span>)]
+    [<span class="type">Range</span>(0, 100)] <span class="ctrl">public</span> <span class="type">float</span> stability;
+    <span class="ctrl">public</span> <span class="type">string</span> leaderName;
+}</code></pre>
             </div>
           </div>
 
