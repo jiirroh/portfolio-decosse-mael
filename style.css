@@ -530,3 +530,62 @@ footer {
     margin-left: 10px;
     font-style: italic;
 }
+
+/* Nouvelles classes de grille pour les images sans forcer le style CSS en dur */
+.galerie-item-moitie {
+  width: calc(50% - 10px);
+}
+.galerie-item-tiers {
+  width: calc(33.333% - 14px);
+}
+
+/* ======================================================= */
+/* ===== 8. RESPONSIVE MOBILE (SMARTPHONES) ============== */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* Diminution des paddings principaux */
+  main {
+    padding: 0 10px;
+    margin: 15px auto;
+  }
+  
+  /* Réduction de la taille de texte des gros titres */
+  .titre { font-size: 18px; }
+  h2 { font-size: 18px; margin-bottom: 15px; }
+  .exemple h4, .projet-carte h3 { font-size: 16px; }
+  .detail-titre { font-size: 15px; padding-left: 8px; margin-top: 20px; }
+
+  /* Diminution des paddings des cartes et sections */
+  section { padding: 15px; margin-bottom: 15px; }
+  .exemple, .projet-carte, .certification-item { padding: 15px; margin: 15px 0; }
+  .etape-projet { padding: 15px; margin-bottom: 15px; }
+
+  /* Forcer les galeries d'images à s'empiler (1 image par ligne) */
+  .galerie-item-moitie,
+  .galerie-item-tiers {
+    width: 100% !important;
+  }
+
+  /* Laisser plus de place au contenu des arborescences */
+  .arborescence-box {
+    padding: 10px;
+    font-size: 12px;
+    overflow-x: auto; /* Permet le scroll horizontal si le nom du fichier est trop long */
+  }
+
+  /* Graphiques prennent toute la largeur dispo */
+  .graph-wrapper img {
+    max-width: 100%;
+  }
+
+  /* Le sous-menu doit avoir un scroll horizontal au lieu de s'empiler sur 5 lignes */
+  .sub-menu ul {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 0 10px 10px 10px;
+  }
+  .dropdown { margin: 0 5px; }
+  .dropbtn { padding: 8px 12px; font-size: 13px; white-space: nowrap; }
+}
