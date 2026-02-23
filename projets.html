@@ -58,11 +58,17 @@
         </div>
       </li>
       <li class="dropdown">
-        <button class="dropbtn">Projets Personnels ▼</button>
+        <button class="dropbtn">Projet Perso ▼</button>
         <div class="dropdown-content">
-          <a href="#projet-gta">Serveur GTA RP</a>
-          <a href="#projet-portfolio">Portfolio</a>
+          <a href="#projet-gta">Script Roleplay FiveM</a>
+          <a href="#projet-unity">Jeu Vidéo Solo (Unity)</a>
         </div>
+      </li>
+      <button class="dropbtn">Projets Personnels ▼</button>
+      <div class="dropdown-content">
+        <a href="#projet-gta">Serveur GTA RP</a>
+        <a href="#projet-portfolio">Portfolio</a>
+      </div>
       </li>
     </ul>
   </nav>
@@ -286,6 +292,81 @@
           </div>
           <a href="https://github.com/jiirroh/script-fivem-fait-main" target="_blank" class="projet-lien">Voir le code
             sur GitHub</a>
+        </div>
+      </div>
+
+      <!-- NOUVEAU PROJET PERSO : JEU UNITY -->
+      <div class="projet-carte" id="projet-unity">
+        <h3>Jeu Vidéo Solo - Unity (C#)</h3>
+        <p class="projet-resume">Création d'un jeu vidéo indépendant sur le moteur Unity, programmation de la physique,
+          des contrôles et du Game Design.</p>
+
+        <button class="btn-voir-plus">Voir les détails techniques</button>
+
+        <div class="projet-details">
+
+          <h4 class="detail-titre">1. Le Concept & Développement</h4>
+          <p class="projet-description">
+            En tant que passionné par le monde du jeu vidéo, j'ai décidé de concevoir mon propre jeu solo. L'objectif
+            était de maîtriser un moteur de jeu professionnel (Unity) et le langage C#.
+            <br>La gestion de la tridimensionnalité, de la gravité, et de l'interactivité utilisateur ont été au cœur de
+            ce développement intensif.
+          </p>
+
+          <h4 class="detail-titre">2. Aspect Technique</h4>
+          <ul class="projet-liste">
+            <li><strong>Moteur Physique :</strong> Utilisation de Rigidbody et Colliders pour gérer l'environnement.
+            </li>
+            <li><strong>Développement C# :</strong> Scripts de mouvements (Player Controller), gestion de l'UI (Menus,
+              Score) et du Game Manager.</li>
+            <li><strong>Level Design :</strong> Construction des scènes et éclairage avec la pipeline Unity.</li>
+          </ul>
+
+          <div class="etape-projet">
+            <h5>A. Exemple de Contrôleur Joueur (C#)</h5>
+            <p>Un extrait simplifié montrant comment sont gérés les inputs de saut (Jump) via l'API physique de Unity.
+            </p>
+            <div class="code-container">
+              <pre class="code-block"><code><span class="comment">// PlayerController.cs</span>
+<span class="ctrl">using</span> UnityEngine;
+
+<span class="ctrl">public</span> <span class="kwd">class</span> PlayerController : MonoBehaviour
+{
+    <span class="ctrl">public</span> <span class="type">float</span> jumpForce = 5.0f;
+    <span class="kwd">private</span> Rigidbody rb;
+    <span class="kwd">private</span> <span class="type">bool</span> isGrounded = <span class="ctrl">true</span>;
+
+    <span class="kwd">void</span> Start() {
+        rb = GetComponent&lt;Rigidbody&gt;();
+    }
+
+    <span class="kwd">void</span> Update() {
+        <span class="ctrl">if</span> (Input.GetKeyDown(KeyCode.Space) && isGrounded) {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGrounded = <span class="ctrl">false</span>;
+        }
+    }
+
+    <span class="kwd">private void</span> OnCollisionEnter(Collision collision) {
+        <span class="ctrl">if</span> (collision.gameObject.CompareTag(<span class="type">"Ground"</span>)) {
+            isGrounded = <span class="ctrl">true</span>;
+        }
+    }
+}</code></pre>
+            </div>
+          </div>
+
+          <h4 class="detail-titre">3. Captures de Jeu</h4>
+          <div class="galerie-images" style="gap:20px;">
+            <div
+              style="background:#2d2d2d; padding:40px 20px; text-align:center; border: 1px dashed #555; color:#888; width:48%;">
+              <i><img src="images/unity_gameplay.png" alt="Aperçu du Gameplay" class="projet-image"></i>
+            </div>
+          </div>
+
+          <div class="projet-tech">
+            <span>Unity</span><span>C#</span><span>Moteur Physique</span><span>Game Design</span>
+          </div>
         </div>
       </div>
 
