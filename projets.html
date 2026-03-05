@@ -62,6 +62,7 @@
         <div class="dropdown-content">
           <a href="#projet-gta">Script Roleplay FiveM</a>
           <a href="#projet-unity">Jeu Vidéo Solo (Unity)</a>
+          <a href="#projet-discord">Bot Discord (Python/IA)</a>
         </div>
       </li>
     </ul>
@@ -359,6 +360,69 @@
 
           <div class="projet-tech">
             <span>Unity</span><span>C#</span><span>Moteur Physique</span><span>Game Design</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOUVEAU PROJET PERSO : BOT DISCORD -->
+      <div class="projet-carte" id="projet-discord">
+        <h3>Bot Discord - Veille Automatisée (Python & IA)</h3>
+        <p class="projet-resume">Création d'un bot Discord automatisant une veille géopolitique et cybersécurité via la
+          lecture de flux RSS et de l'API Conflictly, résumée par l'API Gemini.</p>
+
+        <button class="btn-voir-plus">Voir les détails techniques</button>
+
+        <div class="projet-details">
+
+          <h4 class="detail-titre">1. Le Concept du Bot</h4>
+          <p class="projet-description">
+            Ce projet vise à automatiser la collecte et l'analyse d'informations ciblées (géopolitique, cybersécurité,
+            actualités).
+            <br>Le script Python parcourt un ensemble de sources (Flux RSS du Monde, Figaro, France Info, Hacker News,
+            Bleeping Computer, ZATAZ, France 24, ainsi que l'API Conflictly), extrait le contenu brut, le fait résumer
+            par une intelligence artificielle (Gemini 2.5 Flash de Google), puis envoie le résultat sur un serveur
+            Discord via un Webhook.
+          </p>
+
+          <h4 class="detail-titre">2. L'Architecture Technique</h4>
+          <ul class="projet-liste">
+            <li><strong>Collecte des Données (Scraping/RSS) :</strong> Utilisation de <code>feedparser</code> pour lire
+              les flux RSS et de <code>trafilatura</code> pour extraire rapidement et proprement le texte des articles
+              sans le superflu HTML. Requêtes <code>requests</code> vers l'API Conflictly.</li>
+            <li><strong>Synthèse par IA (LLM) :</strong> Intégration du modèle <code>gemini-2.5-flash</code> via l'API
+              <code>google-genai</code>. Un prompt stict force l'IA à résumer l'article en 3 points essentiels
+              uniquement, peu importe la taille ou le format d'entrée (texte ou JSON).</li>
+            <li><strong>Notification :</strong> Envoi des données formatées directement dans un salon Discord via un
+              Webhook.</li>
+          </ul>
+
+          <h4 class="detail-titre">3. Extrait de Code (Python)</h4>
+          <div class="etape-projet">
+            <p>Voici la fonction chargée de générer le résumé via l'API Gemini :</p>
+            <div class="code-container">
+              <pre class="code-block"><code><span class="ctrl">def</span> <span class="func">summarize_text</span>(text, source_name=<span class="func">"Un article"</span>):
+    <span class="type">print</span>(<span class="func">f"Generating summary for {source_name} with Gemini API..."</span>)
+    prompt = (
+        <span class="func">f"Voici des données brutes (texte ou JSON) provenant de la source : {source_name}.\n"</span>
+        <span class="func">"Fais-moi un résumé très concis de l'événement en français, sous la forme "</span>
+        <span class="func">"d'exactement 3 bullet points. Va directement à l'essentiel, "</span>
+        <span class="func">"sans introduction ni conclusion supplémentaires.\n\n"</span>
+        <span class="func">f"Données:\n{text}"</span>
+    )
+    <span class="kwd">try</span>:
+        response = client.models.<span class="type">generate_content</span>(
+            model=<span class="func">'gemini-2.5-flash'</span>,
+            contents=prompt
+        )
+        <span class="ctrl">return</span> response.text.<span class="type">strip</span>()
+    <span class="kwd">except</span> <span class="type">Exception</span> <span class="kwd">as</span> e:
+        <span class="type">print</span>(<span class="func">f"Error generating summary: {e}"</span>)
+        <span class="ctrl">return</span> <span class="kwd">None</span></code></pre>
+            </div>
+          </div>
+
+          <div class="projet-tech">
+            <span>Python</span><span>API Gemini (LLM)</span><span>Flux RSS</span><span>Discord Webhook</span>
           </div>
         </div>
       </div>
