@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hevil Game Prototype</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <button id="hintButton">💡 Astuce</button>
+        <div id="hintDisplay" style="display: none;"></div>
+        <div id="endMenu" style="display: none;">
+            <h2>Félicitations !</h2>
+            <p>Vous avez battu THE terminal game !</p>
+            <p>Morts totales : <span id="finalDeathCount">0</span></p>
+            <button id="restartButton">Rejouer</button>
+        </div>
+        <div id="terminal" style="display: none;">
+            <div id="terminal-output">user@hevil-os:~$ press T to hack system</div>
+            <div id="terminal-prompt-line">
+                <span>user@hevil-os:~$</span>
+                <input type="text" id="terminal-input" autocomplete="off" spellcheck="false">
+            </div>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+
+</html>

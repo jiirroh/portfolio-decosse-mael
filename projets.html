@@ -63,6 +63,7 @@
           <a href="#projet-gta">Script Roleplay FiveM</a>
           <a href="#projet-unity">Jeu Vidéo Solo (Unity)</a>
           <a href="#projet-discord">Bot Discord (Python/IA)</a>
+          <a href="#projet-hevil">Jeu Web Hevil (JS)</a>
         </div>
       </li>
     </ul>
@@ -391,7 +392,8 @@
               sans le superflu HTML. Requêtes <code>requests</code> vers l'API Conflictly.</li>
             <li><strong>Synthèse par IA (LLM) :</strong> Intégration du modèle <code>gemini-2.5-flash</code> via l'API
               <code>google-genai</code>. Un prompt stict force l'IA à résumer l'article en 3 points essentiels
-              uniquement, peu importe la taille ou le format d'entrée (texte ou JSON).</li>
+              uniquement, peu importe la taille ou le format d'entrée (texte ou JSON).
+            </li>
             <li><strong>Notification :</strong> Envoi des données formatées directement dans un salon Discord via un
               Webhook.</li>
           </ul>
@@ -423,6 +425,46 @@
 
           <div class="projet-tech">
             <span>Python</span><span>API Gemini (LLM)</span><span>Flux RSS</span><span>Discord Webhook</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOUVEAU PROJET PERSO : HEVIL GAME -->
+      <div class="projet-carte" id="projet-hevil">
+        <h3>Hevil Game - "Rage Game" Web (JS Vanilla)</h3>
+        <p class="projet-resume">Création d'un jeu de plateforme web 2D punitif où le joueur doit utiliser des commandes
+          Terminal pour hacker les niveaux et contourner les obstacles.</p>
+
+        <a href="hevil-game/index.html" target="_blank" class="btn-voir-plus"
+          style="display:inline-block; text-decoration:none; text-align:center; background-color:#4af626; color:black; margin-bottom: 10px;">►
+          Jouer au Jeu dans le Navigateur</a>
+        <button class="btn-voir-plus">Voir les détails techniques</button>
+
+        <div class="projet-details">
+
+          <h4 class="detail-titre">1. Le Concept du Jeu</h4>
+          <p class="projet-description">
+            Hevil Game est un prototype de jeu d'aventure développé intégralement côté client (Front-End) sans aucun
+            moteur prêt à l'emploi.
+            Le gameplay allie la dextérité de la plateforme classique avec une mécanique de puzzle unique : <strong>un
+              terminal de commande intégré</strong> (Touche 'T') permet au joueur d'injecter des commandes fictives (ex:
+            <code>sudo rm -rf /wall</code> ou <code>sysctl -w player.speed=800</code>) pour hacker la physique du jeu.
+          </p>
+
+          <h4 class="detail-titre">2. Architecture & Moteur 2D</h4>
+          <ul class="projet-liste">
+            <li><strong>Boucle de Jeu Native :</strong> Utilisation exclusive de l'API HTML5 <code>Canvas</code> et de
+              <code>requestAnimationFrame</code> couplé à un <code>deltaTime</code> pour une physique indépendante du
+              framerate.</li>
+            <li><strong>Physique & Collisions :</strong> Conception d'un moteur de physique de base (Gravité, Vecteurs
+              de vitesse, Sauts) et gestion des collisions rigides 2D avec des boîtes <strong>AABB</strong>
+              (Axis-Aligned Bounding Box).</li>
+            <li><strong>Niveaux Data-Driven :</strong> Génération procédurale des niveaux à partir de tableaux modélisés
+              (LevelMap), couplés à un système d'évènements (Triggers) invisibles pour les pièges dynamiques.</li>
+          </ul>
+
+          <div class="projet-tech">
+            <span>JavaScript (ES6)</span><span>HTML5 Canvas</span><span>Game Design</span><span>Algo Collisions</span>
           </div>
         </div>
       </div>
