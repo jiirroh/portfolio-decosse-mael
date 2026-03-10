@@ -64,9 +64,9 @@ const levels = [
             ];
             triggers = [];
         },
-        hint: "sudo rm -rf /wall",
+        hint: "Je peux effacer et je suis un mur.",
         onCommand: function (cmd) {
-            if (cmd === 'sudo rm -rf /wall') {
+            if (cmd === 'sudo rm wall') {
                 for (let r = 0; r < rows; r++) {
                     for (let c = 0; c < cols; c++) {
                         if (levelMap[r][c] === 3) levelMap[r][c] = 0;
@@ -99,9 +99,9 @@ const levels = [
             ];
             triggers = [];
         },
-        hint: "export GRAVITY=400",
+        hint: "Je suis la gravité et je vaux 400.",
         onCommand: function (cmd) {
-            if (cmd === 'export GRAVITY=400') {
+            if (cmd === 'gravity 400') {
                 player.gravity = 400;
                 return true;
             }
@@ -131,9 +131,9 @@ const levels = [
             ];
             triggers = [];
         },
-        hint: "sudo chmod 777 /door",
+        hint: "Je peux déverrouiller et je suis une porte.",
         onCommand: function (cmd) {
-            if (cmd === 'sudo chmod 777 /door') {
+            if (cmd === 'unlock door') {
                 for (let r = 0; r < rows; r++) {
                     for (let c = 0; c < cols; c++) {
                         if (levelMap[r][c] === 4) levelMap[r][c] = 0;
@@ -167,9 +167,9 @@ const levels = [
             ];
             triggers = [];
         },
-        hint: "sysctl -w player.speed=800",
+        hint: "Je suis la vitesse et je vaux 800.",
         onCommand: function (cmd) {
-            if (cmd === 'sysctl -w player.speed=800') {
+            if (cmd === 'speed 800') {
                 player.speed = 800;
                 return true;
             }
@@ -199,12 +199,12 @@ const levels = [
             ];
             triggers = [];
         },
-        hint: "sudo ufw disable && export GRAVITY=400",
+        hint: "Je désactive le pare-feu et la gravité vaut 400.",
         onCommand: function (cmd) {
             let success = false;
 
             // Allow chaining with && or running separately
-            if (cmd.includes('sudo ufw disable')) {
+            if (cmd.includes('disable firewall')) {
                 for (let r = 0; r < rows; r++) {
                     for (let c = 0; c < cols; c++) {
                         if (levelMap[r][c] === 5) levelMap[r][c] = 0;
@@ -212,7 +212,7 @@ const levels = [
                 }
                 success = true;
             }
-            if (cmd.includes('export GRAVITY=400')) {
+            if (cmd.includes('gravity 400')) {
                 player.gravity = 400;
                 success = true;
             }
@@ -297,6 +297,13 @@ window.addEventListener('keydown', (e) => {
     }
 
     if (isPaused) {
+        if (e.code === 'Escape') {
+            isPaused = false;
+            terminalDiv.style.display = 'none';
+            terminalInput.blur();
+            return;
+        }
+
         if (e.code === 'Enter') {
             const cmd = terminalInput.value.trim();
             if (cmd === 'exit') {
