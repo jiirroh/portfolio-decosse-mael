@@ -1,0 +1,123 @@
+{
+  "name": "Veille Tech - GitHub RSS vers Ollama",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://github.com/overextended/ox_inventory/releases.atom"
+      },
+      "id": "1d2e3f4g",
+      "name": "RSS Feed GitHub (ox_inventory)",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=http://localhost:11434/api/generate",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "llama3"
+            },
+            {
+              "name": "system",
+              "value": "Tu es un Lead Developer expert spécialisé dans le framework FiveM et le langage Lua (notamment sur l'architecture Overextended/ox). Ta mission est d'analyser les notes de mise à jour (release notes) ou les commits GitHub fournis.\n\nRègles strictes :\n1. Analyse : Explique clairement ce qui a changé techniquement de manière pédagogique pour un développeur Junior.\n2. Dictionnaire : Si des termes techniques spécifiques sont mentionnés (ex: statebag, inv_busy, hooks, net events), explique brièvement ce que c'est et à quoi ça sert dans le contexte de FiveM.\n3. Impact : Évalue l'impact de la mise à jour (Est-ce critique ? Cela améliore-t-il la performance, la sécurité, ou l'expérience développeur ?).\n4. Format de sortie : Utilise le format Markdown proprement.\n5. Langue : Réponds UNIQUEMENT en français, avec un ton professionnel et didactique."
+            },
+            {
+              "name": "prompt",
+              "value": "={{ $json.content }}"
+            },
+            {
+              "name": "stream",
+              "value": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2e3f4g5h",
+      "name": "Ollama Llama3 (API Locale)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "date",
+              "value": "={{ $('RSS Feed GitHub (ox_inventory)').item.json.pubDate }}"
+            },
+            {
+              "name": "version",
+              "value": "={{ $('RSS Feed GitHub (ox_inventory)').item.json.title }}"
+            },
+            {
+              "name": "contenu",
+              "value": "={{ $json.response }}"
+            },
+            {
+              "name": "lien",
+              "value": "={{ $('RSS Feed GitHub (ox_inventory)').item.json.link }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3f4g5h6i",
+      "name": "Formatage JSON",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "RSS Feed GitHub (ox_inventory)": {
+      "main": [
+        [
+          {
+            "node": "Ollama Llama3 (API Locale)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Llama3 (API Locale)": {
+      "main": [
+        [
+          {
+            "node": "Formatage JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f0fe67ba-4e45-4299-a1b7-d1a123f12345",
+  "id": "rU9w7K6xH8pL2mN1",
+  "meta": {
+    "templateId": "veille-github-ollama"
+  },
+  "tags": []
+}
