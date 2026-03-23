@@ -190,17 +190,56 @@
       </div>
 
       <div class="projet-carte" id="projet-canispro">
-        <h3>CanisPro Éducation</h3>
+        <h3>Application Web - CanisPro Éducation</h3>
         <p class="projet-resume">Développement d'une application web complète pour la gestion d'un centre d'éducation canine.</p>
-        <button class="btn-voir-plus">Voir plus de détails</button>
+        
+        <button class="btn-voir-plus">Voir l'étude de cas complète</button>
+        
         <div class="projet-details">
+          
+          <h4 class="detail-titre">1. Contexte & Objectifs</h4>
           <p class="projet-description">
-            Le projet vise à développer une application web pour le centre d'éducation canine « CanisPro Éducation » afin de remplacer la gestion manuelle (papier/tableurs) par une solution moderne, sécurisée et professionnelle. L'objectif est de centraliser les informations, d'optimiser l'organisation des activités et de faciliter la communication entre les différents acteurs.
+            Le projet vise à développer une application web pour le centre d'éducation canine « CanisPro Éducation » afin de remplacer la gestion manuelle (papier/tableurs) par une solution moderne, sécurisée et professionnelle. 
+            <br><em>Objectif :</em> Centraliser les informations, optimiser l'organisation des activités et faciliter la communication entre les différents acteurs (clients, éducateurs).
           </p>
-          <div class="projet-tech">
-            <span>Application Web</span><span>Gestion logicielle</span><span>Travail de groupe</span>
+
+          <h4 class="detail-titre">2. Architecture & Outils</h4>
+          <ul class="projet-liste">
+            <li><strong>Langages & Stack :</strong> HTML/CSS, PHP, SQL.</li>
+            <li><strong>Base de données :</strong> Modélisation relationnelle (Merise) et base MySQL pour stocker les chiens, clients et plannings.</li>
+            <li><strong>Travail d'équipe :</strong> Utilisation de Git/GitHub pour la collaboration à plusieurs développeurs.</li>
+          </ul>
+
+          <h4 class="detail-titre">3. Interface Utilisateur</h4>
+          <div class="etape-projet">
+            <p>Conception d'un tableau de bord intuitif permettant aux administrateurs de gerer les sessions d'éducation et les fiches des propriétaires.</p>
+            <img src="images/canispro_dashboard.png" alt="Aperçu du tableau de bord CanisPro" class="projet-image" onerror="this.src='images/pic_midi.jpg'; this.alt='Image temporaire';">
           </div>
-          <a href="https://github.com/jiirroh/CanisProGroupe-4" target="_blank" class="projet-lien">Voir sur GitHub</a>
+
+          <h4 class="detail-titre">4. Extrait de Code (PHP)</h4>
+          <div class="etape-projet">
+            <p>Voici un exemple de méthode chargée de récupérer la liste des chiens associés à un client spécifique via PDO :</p>
+            <div class="code-container">
+              <pre class="code-block"><code><span class="ctrl">public function</span> <span class="func">getChiensByClient</span>($idClient) {
+    <span class="kwd">try</span> {
+        $sql = <span class="func">"SELECT * FROM Chien WHERE id_client = :id"</span>;
+        $stmt = $this-&gt;db-&gt;<span class="type">prepare</span>($sql);
+        $stmt-&gt;<span class="type">bindParam</span>(<span class="func">':id'</span>, $idClient, PDO::PARAM_INT);
+        $stmt-&gt;<span class="type">execute</span>();
+        
+        <span class="ctrl">return</span> $stmt-&gt;<span class="type">fetchAll</span>(PDO::FETCH_ASSOC);
+    } <span class="kwd">catch</span>(PDOException $e) {
+        <span class="type">error_log</span>(<span class="func">"Erreur SQL : "</span> . $e-&gt;<span class="type">getMessage</span>());
+        <span class="ctrl">return</span> [];
+    }
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="projet-tech">
+            <span>PHP</span><span>MySQL</span><span>HTML/CSS</span><span>Git</span><span>Travail de groupe</span>
+          </div>
+          <a href="https://github.com/jiirroh/CanisProGroupe-4" target="_blank" class="projet-lien">Voir le dépôt GitHub</a>
         </div>
       </div>
 
