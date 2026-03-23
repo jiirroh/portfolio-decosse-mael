@@ -134,19 +134,29 @@ async function chargerVeille() {
       // Utilisation de Marked.js pour transformer le Markdown de l'IA en HTML
       const contenuHTML = (typeof marked !== 'undefined') ? marked.parse(news.contenu) : news.contenu;
 
-      item.innerHTML = `
-                <div class="timeline-date">${dateStr}</div>
-                <div class="timeline-content">
-                    <h4>${news.version}</h4>
+      // SEPARATION : La première news va dans "Live", les autres dans "Archives"
+      if (index === 0 && liveContainer) {
+        item.innerHTML = `
+            <div class="timeline-date">${dateStr}</div>
+            <div class="timeline-content">
+                <h4>${news.version}</h4>
+                <div class="news-text">${contenuHTML}</div>
+                <a href="${news.lien}" target="_blank" class="projet-lien">Voir la source</a>
+            </div>
+        `;
+        liveContainer.appendChild(item);
+      } else if (archivesContainer) {
+        item.innerHTML = `
+            <details style="background: var(--couleur-sous-menu-fond); padding: 10px; border-radius: 8px; margin-bottom: 15px; border: 1px solid var(--couleur-bordure);">
+                <summary style="cursor: pointer; font-weight: bold; outline: none; padding: 5px;">
+                    <span class="timeline-date">${dateStr}</span> - <span style="font-family: 'Montserrat', sans-serif; color: var(--couleur-texte-sombre);">${news.version}</span>
+                </summary>
+                <div class="timeline-content" style="margin-top: 10px; padding-left: 10px; border-left: 2px solid var(--couleur-principale);">
                     <div class="news-text">${contenuHTML}</div>
                     <a href="${news.lien}" target="_blank" class="projet-lien">Voir la source</a>
                 </div>
-            `;
-
-      // SEPARATION : La première news va dans "Live", les autres dans "Archives"
-      if (index === 0 && liveContainer) {
-        liveContainer.appendChild(item);
-      } else if (archivesContainer) {
+            </details>
+        `;
         archivesContainer.appendChild(item);
       }
     });
