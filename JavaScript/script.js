@@ -126,6 +126,9 @@ async function chargerVeille() {
       return;
     }
 
+    // Tri des news de la plus récente à la plus ancienne
+    newsData.sort((a, b) => new Date(b.date) - new Date(a.date));
+
     newsData.forEach((news, index) => {
       const item = document.createElement('div');
       item.className = 'timeline-item';
