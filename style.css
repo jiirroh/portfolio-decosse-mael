@@ -128,8 +128,8 @@ nav ul li a.active {
   .hamburger { display: block; }
 }
 
-/* Bouton Thème (Lune/Soleil) */
-.theme-btn {
+/* Bouton Thème (Lune/Soleil) et Langue */
+.theme-btn, .lang-btn {
   background: none;
   border: 1px solid var(--couleur-texte-clair);
   color: var(--couleur-texte-clair);
@@ -138,15 +138,28 @@ nav ul li a.active {
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s;
-  margin: 0 15px;
+  margin: 0 5px;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
+  font-size: 14px;
 }
 .theme-btn .icon-sun { display: none; }
 .theme-btn .icon-moon { display: block; }
 body.dark-mode .theme-btn .icon-sun { display: block; }
 body.dark-mode .theme-btn .icon-moon { display: none; }
+
+/* Masquer la bannière moche de Google Translate */
+body {
+  top: 0 !important;
+}
+.skiptranslate iframe {
+  display: none !important;
+}
+#google_translate_element {
+  display: none; /* On cache le widget classique, on utilise notre bouton */
+}
 
 /* ======================================================= */
 /* ===== 4. STRUCTURE PRINCIPALE (MAIN, FOOTER) ========== */

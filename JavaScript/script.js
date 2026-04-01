@@ -12,6 +12,49 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // 1.5 GESTION DE LA TRADUCTION
+  const langToggle = document.getElementById("lang-toggle");
+  if (langToggle) {
+    // Inject the Google Translate Script
+    const addScript = document.createElement("script");
+    addScript.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    document.body.appendChild(addScript);
+
+    window.googleTranslateElementInit = function() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'fr',
+        includedLanguages: 'en,fr',
+        autoDisplay: false
+      }, 'google_translate_element');
+    };
+
+    // Obtenir la langue actuelle
+    let currentLang = localStorage.getItem("lang") || "fr";
+    langToggle.textContent = currentLang === "fr" ? "EN" : "FR";
+
+    langToggle.addEventListener("click", () => {
+      currentLang = currentLang === "fr" ? "en" : "fr";
+      localStorage.setItem("lang", currentLang);
+      langToggle.textContent = currentLang === "fr" ? "EN" : "FR";
+      
+      // Trouver la combobox cachée de Google Translate et changer la valeur
+      const select = document.querySelector(".goog-te-combo");
+      if (select) {
+        select.value = currentLang;
+        select.dispatchEvent(new Event("change"));
+      }
+    });
+
+    // Restaurer la langue après le chargement de google translate
+    setTimeout(() => {
+      const select = document.querySelector(".goog-te-combo");
+      if (select && currentLang === "en") {
+        select.value = currentLang;
+        select.dispatchEvent(new Event("change"));
+      }
+    }, 1000); // Petit délai pour laisser Google Translate s'initialiser
+  }
+
   // 2. MENU HAMBURGER
   const hamburger = document.querySelector(".hamburger");
   const menu = document.querySelector(".menu");
