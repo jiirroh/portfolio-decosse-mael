@@ -87,6 +87,20 @@ Dictionnaire : Si des termes techniques sont mentionnés (ex: statebag, inv_busy
 Impact : Est-ce que c'est critique ? Est-ce que ça améliore la performance ou la sécurité ?
 Réponds en français, avec un ton professionnel et pédagogique."</pre>
       </div>
+      <h4 class="detail-titre">3. Déploiement Local : Script Automatisé (Batch)</h4>
+      <p>Afin de rendre ce processus aussi fluide que possible, j'ai développé un script Batch (exécutable en un clic depuis mon bureau). Celui-ci se charge d'initialiser tout l'environnement local requis : démarrage du modèle d'IA (Ollama) sur un espace de stockage dédié et lancement du serveur réseau (n8n) pour forcer la mise à jour.</p>
+      
+      <div class="code-container" style="background-color: var(--couleur-code-fond); padding: 15px; border-radius: 8px; border: 1px solid var(--couleur-bordure); margin-bottom: 20px;">
+        <pre style="color: #d4d4d4; white-space: pre-wrap; font-size: 0.9em;">
+:: 1. Lancement de l'IA (Ollama sur Disque F:)
+start "IA - Ollama" cmd /k "F: && cd \Program Files\Ollama && set OLLAMA_VULKAN=1 && ollama serve"
+
+:: 2. Lancement de l'Automatisation (n8n)
+start "n8n - Automatisation" cmd /k "npx n8n"
+
+:: 3. Ouverture de l'interface Web
+start "" "http://localhost:5678"</pre>
+      </div>
     </section>
 
     <section id="veille-flux">
