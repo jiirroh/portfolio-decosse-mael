@@ -154,11 +154,20 @@ body.dark-mode .theme-btn .icon-moon { display: none; }
 body {
   top: 0 !important;
 }
-.skiptranslate iframe {
+.skiptranslate iframe, .goog-te-banner-frame {
   display: none !important;
 }
 #google_translate_element {
   display: none; /* On cache le widget classique, on utilise notre bouton */
+}
+
+/* Masquer le tooltip "Texte d'origine" au survol */
+#goog-gt-tt, .goog-te-balloon-frame {
+  display: none !important;
+}
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
 }
 
 /* ======================================================= */
