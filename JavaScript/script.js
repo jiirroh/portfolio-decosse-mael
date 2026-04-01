@@ -171,6 +171,7 @@ async function chargerVeille() {
 
     // Tri des news de la plus récente à la plus ancienne
     newsData.sort((a, b) => new Date(b.date) - new Date(a.date));
+    let aEteAjouteArchive = false;
 
     newsData.forEach((news, index) => {
       const item = document.createElement('div');
@@ -204,8 +205,13 @@ async function chargerVeille() {
             </details>
         `;
         archivesContainer.appendChild(item);
+        aEteAjouteArchive = true;
       }
     });
+
+    if (archivesContainer && !aEteAjouteArchive) {
+        archivesContainer.innerHTML = "<p>Aucune archive disponible pour le moment.</p>";
+    }
 
   } catch (error) {
     console.error("Erreur de chargement :", error);
