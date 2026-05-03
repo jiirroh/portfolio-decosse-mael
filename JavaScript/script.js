@@ -12,48 +12,79 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 1.5 GESTION DE LA TRADUCTION
+  // 1.5 GESTION DE LA TRADUCTION (Custom native i18n)
   const langToggle = document.getElementById("lang-toggle");
+  let currentLang = localStorage.getItem("lang") || "fr";
+  window.translateText = function(text) { return text; };
+
+  async function loadAndApplyTranslations() {
+      try {
+          if (!window.siteTranslations) {
+              const res = await fetch('JavaScript/translations.js');
+              const scriptText = await res.text();
+              eval(scriptText); // Charge window.siteTranslations
+          }
+      } catch (e) {
+          console.error("Translation missing", e);
+      }
+
+      if (window.siteTranslations) {
+          const reverseDict = {};
+          for (const [fr, en] of Object.entries(window.siteTranslations)) {
+              reverseDict[en] = fr;
+          }
+
+          window.translateText = function(text) {
+              if (!text) return text;
+              let trim = text.trim();
+              if (currentLang === "en" && window.siteTranslations[trim]) {
+                  return text.replace(trim, window.siteTranslations[trim]);
+              } else if (currentLang === "fr" && reverseDict[trim]) {
+                  return text.replace(trim, reverseDict[trim]);
+              }
+              return text;
+          };
+      }
+
+      function walkDOM(node) {
+          if (node.nodeType === Node.TEXT_NODE) {
+              node.nodeValue = window.translateText(node.nodeValue);
+          } else if (node.nodeType === Node.ELEMENT_NODE) {
+              if (node.tagName === 'SCRIPT' || node.tagName === 'STYLE') return;
+              if (node.hasAttribute('title')) node.setAttribute('title', window.translateText(node.getAttribute('title')));
+              if (node.hasAttribute('placeholder')) node.setAttribute('placeholder', window.translateText(node.getAttribute('placeholder')));
+              
+              // On ignore les elements du typewriter pour éviter que la marche du DOM n'interfère pendant qu'il tape
+              if (node.id && node.id.startsWith("typing-")) return;
+              
+              for (let child of node.childNodes) walkDOM(child);
+          }
+      }
+
+      walkDOM(document.body);
+  }
+
   if (langToggle) {
-    // Inject the Google Translate Script
-    const addScript = document.createElement("script");
-    addScript.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-    document.body.appendChild(addScript);
+      const gTranslate = document.getElementById("google_translate_element");
+      if (gTranslate) gTranslate.remove();
 
-    window.googleTranslateElementInit = function() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'fr',
-        includedLanguages: 'en,fr',
-        autoDisplay: false
-      }, 'google_translate_element');
-    };
-
-    // Obtenir la langue actuelle
-    let currentLang = localStorage.getItem("lang") || "fr";
-    langToggle.textContent = currentLang === "fr" ? "EN" : "FR";
-
-    langToggle.addEventListener("click", () => {
-      currentLang = currentLang === "fr" ? "en" : "fr";
-      localStorage.setItem("lang", currentLang);
       langToggle.textContent = currentLang === "fr" ? "EN" : "FR";
       
-      // Trouver la combobox cachée de Google Translate et changer la valeur
-      const select = document.querySelector(".goog-te-combo");
-      if (select) {
-        select.value = currentLang;
-        select.dispatchEvent(new Event("change"));
-      }
-    });
-
-    // Restaurer la langue après le chargement de google translate
-    setTimeout(() => {
-      const select = document.querySelector(".goog-te-combo");
-      if (select && currentLang === "en") {
-        select.value = currentLang;
-        select.dispatchEvent(new Event("change"));
-      }
-    }, 1000); // Petit délai pour laisser Google Translate s'initialiser
+      langToggle.addEventListener("click", () => {
+          currentLang = currentLang === "fr" ? "en" : "fr";
+          localStorage.setItem("lang", currentLang);
+          langToggle.textContent = currentLang === "fr" ? "EN" : "FR";
+          loadAndApplyTranslations().then(() => {
+              // Rafraichir le typewriter instantanément
+              if(typeof window.refreshTypewriter === 'function') window.refreshTypewriter();
+          });
+      });
   }
+
+  // On lance le chargement des traductions avant le reste
+  loadAndApplyTranslations().then(() => {
+      startTypewriter();
+  });
 
   // 2. MENU HAMBURGER
   const hamburger = document.querySelector(".hamburger");
@@ -66,37 +97,53 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 3. EFFET MACHINE À ÉCRIRE (uniquement sur l'accueil)
-  const typingElement = document.getElementById('typing-welcome');
-  if (typingElement) {
-    const elementsToType = [
-      { id: 'typing-welcome', text: 'Bienvenue sur mon portfolio !', speed: 10 }, // Vitesse rapide pour le titre
-      { id: 'typing-title-about', text: 'À propos de moi', speed: 10 },
-      { id: 'typing-about', text: 'Je m’appelle Maël Decosse, étudiant en BTS SIO SLAM. Passionné par l’informatique, le développement et l’administration de serveurs.', speed: 20 },
-      { id: 'typing-title-skills', text: 'Mes Compétences Clés', speed: 10 },
-      { id: 'typing-skill1', text: 'Programmation : Java, PHP, HTML, CSS, JavaScript, LUA, SQL, Python', speed: 20 },
-      { id: 'typing-skill2', text: 'Analyse : Modélisation UML et Merise', speed: 20 },
-      { id: 'typing-skill3', text: 'Autres : Bonnes pratiques RGPD, Machines Virtuelles et installation d\'OS', speed: 20 },
-      { id: 'typing-title-interests', text: 'Mes Centres d\'Intérêt', speed: 10 },
-      { id: 'typing-interets', text: 'En dehors de l\'informatique, je m\'intéresse à la musique, aux jeux vidéo, au sport et à la création de scripts.', speed: 20 }
-    ];
+  window.refreshTypewriter = null;
 
-    elementsToType.forEach(elementData => {
-      const targetElement = document.getElementById(elementData.id);
-      if (targetElement) {
-        let charIndex = 0;
-        const currentSpeed = elementData.speed || 20;
+  function startTypewriter() {
+    const typingElement = document.getElementById('typing-welcome');
+    if (typingElement) {
+      const elementsToType = [
+        { id: 'typing-welcome', text: 'Bienvenue sur mon portfolio !', speed: 10 }, // Vitesse rapide pour le titre
+        { id: 'typing-title-about', text: 'À propos de moi', speed: 10 },
+        { id: 'typing-about', text: 'Je m’appelle Maël Decosse, étudiant en BTS SIO SLAM. Passionné par l’informatique, le développement et l’administration de serveurs.', speed: 20 },
+        { id: 'typing-title-skills', text: 'Mes Compétences Clés', speed: 10 },
+        { id: 'typing-skill1', text: 'Programmation : Java, PHP, HTML, CSS, JavaScript, LUA, SQL, Python', speed: 20 },
+        { id: 'typing-skill2', text: 'Analyse : Modélisation UML et Merise', speed: 20 },
+        { id: 'typing-skill3', text: 'Autres : Bonnes pratiques RGPD, Machines Virtuelles et installation d\'OS', speed: 20 },
+        { id: 'typing-title-interests', text: 'Mes Centres d\'Intérêt', speed: 10 },
+        { id: 'typing-interets', text: 'En dehors de l\'informatique, je m\'intéresse à la musique, aux jeux vidéo, au sport et à la création de scripts.', speed: 20 }
+      ];
 
-        function typeChar() {
-          if (charIndex < elementData.text.length) {
-            targetElement.innerHTML += elementData.text.charAt(charIndex);
-            charIndex++;
-            setTimeout(typeChar, currentSpeed);
+      // Refresh function used by language toggle
+      window.refreshTypewriter = function() {
+          elementsToType.forEach(elementData => {
+              const targetElement = document.getElementById(elementData.id);
+              if (targetElement && targetElement.innerHTML !== "") {
+                  // Instant replace if language changes
+                  targetElement.innerHTML = window.translateText(elementData.text);
+              }
+          });
+      };
+
+      elementsToType.forEach(elementData => {
+        const targetElement = document.getElementById(elementData.id);
+        if (targetElement && targetElement.innerHTML === "") {
+          let charIndex = 0;
+          const currentSpeed = elementData.speed || 20;
+          const textToType = window.translateText(elementData.text);
+
+          function typeChar() {
+            if (charIndex < textToType.length) {
+              targetElement.innerHTML += textToType.charAt(charIndex);
+              charIndex++;
+              setTimeout(typeChar, currentSpeed);
+            }
           }
-        }
 
-        typeChar();
-      }
-    });
+          typeChar();
+        }
+      });
+    }
   }
 
   // 4. BOUTONS "VOIR PLUS" (Projets, CV, Oral)
