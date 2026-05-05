@@ -51,47 +51,59 @@
   </header>
 
   <main>
-    <section id="veille-presentation">
-      <h2>Veille Technologique : Automatisation & IA</h2>
-      <p class="projet-description">
-        Ma veille technologique porte sur l'évolution du framework <strong>Ox (Overextended)</strong> pour FiveM. Pour
-        traiter efficacement la masse d'informations techniques, j'ai conçu un pipeline d'automatisation exploitant
-        l'IA.
-      </p>
-
-      <h4 class="detail-titre">1. Architecture du Pipeline (Workflow n8n)</h4>
-      <p>Le workflow repose sur une suite de nœuds orchestrés dans n8n. Il surveille les flux RSS des dépôts GitHub pour
-        détecter les nouvelles mises à jour techniques.</p>
-
-      <div class="graph-wrapper">
-        <img src="./images/workflowVeille.png" alt="Workflow n8n automatisé" class="projet-image">
+    <div class="choix-veille" style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 30px; justify-content: center;">
+      <div class="oral-card exemple" id="card-ox" style="cursor: pointer; flex: 1; min-width: 250px; border: 2px solid var(--couleur-principale); margin: 0; padding: 15px; transition: transform 0.2s;">
+        <h3 style="font-size: 18px; margin-bottom: 5px;">⚙️ Automatisation & IA</h3>
+        <p style="font-size: 14px; margin: 0; color: var(--couleur-texte-secondaire);">L'évolution d'Ox Framework pour FiveM</p>
       </div>
+      <div class="oral-card exemple" id="card-cyber" style="cursor: pointer; flex: 1; min-width: 250px; border: 2px solid var(--couleur-bordure); margin: 0; padding: 15px; transition: transform 0.2s;">
+        <h3 style="font-size: 18px; margin-bottom: 5px;">🛡️ Cybermenaces & IA</h3>
+        <p style="font-size: 14px; margin: 0; color: var(--couleur-texte-secondaire);">L'évolution des cybermenaces avec l'IA</p>
+      </div>
+    </div>
 
-      <ul class="projet-liste">
-        <li><strong>Trigger :</strong> Surveillance programmée des flux RSS.</li>
-        <li><strong>Basic LLM Chain :</strong> Connexion à un modèle de langage (Ollama/Llama 3) pour l'analyse
-          sémantique.</li>
-        <li><strong>GitHub Node :</strong> Injection automatisée du contenu traité dans le dépôt de mon portfolio.</li>
-      </ul>
+    <div id="content-ox">
+      <section id="veille-presentation">
+        <h2>Veille Technologique : Automatisation & IA</h2>
+        <p class="projet-description">
+          Ma veille technologique porte sur l'évolution du framework <strong>Ox (Overextended)</strong> pour FiveM. Pour
+          traiter efficacement la masse d'informations techniques, j'ai conçu un pipeline d'automatisation exploitant
+          l'IA.
+        </p>
 
-      <h4 class="detail-titre">2. Prompt Engineering : Configuration de l'Expert IA</h4>
-      <p>Pour garantir la pertinence des résumés, j'ai configuré l'IA pour agir en tant que <em>Lead Developer</em>
-        expert en FiveM et Lua.</p>
+        <h4 class="detail-titre">1. Architecture du Pipeline (Workflow n8n)</h4>
+        <p>Le workflow repose sur une suite de nœuds orchestrés dans n8n. Il surveille les flux RSS des dépôts GitHub pour
+          détecter les nouvelles mises à jour techniques.</p>
 
-      <div class="code-container"
-        style="background-color: var(--couleur-code-fond); padding: 15px; border-radius: 8px; border: 1px solid var(--couleur-bordure);">
-        <pre style="color: #d4d4d4; white-space: pre-wrap; font-size: 0.9em;">
+        <div class="graph-wrapper">
+          <img src="./images/workflowVeille.png" alt="Workflow n8n automatisé" class="projet-image">
+        </div>
+
+        <ul class="projet-liste">
+          <li><strong>Trigger :</strong> Surveillance programmée des flux RSS.</li>
+          <li><strong>Basic LLM Chain :</strong> Connexion à un modèle de langage (Ollama/Llama 3) pour l'analyse
+            sémantique.</li>
+          <li><strong>GitHub Node :</strong> Injection automatisée du contenu traité dans le dépôt de mon portfolio.</li>
+        </ul>
+
+        <h4 class="detail-titre">2. Prompt Engineering : Configuration de l'Expert IA</h4>
+        <p>Pour garantir la pertinence des résumés, j'ai configuré l'IA pour agir en tant que <em>Lead Developer</em>
+          expert en FiveM et Lua.</p>
+
+        <div class="code-container"
+          style="background-color: var(--couleur-code-fond); padding: 15px; border-radius: 8px; border: 1px solid var(--couleur-bordure);">
+          <pre style="color: #d4d4d4; white-space: pre-wrap; font-size: 0.9em;">
 "Ta mission : Ne fais pas juste un résumé. Analyse cette mise à jour pour un développeur Junior et explique le contexte.
 Analyse : Qu'est-ce qui a changé techniquement ?
 Dictionnaire : Si des termes techniques sont mentionnés (ex: statebag, inv_busy, hooks), explique brièvement ce que c'est et à quoi ça sert dans FiveM.
 Impact : Est-ce que c'est critique ? Est-ce que ça améliore la performance ou la sécurité ?
 Réponds en français, avec un ton professionnel et pédagogique."</pre>
-      </div>
-      <h4 class="detail-titre">3. Déploiement Local : Script Automatisé (Batch)</h4>
-      <p>Afin de rendre ce processus aussi fluide que possible, j'ai développé un script Batch (exécutable en un clic depuis mon bureau). Celui-ci se charge d'initialiser tout l'environnement local requis : démarrage du modèle d'IA (Ollama) sur un espace de stockage dédié et lancement du serveur réseau (n8n) pour forcer la mise à jour.</p>
-      
-      <div class="code-container" style="background-color: var(--couleur-code-fond); padding: 15px; border-radius: 8px; border: 1px solid var(--couleur-bordure); margin-bottom: 20px;">
-        <pre style="color: #d4d4d4; white-space: pre-wrap; font-size: 0.9em;">
+        </div>
+        <h4 class="detail-titre">3. Déploiement Local : Script Automatisé (Batch)</h4>
+        <p>Afin de rendre ce processus aussi fluide que possible, j'ai développé un script Batch (exécutable en un clic depuis mon bureau). Celui-ci se charge d'initialiser tout l'environnement local requis : démarrage du modèle d'IA (Ollama) sur un espace de stockage dédié et lancement du serveur réseau (n8n) pour forcer la mise à jour.</p>
+        
+        <div class="code-container" style="background-color: var(--couleur-code-fond); padding: 15px; border-radius: 8px; border: 1px solid var(--couleur-bordure); margin-bottom: 20px;">
+          <pre style="color: #d4d4d4; white-space: pre-wrap; font-size: 0.9em;">
 :: 1. Lancement de l'IA (Ollama sur Disque F:)
 start "IA - Ollama" cmd /k "F: && cd \Program Files\Ollama && set OLLAMA_VULKAN=1 && ollama serve"
 
@@ -100,20 +112,98 @@ start "n8n - Automatisation" cmd /k "npx n8n"
 
 :: 3. Ouverture de l'interface Web
 start "" "http://localhost:5678"</pre>
-      </div>
-    </section>
+        </div>
+      </section>
 
-    <section id="veille-flux">
-      <h3>🔴 Flux de Veille Automatisé (Live)</h3>
-      <div class="timeline" id="news-container"></div>
-    </section>
+      <section id="veille-flux">
+        <h3>🔴 Flux de Veille Automatisé (Live)</h3>
+        <div class="timeline" id="news-container"></div>
+      </section>
 
-    <section id="veille-archives">
-      <h3>📁 Archives de Veille</h3>
-      <p>Retrouvez ici l'historique complet...</p>
-      <div class="timeline" id="archives-container">
-      </div>
-    </section>
+      <section id="veille-archives">
+        <h3>📁 Archives de Veille</h3>
+        <p>Retrouvez ici l'historique complet...</p>
+        <div class="timeline" id="archives-container">
+        </div>
+      </section>
+    </div>
+
+    <div id="content-cyber" style="display: none;">
+      <section id="veille-cyber-presentation">
+        <h2>Veille Technologique : Les Cybermenaces boostées à l'IA</h2>
+        <p class="projet-description">
+          Ma seconde veille technologique porte sur l'impact de l'intelligence artificielle générative sur l'évolution des cybermenaces. Les attaquants utilisent désormais l'IA pour automatiser, personnaliser et intensifier leurs attaques à une échelle inédite.
+        </p>
+
+        <h4 class="detail-titre">1. Le Phishing et le Social Engineering</h4>
+        <p>
+          Auparavant, les attaques de phishing étaient souvent identifiables par des fautes de syntaxe, d'orthographe ou de traduction. Aujourd'hui, avec des modèles LLM (comme ChatGPT ou leurs variantes malveillantes WormGPT), les attaquants peuvent générer des e-mails parfaits, contextualisés et hautement persuasifs.
+        </p>
+        <ul class="projet-liste">
+          <li><strong>Deepfakes vocaux et vidéos :</strong> Usurpation d'identité de cadres d'entreprise (Fraude au président) via des clones vocaux générés par l'IA.</li>
+          <li><strong>Spear-phishing automatisé :</strong> Collecte et analyse de données sur les réseaux sociaux pour personnaliser chaque attaque massivement.</li>
+        </ul>
+
+        <h4 class="detail-titre">2. Développement de Malwares Polymorphes</h4>
+        <p>
+          L'intelligence artificielle permet désormais de modifier dynamiquement le code d'un logiciel malveillant pour échapper aux signatures des antivirus traditionnels. Le code binaire change à chaque exécution, mais la fonction malveillante reste la même, rendant la détection basée sur les signatures obsolète.
+        </p>
+
+        <h4 class="detail-titre">3. L'IA comme outil de Défense (Cyber-résilience)</h4>
+        <p>
+          Face à ces nouvelles menaces, la cybersécurité doit elle aussi évoluer. Les solutions EDR (Endpoint Detection and Response) et XDR intègrent aujourd'hui des moteurs d'IA pour analyser les comportements suspects en temps réel (analyse heuristique) et contrer les attaques <em>Zero-Day</em>.
+        </p>
+      </section>
+      
+      <section id="veille-cyber-flux">
+        <h3>🔴 Sujets Récents (Cyber & IA)</h3>
+        <div class="timeline">
+             <div class="timeline-item">
+                <div class="timeline-date">Mai 2026</div>
+                <div class="timeline-content">
+                    <h4>WormGPT et FraudGPT : L'IA au service du crime</h4>
+                    <div class="news-text">
+                        <p>Émergence de modèles de langage spécialement entraînés sur des données malveillantes. Ils sont vendus sur le Dark Web comme des services (MaaS - Malware as a Service) pour faciliter le travail des cybercriminels débutants, sans les filtres de sécurité des IA classiques.</p>
+                    </div>
+                </div>
+             </div>
+             <div class="timeline-item">
+                <div class="timeline-date">Février 2026</div>
+                <div class="timeline-content">
+                    <h4>Attaques par empoisonnement de données (Data Poisoning)</h4>
+                    <div class="news-text">
+                        <p>Les hackers ciblent directement les phases d'entraînement des modèles d'IA en entreprise pour y introduire des vulnérabilités furtives, des "backdoors" ou des biais comportementaux qui pourront être exploités plus tard en production.</p>
+                    </div>
+                </div>
+             </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const cardOx = document.getElementById('card-ox');
+        const cardCyber = document.getElementById('card-cyber');
+        const contentOx = document.getElementById('content-ox');
+        const contentCyber = document.getElementById('content-cyber');
+
+        if (cardOx && cardCyber) {
+          cardOx.addEventListener('click', () => {
+            contentOx.style.display = 'block';
+            contentCyber.style.display = 'none';
+            cardOx.style.borderColor = 'var(--couleur-principale)';
+            cardCyber.style.borderColor = 'var(--couleur-bordure)';
+          });
+
+          cardCyber.addEventListener('click', () => {
+            contentOx.style.display = 'none';
+            contentCyber.style.display = 'block';
+            cardCyber.style.borderColor = 'var(--couleur-principale)';
+            cardOx.style.borderColor = 'var(--couleur-bordure)';
+          });
+        }
+      });
+    </script>
   </main>
 
   <footer>
