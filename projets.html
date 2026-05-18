@@ -63,6 +63,7 @@
       <li class="dropdown">
         <button class="dropbtn">Projets Personnels ▼</button>
         <div class="dropdown-content">
+          <a href="#projet-osintboard">OsintBoard (Tauri/Rust)</a>
           <a href="#projet-gta">Script Roleplay FiveM</a>
           <a href="#projet-unity">Jeu Vidéo Solo (Unity)</a>
           <a href="#projet-discord">Bot Discord (Python/IA)</a>
@@ -276,6 +277,39 @@
 
     <section id="projets-personnels">
       <h2>Projets Personnels</h2>
+
+      <!-- NOUVEAU PROJET PERSO : OSINTBOARD -->
+      <div class="projet-carte" id="projet-osintboard">
+        <h3>OsintBoard - Whiteboard d'Investigation OSINT Premium</h3>
+        <p class="projet-resume">Application de bureau haut de gamme combinant un tableau blanc interactif, des analyses d'APIs asynchrones en direct (IP, e-mails, domaines, IBAN, VIN) et un assistant IA Phi-3 souverain sous Tauri, React et Rust.</p>
+
+        <button class="btn-voir-plus">Voir l'étude de cas complète</button>
+
+        <div class="projet-details">
+          <h4 class="detail-titre">1. Présentation & Objectifs</h4>
+          <p class="projet-description">
+            <strong>OsintBoard</strong> est une application de bureau haut de gamme conçue pour les enquêteurs en sources ouvertes (OSINT). Elle permet de cartographier visuellement des indices sous forme de graphes connectés, d'exécuter des requêtes d'investigations automatisées sur de multiples APIs et d'analyser le canevas en temps réel grâce à une Intelligence Artificielle locale et souveraine.
+          </p>
+
+          <h4 class="detail-titre">2. Architecture Logicielle & Performances</h4>
+          <ul class="projet-liste">
+            <li><strong>Frontend (Vite/React) :</strong> Une interface réactive ultra-premium développée avec React 19 et React Flow, proposant un design responsive avec basculement de thèmes (Sombre Indigo, Clair épuré, Hacker Matrix) et synchronisation dynamique du canvas.</li>
+            <li><strong>Backend (Rust/Tauri) :</strong> Une architecture bureau sécurisée en Rust pour gérer les requêtes réseau asynchrones vers les APIs externes et communiquer avec le frontend via des commandes Tauri enregistrées.</li>
+            <li><strong>Intégration d'APIs OSINT :</strong> Requêtes asynchrones en direct pour analyser des adresses IP, domaines, emails, pseudos, téléphones (libphonenumber), adresses MAC, portefeuilles crypto, codes VIN (NHTSA API), et IBAN bancaires (validation Luhn + openiban API).</li>
+            <li><strong>Sauvegarde & Export Natifs :</strong> Utilisation des APIs de dialogue et de système de fichiers de Tauri pour permettre des exports PNG HD et des sauvegardes/chargements natifs de graphes de façon fluide et sécurisée.</li>
+          </ul>
+
+          <h4 class="detail-titre">3. Assistant IA Local & Souverain</h4>
+          <p class="projet-description">
+            Intégration locale complète du LLM <strong>Phi-3</strong> (2.2 Go) via <strong>Ollama</strong>. L'IA analyse dynamiquement les nœuds, relations et notes du tableau blanc pour suggérer des pistes d'enquête et faire du pivotement d'indices, tout en conservant 100% de la confidentialité des données (fonctionnement hors-ligne autonome).
+          </p>
+
+          <div class="projet-tech">
+            <span>Tauri v2</span><span>Rust</span><span>React 19</span><span>TypeScript</span><span>React Flow</span><span>Ollama (Phi-3)</span><span>APIs OSINT</span>
+          </div>
+          <a href="https://github.com/jiirroh/osintboard" target="_blank" class="projet-lien">Voir le dépôt GitHub</a>
+        </div>
+      </div>
 
       <div class="projet-carte" id="projet-gta">
         <h3>Développement Modulaire FiveM (Lua/NUI)</h3>
