@@ -1,0 +1,940 @@
+/* Importation des polices */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Lato:wght@400;700&display=swap');
+
+/* --- 1. Variables et Réinitialisation de base --- */
+:root {
+    /* Couleurs */
+    --color-primary: #0E2D4F; /* Bleu profond */
+    --color-accent: #f78718;  /* Orange */
+    --color-background: #F5F5F5; /* Gris clair */
+    --color-text-dark: #333333; /* Gris foncé */
+    --color-text-light: #FFFFFF; /* Blanc */
+    --color-brown-footer: #6b4d3f; /* Couleur marron du bas de page/contact */
+
+    /* Typographie */
+    --font-serif: 'Lora', serif;
+    --font-sans-serif: 'Lato', sans-serif;
+
+    /* Espacements */
+    --space-sm: 10px;
+    --space-md: 20px;
+    --space-lg: 40px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans-serif);
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    background-color: var(--color-background);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-serif);
+    color: var(--color-primary);
+    line-height: 1.2;
+}
+h1 { font-size: 2.8rem; }
+h2 { font-size: 2rem; margin-bottom: var(--space-md); }
+h3 { font-size: 1.5rem; }
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- 2. Boutons Génériques --- */
+.btn {
+    display: inline-block;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: 5px; /* Arrondi */
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-orange {
+    background-color: #ba421d;
+    color: var(--color-text-light);
+}
+.btn-orange:hover {
+    background-color: #9d3819; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-small { padding: 8px 15px; font-size: 0.9rem; }
+.btn-large { padding: 12px 25px; font-size: 1.1rem; border-radius: 8px;}
+
+.link-more {
+    display: inline-block;
+    color: var(--color-accent);
+    font-weight: bold;
+    margin-top: var(--space-sm);
+}
+.link-more:hover {
+    text-decoration: underline;
+}
+
+/* --- 3. Header / Bannière Principale --- */
+.hero-banner {
+    position: relative;
+    color: var(--color-text-light);
+    height: 600px;
+    text-align: center;
+    overflow: hidden; /* Masque les images du carrousel hors du cadre */
+}
+
+/* Styles du carrousel */
+.carousel-images {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Derrière l'overlay et le contenu */
+}
+
+.carousel-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0; /* Par défaut, toutes les images sont cachées */
+    transition: opacity 1.5s ease-in-out; /* Animation de fondu */
+}
+
+.carousel-image.active {
+    opacity: 1; /* L'image active est visible */
+}
+/* Fin des styles du carrousel */
+
+.hero-banner .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); 
+    z-index: 2; /* Entre le carrousel et le contenu */
+}
+
+/* Centrage du contenu du héros (texte et bouton) */
+.hero-content {
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 3; /* Au-dessus de tout */
+    width: 100%;
+    max-width: 800px; 
+}
+
+.hero-content h1 {
+    color: var(--color-text-light);
+    margin: var(--space-sm) 0 var(--space-md) 0;
+    font-size: 3.5rem; 
+}
+
+.slogan-small {
+    font-size: 1rem;
+    letter-spacing: 2px;
+    font-weight: 300;
+}
+
+/* Navbar Container */
+.navbar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; 
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 100%;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-sm) 0;
+    background-color: transparent;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: var(--space-md);
+}
+
+.navbar .nav-links a {
+    color: var(--color-text-light);
+    font-weight: 500;
+    padding: 5px 0;
+    transition: color 0.3s;
+}
+
+.navbar .nav-links a:hover {
+    color: var(--color-accent);
+}
+
+/* Liens sociaux */
+.social-links {
+    position: absolute;
+    top: 50%; 
+    right: var(--space-md);
+    transform: translateY(-50%); 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 3;
+}
+
+.social-links a {
+    color: var(--color-text-light);
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--color-accent);
+}
+
+/* --- 4. Sections Génériques --- */
+.section {
+    padding: var(--space-lg) 0;
+}
+
+.tag-label {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: var(--space-sm);
+    border-radius: 3px;
+}
+
+.orange-bg {
+    background-color: var(--color-accent);
+}
+
+/* --- 5. Section Actualités/Événements --- */
+.news-event {
+    background-color: var(--color-background);
+}
+
+.event-grid {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+    background-color: var(--color-text-light);
+    padding: var(--space-md);
+    border-radius: 8px;
+}
+
+.event-grid .image-col {
+    flex: 1;
+}
+
+.event-grid .image-col img {
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-grid .content-col {
+    flex: 1;
+}
+
+.event-grid h2 {
+    margin-top: 0;
+}
+
+.event-grid .date {
+    color: var(--color-accent);
+    font-weight: bold;
+    margin-bottom: var(--space-md);
+}
+
+/* --- 6. Section Prochainement --- */
+.coming-soon {
+    text-align: center;
+    background-color: #f5f5f5;
+}
+
+.card-coming-soon {
+    display: inline-block;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: var(--space-md);
+}
+
+.card-coming-soon img {
+    height: 400px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.card-coming-soon .card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-sm);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: var(--color-text-light);
+    text-align: left;
+}
+
+.card-coming-soon h3 {
+    color: var(--color-text-light);
+    margin: 5px 0;
+}
+
+/* --- 7. Section Préparez Votre Visite --- */
+.visit-prep {
+    text-align: center;
+}
+
+.cards-grid {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+.card-visit {
+    flex: 1;
+    max-width: 250px;
+    padding: var(--space-md);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    color: var(--color-text-light);
+}
+
+.card-visit h3 {
+    color: var(--color-text-light);
+    margin: var(--space-sm) 0;
+}
+
+.icon-large {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-sm);
+}
+
+.promo-tag {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: var(--color-accent);
+    color: var(--color-text-light);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transform: rotate(5deg);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Couleurs spécifiques aux cartes */
+.card-visit.public { background-color: #e8a05c; }
+.card-visit.family { background-color: #e35a50; }
+.card-visit.groups { background-color: #a0846c; }
+.card-visit.schools { background-color: #92b07a; }
+
+.btn-visit {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--color-text-light);
+    padding: 5px 15px;
+    border-radius: 50px;
+    margin-top: var(--space-sm);
+    transition: background-color 0.3s;
+}
+.btn-visit:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Titus Section */
+.titus-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-text-light);
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: var(--space-md);
+    margin-top: var(--space-lg);
+    gap: var(--space-lg);
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.titus-image {
+    width: 150px;
+    object-fit: contain;
+}
+
+/* --- 8. Section Horaires et Tarifs --- */
+.hours-prices-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    padding: var(--space-md);
+    background-color: var(--color-text-light);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.hours-col, .prices-col {
+    flex: 1;
+}
+
+.hours-col h3, .prices-col h3 {
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 5px;
+    margin-bottom: var(--space-sm);
+}
+
+/* --- 9. Section Carte et Contact --- */
+.map-contact {
+    background-color: var(--color-brown-footer);
+    color: var(--color-text-light);
+    padding: 0;
+}
+
+.map-contact-grid {
+    display: flex;
+}
+
+.map-col {
+    flex: 2;
+}
+
+.contact-col {
+    flex: 1;
+    padding: var(--space-lg);
+    background-color: #604538; 
+}
+
+.contact-col p {
+    margin-bottom: var(--space-sm);
+}
+
+.footer-logo img {
+    filter: none;
+    width: 80px;
+    margin-bottom: var(--space-sm);
+}
+
+.social-links-footer {
+    margin-top: var(--space-md);
+}
+
+.social-links-footer a {
+    color: var(--color-text-light);
+    margin-right: var(--space-sm);
+    font-size: 1.2rem;
+}
+.social-links-footer a:hover {
+    color: var(--color-accent);
+}
+
+/* --- 10. Footer Principal --- */
+.main-footer {
+    background-color: var(--color-brown-footer);
+    color: var(--color-text-light);
+    text-align: center;
+    padding: var(--space-md) 0;
+}
+
+/* Footer: liens visibles sur fond sombre */
+.main-footer a {
+     color: var(--color-accent);
+     text-decoration: underline;
+}
+.main-footer a:hover {
+     color: var(--color-text-light);
+     text-decoration: none;
+}
+
+/* --- 11. Responsive basique --- */
+@media (max-width: 900px) {
+    h1 { font-size: 2.2rem; }
+
+    .event-grid, .titus-section, .map-contact-grid, .hours-prices-grid {
+        flex-direction: column;
+    }
+
+    .event-grid, .titus-section, .map-col, .contact-col {
+        flex: auto;
+        width: 100%;
+    }
+    
+    .event-grid {
+        padding: var(--space-sm);
+    }
+
+    .event-grid .image-col img {
+        margin-bottom: var(--space-md);
+    }
+    
+    .cards-grid {
+        gap: var(--space-sm);
+        flex-wrap: wrap;
+    }
+    .card-visit {
+        max-width: none;
+        width: 47%; 
+    }
+    
+    .navbar .nav-links {
+        display: none; 
+    }
+    
+    .hero-banner {
+        height: 400px;
+    }
+    
+    .social-links {
+        top: auto;
+        bottom: 20px; 
+        right: 10px;
+        transform: none; 
+        flex-direction: row;
+        gap: 20px;
+    }
+    
+    .map-placeholder {
+        height: 400px;
+    }
+}
+
+/* --- 12. Styles Page Réservation --- */
+/*
+   J'ai fusionné les deux ensembles de règles pour la réservation 
+   en un seul, basé sur vos variables globales.
+*/
+.reservation-form-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    background: var(--color-text-light);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.reservation-form-container h2 {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    color: var(--color-primary);
+}
+
+.reservation-form-container fieldset {
+    border: none;
+    padding: 0;
+    margin-bottom: var(--space-lg);
+}
+
+.reservation-form-container legend {
+    font-weight: bold;
+    color: var(--color-primary);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--color-accent);
+    margin-bottom: var(--space-md);
+}
+
+.field-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+.field-row label { 
+    font-weight: 600; 
+    margin-bottom: 6px; 
+    color: var(--color-primary); 
+}
+
+.field-row input[type="date"],
+.field-row input[type="text"],
+.field-row input[type="email"],
+.field-row input[type="tel"],
+.ticket-quantity {
+    padding: 10px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    background: #fff;
+}
+
+.ticket-type {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.ticket-price { 
+    color:#777; 
+    font-size:0.95rem; 
+}
+
+.ticket-quantity { 
+    width: 110px; 
+    text-align: right; 
+}
+
+.total-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 18px;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+}
+
+#total-price { 
+    font-weight:700; 
+    color: var(--color-accent); 
+    font-size: 1.1rem; 
+}
+
+@media (max-width: 900px) {
+    .reservation-form-container { 
+        padding: var(--space-sm); 
+    }
+    .ticket-quantity { 
+        width: 100%; 
+    }
+}
+
+/* Adaptation de la bannière pour les pages intérieures (réservation, confirmation) */
+.hero-banner.small-banner {
+    height: 400px; /* Hauteur augmentée */
+}
+
+.hero-banner.small-banner .overlay {
+    /* Fond plus sombre pour le contraste du texte blanc */
+    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.25));
+}
+
+.hero-banner.small-banner .hero-content.small-hero {
+    top: 55%; /* Ajuster la position verticale */
+    text-align: left;
+}
+
+.hero-banner.small-banner .hero-content.small-hero h1,
+.hero-banner.small-banner .hero-content.small-hero p {
+    color: #ffffff; /* Texte en blanc */
+    text-shadow: 0 2px 6px rgba(0,0,0,0.5); /* Ombre pour lisibilité */
+}
+
+.hero-banner.small-banner .navbar .nav-links a,
+.hero-banner.small-banner .navbar .logo a,
+.hero-banner.small-banner .social-links a {
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+/* --- 13. Styles Page Validation (Facture) --- */
+/*
+   J'ai supprimé le bloc en double. 
+   Celui-ci est le seul dont vous avez besoin.
+*/
+.validation-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.validation-container h2 {
+    color: #28a745; /* Vert pour succès */
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2em;
+}
+
+.validation-container p {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.validation-container hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 30px 0;
+}
+
+.validation-container h3 {
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #e67e22; /* Ligne orange */
+    padding-bottom: 5px;
+}
+
+.commande-details p {
+    text-align: left;
+    font-size: 1em;
+    margin-left: 20px;
+}
+
+.facture-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.95em;
+}
+
+.facture-table th, .facture-table td {
+    border: 1px solid #e0e0e0;
+    padding: 12px;
+    text-align: left;
+}
+
+.facture-table thead th {
+    background: #f0f0f0;
+}
+
+.facture-table tfoot .total-label {
+    text-align: right;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.facture-table tfoot .total-montant {
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #e67e22; /* Orange */
+}
+
+/* Style pour le bouton retour */
+.validation-container .btn-retour {
+    display: block; 
+    width: fit-content; 
+    margin: 30px auto 0 auto;
+    padding: 12px 25px;
+    background-color: #ba421d;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.validation-container .btn-retour:hover {
+    background-color: #9d3819;
+}
+
+/* Conteneur des actions (boutons) */
+.actions-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: var(--space-md);
+    margin-top: 30px;
+}
+
+.actions-container .actions-left {
+    justify-self: start;
+}
+
+.actions-container .actions-center {
+    justify-self: center;
+}
+
+.actions-container .actions-right {
+    justify-self: end;
+}
+
+.actions-container .btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-secondary {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+}
+
+.btn-secondary:hover {
+    background-color: #1a3a5f;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* --- 14. Styles Facture (pour impression) --- */
+
+.facture-container {
+    width: 90%; 
+    margin: 20px auto; 
+    padding: 20px; 
+    border: 1px solid #ccc;
+    background: #fff; /* Fond blanc pour l'impression */
+}
+.facture-container img {
+    width: 80px; 
+    display: block;
+    margin-bottom: 20px;
+}
+.facture-container h1 {
+    text-align: center;
+}
+.facture-container .details {
+    margin-bottom: 20px;
+}
+.facture-container .details p {
+    margin: 5px 0;
+}
+
+/* Classes extraites des styles inline des vues */
+.form-search {
+    margin-bottom: 1rem;
+}
+
+.link-reset {
+    margin-left: 0.5rem;
+}
+
+.text-highlight {
+    color: #ba421d;
+}
+
+.legend-strong {
+    color: #ba421d;
+    font-weight: bold;
+}
+
+.notice-warning {
+    color: #ba421d;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+/* Utilities pour les pages d'événements / programmes */
+.hero-bg-default {
+    background-color: var(--color-background);
+}
+
+.hero-bg-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero-bg-programme {
+    background-image: url('../images/programme.jpg');
+}
+
+.h2-accent-left {
+    border-left: 5px solid #ba421d;
+    padding-left: 15px;
+}
+
+.h2-accent-secondary {
+    border-left-color: #0E2D4F;
+}
+
+.text-dark-navy { color: #0E2D4F; }
+
+.table-custom {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table-header {
+    background-color: #ba421d;
+    color: #fff;
+}
+
+.table-header-row { background-color: var(--color-primary); color: #fff; }
+
+.th-cell { padding: 12px; text-align: left; font-weight: bold; }
+.td-padding { padding: 12px; }
+
+.row-divider { border-bottom: 1px solid #eee; }
+.row-divider-accent { border-bottom: 3px solid #ba421d; }
+.row-divider-secondary { border-bottom: 3px solid #0E2D4F; }
+.row-alt { background-color: #f9f9f9; }
+
+.article-card {
+    background: #ffffff;
+    padding: 18px;
+    margin-bottom: 14px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.card-accent-primary { border-left: 5px solid #ba421d; }
+.card-accent-secondary { border-left: 5px solid #0E2D4F; }
+
+.ul-inside { list-style-position: inside; color: #555; }
+.spaced-list { line-height: 1.8; }
+.footnote-list { color: rgba(255,255,255,0.9); margin-bottom: 20px; }
+
+.strong-primary { color: #ba421d; }
+.strong-secondary { color: #0E2D4F; }
+
+.muted-note { color: #888; }
+.muted-footer { font-size: 0.9rem; color: rgba(255,255,255,0.7); }
+
+/* RÈGLES D'IMPRESSION :
+   Ceci masque tout SAUF la facture quand on imprime
+*/
+@media print {
+    /* On cache tout le corps de la page par défaut */
+    body > * {
+        display: none;
+    }
+    
+    /* On affiche SEULEMENT le conteneur de la facture et ce qu'il y a dedans */
+    .facture-container, .facture-container * {
+        display: block;
+    }
+
+    /* On s'assure que la facture prend toute la place sur le papier */
+    .facture-container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: none;
+        box-shadow: none;
+    }
+}

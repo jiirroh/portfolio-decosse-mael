@@ -1,0 +1,135 @@
+:root{
+  		--orange:#FFA500;
+		--gris : #A9A9A9;
+		--vert : #048B9A;
+		--rouge :#EA4258;
+		
+		--police1 : Verdana, Arial, 'Trebuchet MS';
+		--police2 : 'Trebuchet MS';
+}
+
+body {
+font-family: var(--police1);
+font-size: 12px;
+color : var(--gris);
+}
+
+.picnic_logo {
+	width : 10%;
+}
+
+
+nav {
+	background-color : var(--vert);
+	font-family: var(--police2);
+	font-size : 1.5em;
+	font-weight : bolder;
+	padding-top: 0.5%;
+	padding-bottom: 0.5%;
+}
+
+#illustration {
+	width : 50%;
+}
+
+body, footer {
+	display : flex;
+	flex-direction : column;
+	text-align : center;
+}
+
+header, nav ul, #contenu, #SJP_SIO_Presentation, #description {
+	display : flex;
+	flex-direction : column;
+	align-items : center;
+	text-align : center;	
+}
+
+.titre {
+	font-family: var(--police1);
+	font-size : 4em;
+	font-weight : bolder;
+}
+
+nav ul li {
+	list-style : none;
+}
+
+nav ul li a {
+	text-decoration : none;
+	color: var(--gris);
+}
+
+nav ul li a:hover{
+	color: var(--orange);
+}
+
+nav ul li :hover {
+	color : var(--orange);
+}
+
+#banniere {
+	background-color : var(--vert);
+	font-family: var(--police2);
+	font-size : 1.5em;
+	font-weight : bolder;
+	text-align : center;
+	padding-top: 0.5%;
+	padding-bottom: 0.5%;
+}
+
+#description, #SJP_SIO_Presentation{
+        font-family: var(--police2);
+}
+
+	
+#SJP_Logo {
+	width : 30%;
+	margin : 0;
+}
+
+
+@media only screen and (min-width: 600px) {
+	header {
+		flex-direction : row;
+		justify-content : center;
+		align-items : end;
+	}
+	
+	nav ul {
+		flex-direction : row;
+		justify-content : space-evenly;
+        }
+	
+	#contenu, #SJP_SIO_Presentation {
+		flex-direction : row;
+	}
+	#SJP_SIO_Presentation {
+		flex-direction : column;
+	}
+	
+	#description, #SJP_SIO_Presentation{
+		text-align: left;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	header {
+		justify-content : space-between;
+		align-items : center;
+	}
+	
+	nav ul  {
+		justify-content : end;
+	}
+	
+	nav ul li {
+		margin : 0 2% 0 2%;
+	}
+	
+}
+
+
+
+
+
